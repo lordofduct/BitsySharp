@@ -1,0 +1,27 @@
+## Ignore other version control related stuff
+**/.svn
+**/.vs
+**/.tfignore
+**/*.vssscc
+**/*.csproj.vspscc
+
+#ignore template/build stuff
+/Builds
+
+#ignore unique Unity stuff
+/Library
+/bin
+/obj
+/Temp
+/*.csproj
+/*.csproj.vspscc
+/*.sln
+/*.sln.DotSettings
+/*.vssscc
+/*.unityproj
+/*.booproj
+/EasyScatter.userprefs
+/sysinfo.txt
+/*.suo
+/ExportedObj
+/UpgradeLog.htm
