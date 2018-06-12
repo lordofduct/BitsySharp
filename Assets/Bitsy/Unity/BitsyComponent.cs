@@ -11,9 +11,12 @@ namespace SPBitsy.Unity
         #region Fields
 
         public TextAsset GameData;
+        public Renderer Renderer;
 
         [System.NonSerialized]
         private BitsyGame _game;
+        [System.NonSerialized]
+        private TextureRenderSurface _surface;
 
         #endregion
 
@@ -22,6 +25,9 @@ namespace SPBitsy.Unity
         // Use this for initialization
         void Start()
         {
+            _surface = TextureRenderSurface.Create();
+            this.Renderer.material.mainTexture = _surface.Texture;
+
             var parser = new BitsyGameParser();
             Environment environment;
             using (var reader = new System.IO.StringReader(this.GameData.text))
@@ -30,7 +36,7 @@ namespace SPBitsy.Unity
             }
 
             _game = new BitsyGame();
-            _game.Begin(environment, BitsyUnityUtils.GetInputWASD);
+            _game.Begin(environment, BitsyUnityUtils.GetInputWASD, _surface);
         }
 
         #endregion
@@ -39,7 +45,14 @@ namespace SPBitsy.Unity
 
         private void Update()
         {
-            _game.Tick();
+            try
+            {
+                _game.Tick((int)(Time.deltaTime * 1000));
+            }
+            catch(System.Exception ex)
+            {
+                Debug.LogException(ex, this);
+            }
         }
 
         #endregion

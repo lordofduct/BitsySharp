@@ -30,6 +30,8 @@ namespace SPBitsy
     public static class Utils
     {
 
+        #region Coerce Callbacks
+
         public static Action Coerce(System.Action<object> d)
         {
             if (d != null)
@@ -37,6 +39,16 @@ namespace SPBitsy
             else
                 return null;
         }
+
+        public static Action<object> Coerce(System.Action d)
+        {
+            if (d != null)
+                return (o) => d();
+            else
+                return null;
+        }
+
+        #endregion
 
         #region Array Methods
 

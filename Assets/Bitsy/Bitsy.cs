@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -10,15 +11,23 @@ namespace SPBitsy
     public class BitsyGame
     {
 
+        public string VERSION = "4.8"; //this is the bitsy version we're currently ported from
+
         public const int MAPSIZE = 16;
         public const int TILESIZE = 8;
+        public const int RENDERSIZE = MAPSIZE * TILESIZE;
+
+        public const int ANIM_TIME_MS = 400;
+        public const int MOVE_TIME_MS = 200;
 
         public const string ID_PLAYER = "A";
+        public const string ID_DEFAULT = "0";
 
         #region Fields
-
+        
         private Environment _environment;
         private GetInputState _getInput;
+        private IRenderSurface _surface;
 
         #endregion
 
@@ -42,23 +51,260 @@ namespace SPBitsy
 
         #region Methods
 
-        public void Begin(Environment environment, GetInputState input)
+        public void Begin(Environment environment, GetInputState input, IRenderSurface renderSurface)
         {
             _environment = environment;
             _getInput = input;
+            _surface = renderSurface;
 
             _environment.VariableChanged += this.OnVariableChanged;
+
+            this.StartNarrating(_environment.Title);
         }
 
-        public void Tick()
+        /// <summary>
+        /// Tick the game.
+        /// </summary>
+        /// <param name="deltaTime">Number of milliseconds since last update.</param>
+        public void Tick(int deltaTime)
         {
+            if(!_environment.isNarrating && !_environment.isEnding)
+            {
+                this.UpdateAnimation(deltaTime);
+                _environment.SceneRenderer.DrawRoom(_environment.GetCurrentRoom(), _surface);
+            }
+            else
+            {
+                _surface.FillSurface(_environment.GetCurrentPalette().Colors[0]);
+            }
 
+            if(_environment.DialogBuffer.IsActive)
+            {
+                _environment.DialogRenderer.Draw(_environment.DialogBuffer, deltaTime);
+                _environment.DialogBuffer.Update(deltaTime);
+            }
+            else if(!_environment.isEnding)
+            {
+                this.MoveSprites(deltaTime);
+
+                if(_environment.GetPlayer().WalkingPath.Count > 0)
+                {
+                    var dest = _environment.GetPlayer().WalkingPath.Last();
+                    _surface.FillTile(Color.HalfWhite, dest.x * TILESIZE, dest.y * TILESIZE);
+                }
+            }
+
+            if (!_environment.DialogBuffer.IsActive && !_environment.isEnding)
+            {
+                //handle inputs
+                var dir = this.GetInputDirection();
+                var last = _environment.lastMoveDirection;
+                _environment.lastMoveDirection = dir;
+
+                if(dir != Direction.None)
+                {
+                    if (last != dir)
+                    {
+                        this.MovePlayer(dir);
+                        _environment.moveHoldCounter = 500;
+                    }
+                    else
+                    {
+                        _environment.moveHoldCounter -= deltaTime;
+                        if(_environment.moveHoldCounter <= 0)
+                        {
+                            _environment.moveHoldCounter = 150;
+                            this.MovePlayer(dir);
+                        }
+                    }
+                }
+            }
+
+            if (_environment.didPlayerMoveThisFrame && _environment.onPlayerMoved != null) _environment.onPlayerMoved();
+            _environment.didPlayerMoveThisFrame = false;
         }
-
 
         #endregion
 
         #region Private Methods
+
+        private Direction GetInputDirection()
+        {
+            if (_getInput == null) return Direction.None;
+
+            if (_getInput(InputId.Up) > InputState.None)
+                return Direction.Up;
+            else if (_getInput(InputId.Down) > InputState.None)
+                return Direction.Down;
+            else if (_getInput(InputId.Right) > InputState.None)
+                return Direction.Right;
+            else if (_getInput(InputId.Left) > InputState.None)
+                return Direction.Left;
+
+            return Direction.None;
+        }
+
+        private void UpdateAnimation(int deltaTime)
+        {
+            _environment.AnimCounter += deltaTime;
+
+            if (_environment.AnimCounter > ANIM_TIME_MS)
+            {
+                int frameCount = _environment.AnimCounter / ANIM_TIME_MS;
+
+                foreach (var spr in _environment.Sprites.Values)
+                {
+                    spr.Anim.Tick(frameCount);
+                }
+                foreach (var tile in _environment.Tiles.Values)
+                {
+                    tile.Anim.Tick(frameCount);
+                }
+                foreach (var item in _environment.Items.Values)
+                {
+                    item.Anim.Tick(frameCount);
+                }
+
+                _environment.AnimCounter %= ANIM_TIME_MS;
+            }
+        }
+
+        private void MoveSprites(int deltaTime)
+        {
+            _environment.MoveCounter += deltaTime;
+
+            if (_environment.MoveCounter >= MOVE_TIME_MS)
+            {
+                int frameCount = _environment.MoveCounter / MOVE_TIME_MS;
+
+                foreach (var spr in _environment.Sprites.Values)
+                {
+                    if (spr.WalkingPath.Count > 0)
+                    {
+                        var nextPos = spr.WalkingPath.Dequeue();
+                        spr.x = nextPos.x;
+                        spr.y = nextPos.y;
+
+                        Loc loc;
+                        Exit exit;
+                        int index;
+                        if (spr.Id == ID_PLAYER && _environment.GetEndingAtLoc(spr.RoomId, spr.x, spr.y, out loc))
+                        {
+                            this.StartNarrating(_environment.Endings[loc.Id], true);
+                        }
+                        else if (_environment.GetExitAtLoc(spr.RoomId, spr.x, spr.y, out exit))
+                        {
+                            spr.RoomId = exit.Destination.Id;
+                            spr.x = exit.Destination.x;
+                            spr.y = exit.Destination.y;
+                            if (spr.Id == ID_PLAYER)
+                            {
+                                _environment.CurrentRoomId = exit.Destination.Id;
+                            }
+                        }
+                        else if ((index = _environment.GetItemIndexAtLoc(spr.RoomId, spr.x, spr.y)) >= 0)
+                        {
+                            var item = _environment.Rooms[spr.RoomId].Items[index];
+                            _environment.Rooms[spr.RoomId].Items.RemoveAt(index);
+
+                            if (spr.Inventory.ContainsKey(item.Id))
+                                spr.Inventory[item.Id] += 1f;
+                            else
+                                spr.Inventory[item.Id] = 1f;
+
+                            if (_environment.onInventoryChanged != null)
+                                _environment.onInventoryChanged(item.Id);
+
+                            if (spr.Id == ID_PLAYER)
+                                this.StartItemDialog(item.Id);
+
+                            // stop moving : is this a good idea?
+                            spr.WalkingPath.Clear();
+                        }
+
+                        if (spr.Id == ID_PLAYER) _environment.didPlayerMoveThisFrame = true;
+                    }
+                }
+
+                _environment.MoveCounter %= MOVE_TIME_MS;
+            }
+        }
+
+        private void MovePlayer(Direction dir)
+        {
+            var player = _environment.GetPlayer();
+            var room = _environment.GetCurrentRoom();
+            Sprite spr = null;
+
+            switch(dir)
+            {
+                case Direction.Up:
+                    if(!this.IsLocWall(room, player.x, player.y - 1) && !_environment.GetSpriteAtLoc(room.Id, player.x, player.y - 1, out spr))
+                    {
+                        player.y -= 1;
+                        _environment.didPlayerMoveThisFrame = true;
+                    }
+                    break;
+                case Direction.Down:
+                    if (!this.IsLocWall(room, player.x, player.y - 1) && !_environment.GetSpriteAtLoc(room.Id, player.x, player.y + 1, out spr))
+                    {
+                        player.y += 1;
+                        _environment.didPlayerMoveThisFrame = true;
+                    }
+                    break;
+                case Direction.Left:
+                    if (!this.IsLocWall(room, player.x, player.y - 1) && !_environment.GetSpriteAtLoc(room.Id, player.x - 1, player.y, out spr))
+                    {
+                        player.x -= 1;
+                        _environment.didPlayerMoveThisFrame = true;
+                    }
+                    break;
+                case Direction.Right:
+                    if (!this.IsLocWall(room, player.x, player.y - 1) && !_environment.GetSpriteAtLoc(room.Id, player.x + 1, player.y, out spr))
+                    {
+                        player.x += 1;
+                        _environment.didPlayerMoveThisFrame = true;
+                    }
+                    break;
+            }
+
+            // do items first, because you can pick up an item AND go through a door
+            int itemIndex = _environment.GetItemIndexAtLoc(room.Id, player.x, player.y);
+            if(itemIndex >= 0)
+            {
+                var itm = room.Items[itemIndex];
+                room.Items.RemoveAt(itemIndex);
+
+                if (player.Inventory.ContainsKey(itm.Id))
+                    player.Inventory[itm.Id] += 1f;
+                else
+                    player.Inventory[itm.Id] = 1f;
+
+                if (_environment.onInventoryChanged != null)
+                    _environment.onInventoryChanged(itm.Id);
+
+                this.StartItemDialog(itm.Id);
+            }
+
+            Loc loc;
+            Exit exit;
+
+            if(_environment.GetEndingAtLoc(room.Id, player.x, player.y, out loc))
+            {
+                this.StartNarrating(_environment.Endings[loc.Id], true);
+            }
+            else if (_environment.GetExitAtLoc(spr.RoomId, spr.x, spr.y, out exit))
+            {
+                player.RoomId = exit.Destination.Id;
+                player.x = exit.Destination.x;
+                player.y = exit.Destination.y;
+                _environment.CurrentRoomId = exit.Destination.Id;
+            }
+            else if(spr != null)
+            {
+                this.StartSpriteDialog(spr.Id);
+            }
+        }
 
         private void StartNarrating(string dialog, bool isEnding = false)
         {
@@ -106,6 +352,25 @@ namespace SPBitsy
             _environment.DialogRenderer.Reset();
             _environment.DialogRenderer.SetCentered(_environment.isNarrating);
             _environment.DialogBuffer.Reset();
+
+            if(scriptId == null)
+            {
+                ScriptInterpreter.Interpret(_environment, dialog, () =>
+                {
+                    if (_environment.DialogBuffer.IsActive)
+                        this.ExitDialog();
+                });
+            }
+            else
+            {
+                if (!_environment.HasScript(scriptId))
+                    ScriptInterpreter.Compile(_environment, scriptId, dialog);
+                ScriptInterpreter.Run(_environment, scriptId, () =>
+                {
+                    if (_environment.DialogBuffer.IsActive)
+                        this.ExitDialog();
+                });
+            }
         }
 
         private void ExitDialog()
@@ -119,7 +384,30 @@ namespace SPBitsy
                     _environment.onDialogPreviewEnd();
             }
         }
+        
 
+
+        private bool IsLocWall(Room room, int x, int y)
+        {
+            if (room == null) return false;
+            if (x < 0 || x >= MAPSIZE) return false;
+            if (y < 0 || y >= MAPSIZE) return false;
+
+            var tileId = room.Tilemap[x, y];
+            if (tileId == ID_DEFAULT) return false;
+
+            Tile tile;
+            if(_environment.Tiles.TryGetValue(tileId, out tile))
+            {
+                if(tile.IsWall == null)
+                    return Array.IndexOf(room.Walls, tileId) >= 0;
+                else
+                    return tile.IsWall.Value;
+            }
+
+            return false;
+        }
+        
         #endregion
 
         #region Events
@@ -130,8 +418,7 @@ namespace SPBitsy
         }
 
         #endregion
-
-
+        
         #region Special Types
 
         public enum InputId
@@ -148,6 +435,15 @@ namespace SPBitsy
             Down = 1,
             Held = 2,
             Released = -1
+        }
+
+        public enum Direction
+        {
+            None = -1,
+            Up = 0,
+            Down = 1,
+            Left = 2,
+            Right = 3
         }
 
         public delegate InputState GetInputState(InputId id);
@@ -182,7 +478,7 @@ namespace SPBitsy
             public string[] Walls;
             public Exit[] Exits;
             public Loc[] Endings;
-            public Loc[] Items;
+            public List<Loc> Items;
             public string Palette;
         }
 
@@ -289,6 +585,14 @@ namespace SPBitsy
             public bool IsAnimated;
             public int FrameIndex;
             public int FrameCount;
+
+            public void Tick(int cnt)
+            {
+                if(this.IsAnimated)
+                {
+                    this.FrameIndex = (this.FrameIndex + cnt) % this.FrameCount;
+                }
+            }
         }
 
         public struct Color
@@ -296,13 +600,28 @@ namespace SPBitsy
             public byte r;
             public byte g;
             public byte b;
+            public byte a;
 
             public Color(byte r, byte g, byte b)
             {
                 this.r = r;
                 this.g = g;
                 this.b = b;
+                this.a = 255;
             }
+
+            public Color(byte r, byte g, byte b, byte a)
+            {
+                this.r = r;
+                this.g = g;
+                this.b = b;
+                this.a = a;
+            }
+
+            public readonly static Color White = new Color(255, 255, 255, 255);
+            public readonly static Color HalfWhite = new Color(255, 255, 255, 127);
+            public readonly static Color Black = new Color(0, 0, 0, 255);
+
         }
 
         #endregion
@@ -316,12 +635,11 @@ namespace SPBitsy
 
         #region Fields
 
-        public readonly ScriptInterpreter Interpreter;
         public readonly Random Rng;
 
         public bool UseHandler = true;
         private Dictionary<string, object> _variables = new Dictionary<string, object>();
-        private Dictionary<string, string> _scripts = new Dictionary<string, string>();
+        private Dictionary<string, ScriptInterpreter.Node> _scripts = new Dictionary<string, ScriptInterpreter.Node>();
 
         public string Title;
 
@@ -335,8 +653,9 @@ namespace SPBitsy
         public readonly Dictionary<string, string> Endings = new Dictionary<string, string>();
         public readonly Dictionary<string, BitsyGame.GfxTileSheet> ImageStore = new Dictionary<string, BitsyGame.GfxTileSheet>();
 
-        public readonly DialogRenderer DialogRenderer = new DialogRenderer();
-        public readonly DialogBuffer DialogBuffer = new DialogBuffer();
+        public readonly SceneRenderer SceneRenderer;
+        public readonly DialogRenderer DialogRenderer;
+        public readonly DialogBuffer DialogBuffer;
 
         public bool isNarrating;
         public bool isEnding;
@@ -344,20 +663,37 @@ namespace SPBitsy
         public bool isDialogPreview;
         public System.Action onDialogPreviewEnd;
 
+        public string CurrentRoomId = BitsyGame.ID_DEFAULT;
+
+        public int AnimCounter = 0;
+        public int MoveCounter = 0;
+
+        public bool didPlayerMoveThisFrame = false;
+
+        public BitsyGame.Direction lastMoveDirection = BitsyGame.Direction.None;
+        public int moveHoldCounter = 0;
+
+        public System.Action<string> onInventoryChanged;
+        public System.Action onPlayerMoved;
+
         #endregion
 
         #region CONSTRUCTOR
 
         public Environment()
         {
-            this.Interpreter = new ScriptInterpreter(this);
             this.Rng = new Random();
+            this.SceneRenderer = new SceneRenderer(this);
+            this.DialogRenderer = new DialogRenderer(this);
+            this.DialogBuffer = new DialogBuffer();
         }
 
         public Environment(Random rng)
         {
-            this.Interpreter = new ScriptInterpreter(this);
             this.Rng = rng;
+            this.SceneRenderer = new SceneRenderer(this);
+            this.DialogRenderer = new DialogRenderer(this);
+            this.DialogBuffer = new DialogBuffer();
         }
 
         #endregion
@@ -367,6 +703,139 @@ namespace SPBitsy
         public BitsyGame.Sprite GetPlayer()
         {
             return this.Sprites[BitsyGame.ID_PLAYER];
+        }
+
+        public BitsyGame.Palette GetPalette(string id)
+        {
+            BitsyGame.Palette pal;
+            if (this.Palettes.TryGetValue(id, out pal))
+                return pal;
+            else if (this.Palettes.TryGetValue(BitsyGame.ID_DEFAULT, out pal))
+                return pal;
+            else
+                return this.Palettes.Values.FirstOrDefault();
+        }
+
+        public BitsyGame.Palette GetCurrentPalette()
+        {
+            return this.GetRoomPalette(this.CurrentRoomId);
+        }
+
+        public BitsyGame.Palette GetRoomPalette(string roomId)
+        {
+            BitsyGame.Room room;
+            BitsyGame.Palette pal;
+            if (this.Rooms.TryGetValue(roomId, out room))
+            {
+                if (room.Palette != null && this.Palettes.TryGetValue(room.Palette, out pal))
+                    return pal;
+            }
+
+            if (this.Palettes.TryGetValue(roomId, out pal))
+                return pal; //there is a palette matching the name of the room
+            else if (this.Palettes.TryGetValue(BitsyGame.ID_DEFAULT, out pal))
+                return pal; //return default palette
+            else
+                return this.Palettes.Values.FirstOrDefault(); //return something
+        }
+
+        public BitsyGame.Room GetCurrentRoom()
+        {
+            BitsyGame.Room room;
+            if (this.Rooms.TryGetValue(this.CurrentRoomId, out room))
+                return room;
+            else if (this.Rooms.TryGetValue(BitsyGame.ID_DEFAULT, out room))
+                return room;
+            else
+                return this.Rooms.Values.FirstOrDefault();
+        }
+
+        public bool GetEndingAtLoc(string roomId, int x, int y, out BitsyGame.Loc loc)
+        {
+            BitsyGame.Room room;
+            if (this.Rooms.TryGetValue(roomId, out room))
+            {
+                foreach (var e in room.Endings)
+                {
+                    if (x == e.x && y == e.y)
+                    {
+                        loc = e;
+                        return true;
+                    }
+                }
+            }
+
+            loc = default(BitsyGame.Loc);
+            return false;
+        }
+
+        public bool GetExitAtLoc(string roomId, int x, int y, out BitsyGame.Exit exit)
+        {
+            BitsyGame.Room room;
+            if(this.Rooms.TryGetValue(roomId, out room))
+            {
+                foreach(var ex in room.Exits)
+                {
+                    if(x == ex.x && y == ex.y)
+                    {
+                        exit = ex;
+                        return true;
+                    }
+                }
+            }
+
+            exit = null;
+            return false;
+        }
+
+        public bool GetItemAtLoc(string roomId, int x, int y, BitsyGame.Loc loc)
+        {
+            BitsyGame.Room room;
+            if (this.Rooms.TryGetValue(roomId, out room))
+            {
+                for (int i = 0; i < room.Items.Count; i++)
+                {
+                    if (room.Items[i].x == x && room.Items[i].y == y)
+                    {
+                        loc = room.Items[i];
+                        return true;
+                    }
+                }
+            }
+
+            loc = default(BitsyGame.Loc);
+            return false;
+        }
+
+        public int GetItemIndexAtLoc(string roomId, int x, int y)
+        {
+            BitsyGame.Room room;
+            if (this.Rooms.TryGetValue(roomId, out room))
+            {
+                for(int i = 0; i < room.Items.Count; i++)
+                {
+                    if(room.Items[i].x == x && room.Items[i].y == y)
+                    {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        }
+
+        public bool GetSpriteAtLoc(string roomId, int x, int y, out BitsyGame.Sprite spr)
+        {
+            foreach(var s in this.Sprites.Values)
+            {
+                if(s.x == x && s.y == y && s.RoomId == roomId)
+                {
+                    spr = s;
+                    return true;
+                }
+            }
+
+            spr = null;
+            return false;
         }
 
         #endregion
@@ -410,11 +879,33 @@ namespace SPBitsy
                 d(this, key);
             }
         }
-
-        public void Clear()
+        
+        public void ClearVariables()
         {
             _variables.Clear();
-            _scripts.Clear();
+        }
+
+        #endregion
+
+        #region Scripts
+
+        public bool HasScript(string key)
+        {
+            return _scripts.ContainsKey(key);
+        }
+
+        public ScriptInterpreter.Node GetScript(string key)
+        {
+            ScriptInterpreter.Node node;
+            if (_scripts.TryGetValue(key, out node))
+                return node;
+            else
+                return null;
+        }
+
+        public void SetScript(string key, ScriptInterpreter.Node node)
+        {
+            _scripts[key] = node;
         }
 
         #endregion

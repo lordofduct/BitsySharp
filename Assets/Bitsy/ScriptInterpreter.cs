@@ -6,28 +6,37 @@ using System.Text.RegularExpressions;
 namespace SPBitsy
 {
 
-    public class ScriptInterpreter
+    public static class ScriptInterpreter
     {
 
-        #region Fields
+        #region Interpret Methods
 
-        private Environment _env;
-
-        #endregion
-
-        #region CONSTRUCTOR
-
-        public ScriptInterpreter(Environment environment)
+        public static void Compile(Environment env, string scriptName, string script)
         {
-            if (environment == null) throw new ArgumentNullException("environment");
-            _env = environment;
+            var node = Parse(script);
+            env.SetScript(scriptName, node);
+        }
+
+        public static void Run(Environment env, string scriptName, System.Action onFinish)
+        {
+            var node = env.GetScript(scriptName);
+            if (node != null)
+                node.Eval(env, Utils.Coerce(onFinish));
+            else if (onFinish != null)
+                onFinish();
+        }
+
+        public static void Interpret(Environment env, string script, System.Action onFinish)
+        {
+            var node = Parse(script);
+            node.Eval(env, Utils.Coerce(onFinish));
         }
 
         #endregion
 
         #region Parser Methods
 
-        public object Parse(string script)
+        public static Node Parse(string script)
         {
             var state = new ParserState(new BlockNode(BlockMode.Dialog), script);
 
@@ -40,26 +49,26 @@ namespace SPBitsy
             // NOTE: This causes problems when you lead with a code block
             //else if (state.MatchAhead(Sym.CodeOpen))
             //{
-            //    state = this.ParseCodeBlock(state);
+            //    state = ParseCodeBlock(state);
             //}
             else
             {
-                state = this.ParseDialog(state);
+                state = ParseDialog(state);
             }
 
             return state.RootNode;
         }
 
-        private ParserState ParseDialogBlock(ParserState state)
+        private static ParserState ParseDialogBlock(ParserState state)
         {
             string dialog = state.ConsumeBlock(Sym.DialogOpen, Sym.DialogClose);
             var dialogState = new ParserState(new BlockNode(BlockMode.Dialog), dialog);
-            dialogState = this.ParseDialog(dialogState);
+            dialogState = ParseDialog(dialogState);
             state.CurNode.AddChild(dialogState.RootNode);
             return state;
         }
 
-        private ParserState ParseDialog(ParserState state)
+        private static ParserState ParseDialog(ParserState state)
         {
             bool hasBlock = false;
             bool hasDialog = false;
@@ -71,8 +80,8 @@ namespace SPBitsy
             {
                 if (state.MatchAhead(Sym.CodeOpen))
                 {
-                    if (this.AddTextNode(builder, state)) hasDialog = true;
-                    state = this.ParseCodeBlock(state);
+                    if (AddTextNode(builder, state)) hasDialog = true;
+                    state = ParseCodeBlock(state);
 
                     int len = state.CurNode.Children.Count;
                     if (len > 0 && state.CurNode.Children[len - 1] is NodeParent)
@@ -87,15 +96,15 @@ namespace SPBitsy
                 // NOTE: nested dialog blocks disabled for now
                 //else if(state.MatchAhead(Sym.DialogOpen))
                 //{
-                //    if (this.AddTextNode(builder, state)) hasDialog = true;
-                //    state = this.ParseDialogBlock(state);
+                //    if (AddTextNode(builder, state)) hasDialog = true;
+                //    state = ParseDialogBlock(state);
                 //    hasBlock = true;
                 //}
                 else
                 {
                     if (state.MatchAhead(Sym.LineBreak))
                     {
-                        if (this.AddTextNode(builder, state)) hasDialog = true;
+                        if (AddTextNode(builder, state)) hasDialog = true;
 
                         bool isLastLine = (state.Index + 1) == state.Count;
                         bool isEmptyLine = !hasBlock && !hasDialog;
@@ -120,12 +129,12 @@ namespace SPBitsy
                     state.Step();
                 }
             }
-            this.AddTextNode(builder, state);
+            AddTextNode(builder, state);
 
             return state;
         }
 
-        private bool AddTextNode(StringBuilder builder, ParserState state)
+        private static bool AddTextNode(StringBuilder builder, ParserState state)
         {
             if (builder.Length > 0)
             {
@@ -136,16 +145,16 @@ namespace SPBitsy
             return false;
         }
 
-        private ParserState ParseCodeBlock(ParserState state)
+        private static ParserState ParseCodeBlock(ParserState state)
         {
             string code = state.ConsumeBlock(Sym.CodeOpen, Sym.CodeClose);
             var codeState = new ParserState(new BlockNode(BlockMode.Code), code);
-            codeState = this.ParseCode(codeState);
+            codeState = ParseCode(codeState);
             state.CurNode.AddChild(codeState.RootNode);
             return state;
         }
 
-        private ParserState ParseCode(ParserState state)
+        private static ParserState ParseCode(ParserState state)
         {
             string name;
             while (!state.Done())
@@ -161,31 +170,31 @@ namespace SPBitsy
                 // NOTE: nested dialog blocks disabled for now
                 //else if (state.MatchAhead(Sym.DialogOpen))
                 //{
-                //    state = this.ParseDialogBlock(state);
+                //    state = ParseDialogBlock(state);
                 //}
                 else if (state.Char() == Sym.cList && state.Peek("").IndexOf('?') >= 0)
                 {
                     state = ParseIf(state);
                 }
-                else if (this.HasFunction(name = state.Peek(" ")))
+                else if (HasFunction(name = state.Peek(" ")))
                 {
                     state.Step(name.Length);
-                    state = this.ParseFunction(state, name);
+                    state = ParseFunction(state, name);
                 }
                 else if (IsSequence(name = state.Peek(" \n")))
                 {
                     state.Step(name.Length);
-                    state = this.ParseSequence(state, name);
+                    state = ParseSequence(state, name);
                 }
                 else
                 {
-                    state = this.ParseExpression(state);
+                    state = ParseExpression(state);
                 }
             }
             return state;
         }
 
-        private ParserState ParseIf(ParserState state)
+        private static ParserState ParseIf(ParserState state)
         {
             List<StringBuilder> conditionStrings = new List<StringBuilder>();
             List<StringBuilder> resultStrings = new List<StringBuilder>();
@@ -256,7 +265,7 @@ namespace SPBitsy
             {
                 var str = Utils.Release(resultStrings[i]);
                 var dialogState = new ParserState(new BlockNode(BlockMode.Dialog), str);
-                dialogState = this.ParseDialog(dialogState);
+                dialogState = ParseDialog(dialogState);
                 results[i] = dialogState.RootNode;
             }
 
@@ -265,7 +274,7 @@ namespace SPBitsy
             return state;
         }
 
-        private ParserState ParseFunction(ParserState state, string funcName)
+        private static ParserState ParseFunction(ParserState state, string funcName)
         {
             var builder = Utils.GetTempStringBuilder();
             var args = new List<Node>();
@@ -275,7 +284,7 @@ namespace SPBitsy
                 if (state.MatchAhead(Sym.CodeOpen))
                 {
                     var codeState = new ParserState(new BlockNode(BlockMode.Code), state.ConsumeBlock(Sym.CodeOpen, Sym.CodeClose));
-                    codeState = this.ParseCode(codeState);
+                    codeState = ParseCode(codeState);
                     args.Add(codeState.RootNode);
                     builder.Length = 0;
                 }
@@ -312,7 +321,7 @@ namespace SPBitsy
             return str == "sequence" || str == "cycle" || str == "shuffle";
         }
 
-        private ParserState ParseSequence(ParserState state, string sequenceType)
+        private static ParserState ParseSequence(ParserState state, string sequenceType)
         {
             bool isNewLine = false;
             List<StringBuilder> itemStrings = new List<StringBuilder>();
@@ -351,7 +360,7 @@ namespace SPBitsy
             {
                 var str = Utils.Release(itemStrings[i]);
                 var dialogState = new ParserState(new BlockNode(BlockMode.Dialog, false), str);
-                dialogState = this.ParseDialog(dialogState);
+                dialogState = ParseDialog(dialogState);
                 options[i] = dialogState.RootNode;
             }
 
@@ -371,16 +380,16 @@ namespace SPBitsy
             return state;
         }
 
-        private ParserState ParseExpression(ParserState state)
+        private static ParserState ParseExpression(ParserState state)
         {
             string line = state.Peek(Sym.LineBreak);
-            var exp = this.CreateExpression(line);
+            var exp = CreateExpression(line);
             state.CurNode.AddChild(exp);
             state.Step(line.Length);
             return state;
         }
 
-        private Node CreateExpression(string line)
+        private static Node CreateExpression(string line)
         {
             const char SYM_SET = '=';
             const char SYM_IF = '?';
@@ -423,12 +432,12 @@ namespace SPBitsy
 
                     var elseStr = resultStr.Substring(index + 1);
                     resultStr = resultStr.Substring(0, index);
-                    this.AddExpressionResult(results, resultStr.Trim());
-                    this.AddExpressionResult(results, elseStr.Trim());
+                    AddExpressionResult(results, resultStr.Trim());
+                    AddExpressionResult(results, elseStr.Trim());
                 }
                 else
                 {
-                    this.AddExpressionResult(results, resultStr.Trim());
+                    AddExpressionResult(results, resultStr.Trim());
                 }
 
                 return new IfNode(conditions.ToArray(), results.ToArray(), true);
@@ -480,14 +489,14 @@ namespace SPBitsy
             return false;
         }
 
-        private void AddExpressionResult(List<Node> lst, string code)
+        private static void AddExpressionResult(List<Node> lst, string code)
         {
             var dialogState = new ParserState(new BlockNode(BlockMode.Dialog), code);
-            dialogState = this.ParseDialog(dialogState);
+            dialogState = ParseDialog(dialogState);
             lst.Add(dialogState.RootNode);
         }
 
-        private Node StringToValueNode(string val)
+        private static Node StringToValueNode(string val)
         {
             if (!string.IsNullOrEmpty(val))
             {
@@ -496,7 +505,7 @@ namespace SPBitsy
                 {
                     var code = (new ParserState(null, val)).ConsumeBlock(Sym.CodeOpen, Sym.CodeClose); //hacky
                     var codeState = new ParserState(new BlockNode(BlockMode.Code), code);
-                    codeState = this.ParseCode(codeState);
+                    codeState = ParseCode(codeState);
                     return codeState.RootNode;
                 }
                 else if (val[0] == Sym.cString)
@@ -552,7 +561,7 @@ namespace SPBitsy
         public const string FUNC_WVY = "wvy";
         public const string FUNC_SHK = "shk";
 
-        public bool HasFunction(string name)
+        public static bool HasFunction(string name)
         {
             switch (name)
             {
@@ -571,23 +580,23 @@ namespace SPBitsy
             }
         }
 
-        public void EvalFunction(string name, object[] args, System.Action<object> onReturn)
+        public static void EvalFunction(Environment env, string name, object[] args, System.Action<object> onReturn)
         {
             switch (name)
             {
                 case FUNC_SAY:
-                    _env.DialogBuffer.AddText(args != null && args.Length > 0 ? Convert.ToString(args[0]) : string.Empty, Utils.Coerce(onReturn));
+                    env.DialogBuffer.AddText(args != null && args.Length > 0 ? Convert.ToString(args[0]) : string.Empty, Utils.Coerce(onReturn));
                     break;
                 case FUNC_BR:
-                    _env.DialogBuffer.AddLinebreak();
+                    env.DialogBuffer.AddLinebreak();
                     if (onReturn != null) onReturn(null);
                     break;
                 case FUNC_ITEM:
                     if (onReturn != null)
                     {
                         string itemId = args != null && args.Length > 0 ? Convert.ToString(args[0]) : string.Empty;
-                        if (_env.Names.items.ContainsKey(itemId)) itemId = _env.Names.items[itemId]; //id is actually a name
-                        var pl = _env.GetPlayer();
+                        if (env.Names.items.ContainsKey(itemId)) itemId = env.Names.items[itemId]; //id is actually a name
+                        var pl = env.GetPlayer();
                         float cnt;
                         if (pl == null || !pl.Inventory.TryGetValue(itemId, out cnt))
                             cnt = 0f;
@@ -600,7 +609,7 @@ namespace SPBitsy
                 case FUNC_CLR3:
                 case FUNC_WVY:
                 case FUNC_SHK:
-                    _env.DialogBuffer.ToggleTextEffect(name);
+                    env.DialogBuffer.ToggleTextEffect(name);
                     if (onReturn != null) onReturn(null);
                     break;
             }
@@ -622,7 +631,7 @@ namespace SPBitsy
         public const string OP_SUB = "-";
         private readonly static string[] OP_SYMBOLS = new string[] { OP_SUB, OP_ADD, OP_DIV, OP_MULT, OP_LTE, OP_GTE, OP_LT, OP_GT, OP_EQUAL }; //used for expression parsing
 
-        public bool HasOperator(string op)
+        public static bool HasOperator(string op)
         {
             switch (op)
             {
@@ -642,7 +651,7 @@ namespace SPBitsy
             }
         }
 
-        public void EvalOperator(string op, Node left, Node right, Action<object> onReturn)
+        public static void EvalOperator(Environment env, string op, Node left, Node right, Action<object> onReturn)
         {
             if (op == OP_SET)
             {
@@ -656,23 +665,23 @@ namespace SPBitsy
 
                 if (right is IQuickEvalNode)
                 {
-                    _env.SetVariable(varnode.VarName, (right as IQuickEvalNode).EvalNow(_env));
-                    if (onReturn != null) onReturn(varnode.EvalNow(_env));
+                    env.SetVariable(varnode.VarName, (right as IQuickEvalNode).EvalNow(env));
+                    if (onReturn != null) onReturn(varnode.EvalNow(env));
                 }
                 else
                 {
-                    right.Eval(_env, (rVal) =>
+                    right.Eval(env, (rVal) =>
                     {
-                        _env.SetVariable(varnode.VarName, rVal);
-                        if (onReturn != null) onReturn(varnode.EvalNow(_env));
+                        env.SetVariable(varnode.VarName, rVal);
+                        if (onReturn != null) onReturn(varnode.EvalNow(env));
                     });
                 }
             }
             else
             {
-                right.Eval(_env, (rVal) =>
+                right.Eval(env, (rVal) =>
                 {
-                    left.Eval(_env, (lVal) =>
+                    left.Eval(env, (lVal) =>
                     {
                         if (onReturn != null)
                         {
@@ -1049,13 +1058,13 @@ namespace SPBitsy
                     evalArgs(() =>
                     {
                         if (this.OnExit != null) this.OnExit();
-                        env.Interpreter.EvalFunction(this.FuncName, args, onReturn);
+                        ScriptInterpreter.EvalFunction(env, this.FuncName, args, onReturn);
                     });
                 }
                 else
                 {
                     if (this.OnExit != null) this.OnExit();
-                    env.Interpreter.EvalFunction(this.FuncName, args, onReturn);
+                    ScriptInterpreter.EvalFunction(env, this.FuncName, args, onReturn);
                 }
             }
 
@@ -1121,7 +1130,7 @@ namespace SPBitsy
 
             public override void Eval(Environment env, Action<object> onReturn)
             {
-                env.Interpreter.EvalOperator(this.Operator, this.Left, this.Right, onReturn);
+                ScriptInterpreter.EvalOperator(env, this.Operator, this.Left, this.Right, onReturn);
             }
 
             public override void VisitAll(Node visitor)

@@ -263,7 +263,7 @@ namespace SPBitsy
             }
 
             if (string.IsNullOrEmpty(id)) return;
-            room.Items = items.ToArray();
+            room.Items = items;
             room.Endings = endings.ToArray();
             _environment.Rooms[id] = room;
             if (!string.IsNullOrEmpty(room.Name)) _environment.Names.rooms[room.Name] = id;

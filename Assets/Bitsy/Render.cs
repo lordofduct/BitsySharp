@@ -4,10 +4,95 @@ using System.Collections.Generic;
 namespace SPBitsy
 {
 
+    public class SceneRenderer
+    {
+
+        #region Fields
+
+        private Environment _env;
+
+        #endregion
+
+        #region CONSTRUCTOR
+
+        public SceneRenderer(Environment environment)
+        {
+            if (environment == null) throw new System.ArgumentNullException("environment");
+            _env = environment;
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void DrawRoom(BitsyGame.Room room, IRenderSurface context)
+        {
+            context.FillSurface(_env.GetCurrentPalette().Colors[0]);
+
+            for(int i = 0; i < room.Tilemap.GetLength(0); i++)
+            {
+                for(int j = 0; j < room.Tilemap.GetLength(1); j++)
+                {
+                    string id = room.Tilemap[i, j];
+                    if(id != BitsyGame.ID_DEFAULT)
+                    {
+                        BitsyGame.Tile tile;
+                        if(_env.Tiles.TryGetValue(id, out tile))
+                        {
+                            this.DrawTile(tile, i, j, context);
+                        }
+                        else
+                        {
+                            id = BitsyGame.ID_DEFAULT;
+                            room.Tilemap[i, j] = id;
+                        }
+                    }
+                }
+            }
+
+            for(int i = 0; i < room.Items.Count; i++)
+            {
+                BitsyGame.Item item;
+                if(_env.Items.TryGetValue(room.Items[i].Id, out item))
+                {
+                    this.DrawItem(item, room.Items[i].x, room.Items[i].y, context);
+                }
+            }
+
+            foreach(var spr in _env.Sprites.Values)
+            {
+                if(spr.RoomId == room.Id)
+                {
+                    this.DrawSprite(spr, spr.x, spr.y, context);
+                }
+            }
+        }
+
+        public void DrawTile(BitsyGame.Tile tile, int x, int y, IRenderSurface context)
+        {
+
+        }
+
+        public void DrawItem(BitsyGame.Item item, int x, int y, IRenderSurface context)
+        {
+
+        }
+
+        public void DrawSprite(BitsyGame.Sprite spr, int x, int y, IRenderSurface context)
+        {
+
+        }
+
+        #endregion
+
+    }
+
     public class DialogRenderer
     {
 
         #region Fields
+
+        private Environment _env;
 
         private object _img = null;
         private int _width = 104;
@@ -16,7 +101,7 @@ namespace SPBitsy
         private int _left = 12;
         private int _bottom = 12;
 
-        private object _context = null;
+        private object _context;
 
         private bool _isCentered = false;
 
@@ -24,9 +109,10 @@ namespace SPBitsy
 
         #region CONSTRUCTOR
 
-        public DialogRenderer()
+        public DialogRenderer(Environment environment)
         {
-
+            if (environment == null) throw new System.ArgumentNullException("environment");
+            _env = environment;
         }
 
         #endregion
@@ -75,6 +161,11 @@ namespace SPBitsy
 
         }
 
+        public void Draw(DialogBuffer buffer, int deltaTime)
+        {
+
+        }
+
         #endregion
 
     }
@@ -86,7 +177,22 @@ namespace SPBitsy
 
         #endregion
 
+        #region Properties
+
+        public bool IsActive
+        {
+            get;
+            private set;
+        }
+
+        #endregion
+
         #region Methods
+
+        public void Update(int deltaTime)
+        {
+
+        }
 
         public void Reset()
         {
@@ -95,6 +201,7 @@ namespace SPBitsy
 
         public void AddText(string text, System.Action onFinish)
         {
+            if (onFinish != null) onFinish();
             //TODO
         }
 
