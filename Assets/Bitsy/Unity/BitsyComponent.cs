@@ -8,6 +8,8 @@ namespace SPBitsy.Unity
     public class BitsyComponent : MonoBehaviour
     {
 
+        const int MARGIN = 4;
+
         #region Fields
 
         public TextAsset GameData;
@@ -25,7 +27,7 @@ namespace SPBitsy.Unity
         // Use this for initialization
         void Start()
         {
-            _surface = TextureRenderSurface.Create();
+            _surface = TextureRenderSurface.Create(MARGIN);
             this.Renderer.material.mainTexture = _surface.Texture;
 
             var parser = new BitsyGameParser();
@@ -53,6 +55,12 @@ namespace SPBitsy.Unity
             {
                 Debug.LogException(ex, this);
             }
+
+            //_surface.Texture.SetPixel(MARGIN - 1, MARGIN - 1, Color.red);
+            //_surface.Texture.SetPixel(MARGIN - 1, MARGIN + 128, Color.red);
+            //_surface.Texture.SetPixel(MARGIN + 128, MARGIN - 1, Color.red);
+            //_surface.Texture.SetPixel(MARGIN + 128, MARGIN + 128, Color.red);
+            _surface.Texture.Apply();
         }
 
         #endregion

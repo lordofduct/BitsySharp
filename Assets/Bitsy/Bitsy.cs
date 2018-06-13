@@ -59,6 +59,8 @@ namespace SPBitsy
 
             _environment.VariableChanged += this.OnVariableChanged;
 
+            _environment.CurrentRoomId = _environment.GetPlayer().RoomId ?? ID_DEFAULT;
+
             this.StartNarrating(_environment.Title);
         }
 
@@ -119,6 +121,10 @@ namespace SPBitsy
                     }
                 }
             }
+            else
+            {
+                this.HandleGeneralInput();
+            }
 
             if (_environment.didPlayerMoveThisFrame && _environment.onPlayerMoved != null) _environment.onPlayerMoved();
             _environment.didPlayerMoveThisFrame = false;
@@ -128,17 +134,46 @@ namespace SPBitsy
 
         #region Private Methods
 
+        private void HandleGeneralInput()
+        {
+            if (_getInput == null) return;
+
+            if (_environment.DialogBuffer.IsActive)
+            {
+                if (_getInput(InputId.Any))
+                {
+                    if (_environment.DialogBuffer.CanContinue)
+                    {
+                        bool hasMoreDialog = _environment.DialogBuffer.Continue();
+                        if (!hasMoreDialog)
+                            this.ExitDialog();
+                    }
+                    else
+                    {
+                        _environment.DialogBuffer.Skip();
+                    }
+                }
+            }
+            else if (_environment.isEnding)
+            {
+                if (_getInput(InputId.Any))
+                {
+                    //TODO - register if any input down and signal quit
+                }
+            }
+        }
+
         private Direction GetInputDirection()
         {
             if (_getInput == null) return Direction.None;
 
-            if (_getInput(InputId.Up) > InputState.None)
+            if (_getInput(InputId.Up))
                 return Direction.Up;
-            else if (_getInput(InputId.Down) > InputState.None)
+            else if (_getInput(InputId.Down))
                 return Direction.Down;
-            else if (_getInput(InputId.Right) > InputState.None)
+            else if (_getInput(InputId.Right))
                 return Direction.Right;
-            else if (_getInput(InputId.Left) > InputState.None)
+            else if (_getInput(InputId.Left))
                 return Direction.Left;
 
             return Direction.None;
@@ -246,21 +281,21 @@ namespace SPBitsy
                     }
                     break;
                 case Direction.Down:
-                    if (!this.IsLocWall(room, player.x, player.y - 1) && !_environment.GetSpriteAtLoc(room.Id, player.x, player.y + 1, out spr))
+                    if (!this.IsLocWall(room, player.x, player.y + 1) && !_environment.GetSpriteAtLoc(room.Id, player.x, player.y + 1, out spr))
                     {
                         player.y += 1;
                         _environment.didPlayerMoveThisFrame = true;
                     }
                     break;
                 case Direction.Left:
-                    if (!this.IsLocWall(room, player.x, player.y - 1) && !_environment.GetSpriteAtLoc(room.Id, player.x - 1, player.y, out spr))
+                    if (!this.IsLocWall(room, player.x - 1, player.y) && !_environment.GetSpriteAtLoc(room.Id, player.x - 1, player.y, out spr))
                     {
                         player.x -= 1;
                         _environment.didPlayerMoveThisFrame = true;
                     }
                     break;
                 case Direction.Right:
-                    if (!this.IsLocWall(room, player.x, player.y - 1) && !_environment.GetSpriteAtLoc(room.Id, player.x + 1, player.y, out spr))
+                    if (!this.IsLocWall(room, player.x + 1, player.y) && !_environment.GetSpriteAtLoc(room.Id, player.x + 1, player.y, out spr))
                     {
                         player.x += 1;
                         _environment.didPlayerMoveThisFrame = true;
@@ -293,7 +328,7 @@ namespace SPBitsy
             {
                 this.StartNarrating(_environment.Endings[loc.Id], true);
             }
-            else if (_environment.GetExitAtLoc(spr.RoomId, spr.x, spr.y, out exit))
+            else if (_environment.GetExitAtLoc(room.Id, player.x, player.y, out exit))
             {
                 player.RoomId = exit.Destination.Id;
                 player.x = exit.Destination.x;
@@ -316,7 +351,7 @@ namespace SPBitsy
         private void StartItemDialog(string itemId)
         {
             Item item;
-            if(_environment.Items.TryGetValue(itemId, out item) && item != null)
+            if(_environment.Items.TryGetValue(itemId, out item) && item != null && item.DialogId != null)
             {
                 string dialog;
                 if (_environment.Dialog.TryGetValue(item.DialogId, out dialog))
@@ -357,7 +392,7 @@ namespace SPBitsy
             {
                 ScriptInterpreter.Interpret(_environment, dialog, () =>
                 {
-                    if (_environment.DialogBuffer.IsActive)
+                    if (!_environment.DialogBuffer.IsActive)
                         this.ExitDialog();
                 });
             }
@@ -367,7 +402,7 @@ namespace SPBitsy
                     ScriptInterpreter.Compile(_environment, scriptId, dialog);
                 ScriptInterpreter.Run(_environment, scriptId, () =>
                 {
-                    if (_environment.DialogBuffer.IsActive)
+                    if (!_environment.DialogBuffer.IsActive)
                         this.ExitDialog();
                 });
             }
@@ -400,7 +435,7 @@ namespace SPBitsy
             if(_environment.Tiles.TryGetValue(tileId, out tile))
             {
                 if(tile.IsWall == null)
-                    return Array.IndexOf(room.Walls, tileId) >= 0;
+                    return room.Walls != null && Array.IndexOf(room.Walls, tileId) >= 0;
                 else
                     return tile.IsWall.Value;
             }
@@ -423,20 +458,13 @@ namespace SPBitsy
 
         public enum InputId
         {
-            Up,
-            Down,
-            Left,
-            Right
-        }
-
-        public enum InputState : sbyte
-        {
-            None = 0,
+            Any = -1,
+            Up = 0,
             Down = 1,
-            Held = 2,
-            Released = -1
+            Left = 2,
+            Right = 3
         }
-
+        
         public enum Direction
         {
             None = -1,
@@ -446,7 +474,7 @@ namespace SPBitsy
             Right = 3
         }
 
-        public delegate InputState GetInputState(InputId id);
+        public delegate bool GetInputState(InputId id);
 
         public class NameTable
         {
@@ -466,6 +494,7 @@ namespace SPBitsy
 
         public class Palette
         {
+            public string Id;
             public string Name;
             public Color[] Colors;
         }
@@ -542,6 +571,7 @@ namespace SPBitsy
             {
                 this.width = w;
                 this.height = h;
+                this.frameCount = frameCount;
                 _pixels = new BitArray(w * h * frameCount);
             }
 
@@ -568,6 +598,24 @@ namespace SPBitsy
                     else
                         break;
                     i++;
+                }
+            }
+
+            public void Draw(int frame, int x, int y, Color c, IRenderSurface context)
+            {
+                if (context == null) return;
+                if (frame < 0 || frame >= frameCount) return;
+                
+                int offset = frame * width * height;
+                for (int i = 0; i < width; i++)
+                {
+                    for (int j = 0; j < height; j++)
+                    {
+                        if (_pixels[offset + j * width + i])
+                        {
+                            context.SetPixel(c, x + i, y + j);
+                        }
+                    }
                 }
             }
 
@@ -809,6 +857,7 @@ namespace SPBitsy
 
         public int GetItemIndexAtLoc(string roomId, int x, int y)
         {
+            if (roomId == null) return -1;
             BitsyGame.Room room;
             if (this.Rooms.TryGetValue(roomId, out room))
             {

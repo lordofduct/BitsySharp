@@ -7,35 +7,23 @@ namespace SPBitsy.Unity
     public static class BitsyUnityUtils
     {
 
-        public static BitsyGame.InputState GetInputWASD(BitsyGame.InputId id)
+        public static bool GetInputWASD(BitsyGame.InputId id)
         {
-            KeyCode code;
             switch(id)
             {
+                case BitsyGame.InputId.Any:
+                    return Input.anyKeyDown;
                 case BitsyGame.InputId.Up:
-                    code = KeyCode.W;
-                    break;
+                    return Input.GetKey(KeyCode.W);
                 case BitsyGame.InputId.Right:
-                    code = KeyCode.D;
-                    break;
+                    return Input.GetKey(KeyCode.D);
                 case BitsyGame.InputId.Down:
-                    code = KeyCode.S;
-                    break;
+                    return Input.GetKey(KeyCode.S);
                 case BitsyGame.InputId.Left:
-                    code = KeyCode.A;
-                    break;
+                    return Input.GetKey(KeyCode.A);
                 default:
-                    return BitsyGame.InputState.None;
+                    return false;
             }
-
-            if (Input.GetKeyDown(code))
-                return BitsyGame.InputState.Down;
-            else if (Input.GetKeyUp(code))
-                return BitsyGame.InputState.Released;
-            else if (Input.GetKey(code))
-                return BitsyGame.InputState.Held;
-            else
-                return BitsyGame.InputState.None;
         }
 
     }

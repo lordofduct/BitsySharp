@@ -52,6 +52,11 @@ namespace SPBitsy
 
         #region Array Methods
 
+        public static T[] Empty<T>()
+        {
+            return TempArray<T>.Empty;
+        }
+
         public static int IndexOfInRow(string[,] arr, int row, string value)
         {
             int len = arr.GetLength(1);
@@ -196,6 +201,16 @@ namespace SPBitsy
         public static void PurgeStringBuilderPool()
         {
             _builderPool.Clear();
+        }
+
+        #endregion
+
+
+        #region Special Types
+
+        private class TempArray<T>
+        {
+            public static readonly T[] Empty = new T[0];
         }
 
         #endregion

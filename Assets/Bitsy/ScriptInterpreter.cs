@@ -757,6 +757,8 @@ namespace SPBitsy
             {
                 this.RootNode = root;
                 this.CurNode = root;
+                _source = script;
+                _index = 0;
             }
 
             #endregion

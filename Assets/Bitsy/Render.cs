@@ -27,6 +27,7 @@ namespace SPBitsy
 
         public void DrawRoom(BitsyGame.Room room, IRenderSurface context)
         {
+            var pal = _env.GetRoomPalette(room.Id);
             context.FillSurface(_env.GetCurrentPalette().Colors[0]);
 
             for(int i = 0; i < room.Tilemap.GetLength(0); i++)
@@ -39,7 +40,7 @@ namespace SPBitsy
                         BitsyGame.Tile tile;
                         if(_env.Tiles.TryGetValue(id, out tile))
                         {
-                            this.DrawTile(tile, i, j, context);
+                            this.DrawTile(tile.DrawId, tile.Anim.FrameIndex, i, j, pal.Colors[tile.Color], context);
                         }
                         else
                         {
@@ -55,7 +56,7 @@ namespace SPBitsy
                 BitsyGame.Item item;
                 if(_env.Items.TryGetValue(room.Items[i].Id, out item))
                 {
-                    this.DrawItem(item, room.Items[i].x, room.Items[i].y, context);
+                    this.DrawTile(item.DrawId, item.Anim.FrameIndex, room.Items[i].x, room.Items[i].y, pal.Colors[item.Color], context);
                 }
             }
 
@@ -63,26 +64,20 @@ namespace SPBitsy
             {
                 if(spr.RoomId == room.Id)
                 {
-                    this.DrawSprite(spr, spr.x, spr.y, context);
+                    this.DrawTile(spr.DrawId, spr.Anim.FrameIndex, spr.x, spr.y, pal.Colors[spr.Color], context);
                 }
             }
         }
 
-        public void DrawTile(BitsyGame.Tile tile, int x, int y, IRenderSurface context)
+        private void DrawTile(string drawId, int frame, int x, int y, BitsyGame.Color c, IRenderSurface context)
         {
-
+            BitsyGame.GfxTileSheet gfx;
+            if (_env.ImageStore.TryGetValue(drawId, out gfx))
+            {
+                gfx.Draw(frame, x * BitsyGame.TILESIZE, y * BitsyGame.TILESIZE, c, context);
+            }
         }
-
-        public void DrawItem(BitsyGame.Item item, int x, int y, IRenderSurface context)
-        {
-
-        }
-
-        public void DrawSprite(BitsyGame.Sprite spr, int x, int y, IRenderSurface context)
-        {
-
-        }
-
+        
         #endregion
 
     }
@@ -185,6 +180,12 @@ namespace SPBitsy
             private set;
         }
 
+        public bool CanContinue
+        {
+            get;
+            private set;
+        }
+
         #endregion
 
         #region Methods
@@ -231,6 +232,16 @@ namespace SPBitsy
                 this.RemoveTextEffect(name);
             else
                 this.AddTextEffect(name);
+        }
+
+        public bool Continue()
+        {
+            return false;
+        }
+
+        public void Skip()
+        {
+
         }
 
         #endregion

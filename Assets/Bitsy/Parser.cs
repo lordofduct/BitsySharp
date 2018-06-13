@@ -125,6 +125,7 @@ namespace SPBitsy
             if (string.IsNullOrEmpty(id)) return;
             _environment.Palettes[id] = new BitsyGame.Palette()
             {
+                Id = id,
                 Name = name,
                 Colors = colors.ToArray()
             };
@@ -132,8 +133,11 @@ namespace SPBitsy
 
         private void ParseRoom(TextReader reader, string header)
         {
-            string id = GetLineArg(header, 1);
-            var room = new BitsyGame.Room();
+            var room = new BitsyGame.Room()
+            {
+                Id = GetLineArg(header, 1),
+                Walls = Utils.Empty<string>()
+            };
             List<BitsyGame.Loc> items = new List<BitsyGame.Loc>();
             List<BitsyGame.Loc> endings = new List<BitsyGame.Loc>();
             List<BitsyGame.Exit> exits = new List<BitsyGame.Exit>();
@@ -157,12 +161,12 @@ namespace SPBitsy
                 case RoomFormats.Comma:
                     {
                         room.Tilemap = new string[BitsyGame.MAPSIZE, BitsyGame.MAPSIZE];
-                        for (int i = 0; i < BitsyGame.MAPSIZE; i++)
+                        for (int j = 0; j < BitsyGame.MAPSIZE; j++)
                         {
                             var lines = reader.ReadLine().Split(',');
-                            for (int j = 0; j < BitsyGame.MAPSIZE; j++)
+                            for (int i = 0; i < BitsyGame.MAPSIZE; i++)
                             {
-                                room.Tilemap[i, j] = lines[j];
+                                room.Tilemap[i, j] = lines[i];
                             }
                         }
                     }
@@ -185,7 +189,7 @@ namespace SPBitsy
                                 var coords = args[2].Split(',');
                                 this._spriteStartLocations[sid] = new BitsyGame.Loc()
                                 {
-                                    Id = id,
+                                    Id = room.Id,
                                     x = int.Parse(coords[0]),
                                     y = int.Parse(coords[1])
                                 };
@@ -203,7 +207,7 @@ namespace SPBitsy
                                             room.Tilemap[i, j] = "0";
                                             this._spriteStartLocations[s] = new BitsyGame.Loc()
                                             {
-                                                Id = id,
+                                                Id = room.Id,
                                                 x = j,
                                                 y = i
                                             };
@@ -262,11 +266,12 @@ namespace SPBitsy
                 }
             }
 
-            if (string.IsNullOrEmpty(id)) return;
+            if (string.IsNullOrEmpty(room.Id)) return;
             room.Items = items;
             room.Endings = endings.ToArray();
-            _environment.Rooms[id] = room;
-            if (!string.IsNullOrEmpty(room.Name)) _environment.Names.rooms[room.Name] = id;
+            room.Exits = exits.ToArray();
+            _environment.Rooms[room.Id] = room;
+            if (!string.IsNullOrEmpty(room.Name)) _environment.Names.rooms[room.Name] = room.Id;
         }
 
         private void ParseTile(TextReader reader, string header)
@@ -274,7 +279,7 @@ namespace SPBitsy
             var tile = new BitsyGame.Tile()
             {
                 Id = GetLineArg(header, 1),
-                Color = 0 //default palette color index is 0
+                Color = 1 //default palette color index is 1
             };
 
             string line;
@@ -334,7 +339,7 @@ namespace SPBitsy
             }
             else
             {
-                sprite.DrawId = "TIL_" + sprite.Id;
+                sprite.DrawId = "SPR_" + sprite.Id;
                 this.ParseDrawingCore(reader, sprite.DrawId);
             }
             sprite.Anim.FrameCount = _environment.ImageStore[sprite.DrawId].frameCount;
@@ -396,7 +401,7 @@ namespace SPBitsy
             }
             else
             {
-                item.DrawId = "TIL_" + item.Id;
+                item.DrawId = "ITM_" + item.Id;
                 this.ParseDrawingCore(reader, item.DrawId);
             }
             item.Anim.FrameCount = _environment.ImageStore[item.DrawId].frameCount;
@@ -511,7 +516,7 @@ namespace SPBitsy
         private static string GetLineArg(string line, int index)
         {
             int start = 0;
-            int j = -1;
+            int j = 0;
             for (int i = 0; i < line.Length; i++)
             {
                 if (line[i] == ' ')
@@ -522,10 +527,15 @@ namespace SPBitsy
                     }
                     else
                     {
-                        start = j + 1;
+                        start = i + 1;
                         j++;
                     }
                 }
+            }
+
+            if (index == j && start < line.Length)
+            {
+                return line.Substring(start);
             }
             return null;
         }
@@ -546,6 +556,7 @@ namespace SPBitsy
                     spr.y = pair.Value.y;
                 }
             }
+
         }
 
         private void InitializeVariables()

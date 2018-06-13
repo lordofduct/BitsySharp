@@ -10,6 +10,7 @@ namespace SPBitsy.Unity
         #region Fields
 
         private Texture2D _texture;
+        private int _margin;
 
         //caches
         private Color32[] _color = new Color32[1];
@@ -40,12 +41,22 @@ namespace SPBitsy.Unity
 
         public void SetPixel(BitsyGame.Color color, int x, int y)
         {
+            x = x + _margin;
+            y = BitsyGame.RENDERSIZE - y - 1 + _margin;
+
             _color[0].r = color.r;
             _color[0].g = color.g;
             _color[0].b = color.b;
             _color[0].a = color.a;
 
             _texture.SetPixels32(x, y, 1, 1, _color);
+
+            //Color c;
+            //c.r = color.r / 255f;
+            //c.g = color.g / 255f;
+            //c.b = color.b / 255f;
+            //c.a = color.a / 255f;
+            //_texture.SetPixel(x, y, c);
         }
         
         public void FillSurface(BitsyGame.Color color)
@@ -66,7 +77,10 @@ namespace SPBitsy.Unity
 
         public void FillTile(BitsyGame.Color color, int x, int y)
         {
-            if(_tile == null)
+            x = x + _margin;
+            y = BitsyGame.RENDERSIZE - y - 1 + _margin;
+
+            if (_tile == null)
             {
                 _tile = new Color32[BitsyGame.TILESIZE * BitsyGame.TILESIZE];
             }
@@ -106,7 +120,19 @@ namespace SPBitsy.Unity
 
         public static TextureRenderSurface Create()
         {
-            return new TextureRenderSurface(new Texture2D(BitsyGame.RENDERSIZE, BitsyGame.RENDERSIZE));
+            var text = new Texture2D(BitsyGame.RENDERSIZE, BitsyGame.RENDERSIZE, TextureFormat.RGB24, false);
+            text.filterMode = FilterMode.Point;
+            return new TextureRenderSurface(text);
+        }
+
+        public static TextureRenderSurface Create(int margin)
+        {
+            var text = new Texture2D(BitsyGame.RENDERSIZE + margin + margin, BitsyGame.RENDERSIZE + margin + margin, TextureFormat.RGB24, false);
+            text.filterMode = FilterMode.Point;
+            return new TextureRenderSurface(text)
+            {
+                _margin = margin
+            };
         }
 
         #endregion
