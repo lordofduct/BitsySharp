@@ -7,13 +7,12 @@ namespace SPBitsy.Unity
 
     public class BitsyComponent : MonoBehaviour
     {
-
-        const int MARGIN = 4;
-
+        
         #region Fields
 
         public TextAsset GameData;
         public Renderer Renderer;
+        public int Margin;
 
         [System.NonSerialized]
         private BitsyGame _game;
@@ -27,7 +26,7 @@ namespace SPBitsy.Unity
         // Use this for initialization
         void Start()
         {
-            _surface = TextureRenderSurface.Create(MARGIN);
+            _surface = TextureRenderSurface.Create(this.Margin);
             this.Renderer.material.mainTexture = _surface.Texture;
 
             var parser = new BitsyGameParser();
@@ -60,6 +59,7 @@ namespace SPBitsy.Unity
             //_surface.Texture.SetPixel(MARGIN - 1, MARGIN + 128, Color.red);
             //_surface.Texture.SetPixel(MARGIN + 128, MARGIN - 1, Color.red);
             //_surface.Texture.SetPixel(MARGIN + 128, MARGIN + 128, Color.red);
+            
             _surface.Texture.Apply();
         }
 

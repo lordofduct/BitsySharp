@@ -34,9 +34,10 @@ namespace SPBitsy
             this.ResetFlags();
         }
 
-        public Environment Parse(TextReader reader)
+        public Environment Parse(TextReader reader, IFont font = null)
         {
             _environment = new Environment();
+            _environment.Font = font ?? BasicBitsyFont.LoadFont();
             _variables = new Dictionary<string, string>();
             _spriteStartLocations = new Dictionary<string, BitsyGame.Loc>();
 
@@ -456,7 +457,7 @@ namespace SPBitsy
                 goto loop;
             }
 
-            var gfx = new BitsyGame.GfxTileSheet(BitsyGame.TILESIZE, BitsyGame.TILESIZE, frameCount);
+            var gfx = new GfxTileSheet(BitsyGame.TILESIZE, BitsyGame.TILESIZE, frameCount);
             gfx.SetPixels(lst);
             _environment.ImageStore[drawId] = gfx;
         }

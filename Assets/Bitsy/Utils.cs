@@ -205,6 +205,36 @@ namespace SPBitsy
 
         #endregion
 
+        #region Render Extensions
+
+        public static void SetPixels(this IRenderSurface surface, BitsyGame.Color[] pixels, int x, int y, int width, int height)
+        {
+            int dim = width * height;
+            if (dim > pixels.Length) throw new System.ArgumentException("pixels array is wrong size");
+
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    int k = j * width + i;
+                    surface.SetPixel(pixels[k], x + i, y + j);
+                }
+            }
+        }
+
+        public static void FillArea(this IRenderSurface surface, BitsyGame.Color c, int x, int y, int width, int height)
+        {
+            if (surface == null) return;
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    surface.SetPixel(c, x + i, y + j);
+                }
+            }
+        }
+
+        #endregion
 
         #region Special Types
 
@@ -246,6 +276,38 @@ namespace SPBitsy
         public static string RGBToHex(byte r, byte g, byte b)
         {
             return string.Format("#{0:X2}{1:X2}{2:X2}", r, g, b);
+        }
+
+        public static BitsyGame.Color HslToRGB(float h, float s, float l)
+        {
+            BitsyGame.Color result;
+            result.a = 255;
+
+            if(s == 0f)
+            {
+                result.r = result.g = result.b = 255;
+            }
+            else
+            {
+                float q = l < 0.5f ? l * (l + s) : l + s - l * s;
+                float p = 2f * l - q;
+
+                result.r = (byte)(Hue2RGB(p, q, l, h + 1f / 3f) * 255);
+                result.g = (byte)(Hue2RGB(p, q, l, h) * 255);
+                result.b = (byte)(Hue2RGB(p, q, l, h - 1f / 3f) * 255);
+            }
+
+            return result;
+        }
+
+        private static float Hue2RGB(float p, float q, float l, float t)
+        {
+            if (t < 0f) t += l;
+            if (t > l) t -= l;
+            if (t < 1f / 6f) return p + (q - p) * 6 * t;
+            if (t < 1f / 2f) return q;
+            if (t < 2f / 3f) return p + (q - p) * (2f / 3f - t) * 6f;
+            return p;
         }
 
     }

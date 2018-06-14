@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +15,9 @@ namespace SPBitsy
         public const int MAPSIZE = 16;
         public const int TILESIZE = 8;
         public const int RENDERSIZE = MAPSIZE * TILESIZE;
+        public const int PIXEL_SCALE = 2;
+        public const int TEXT_SCALE = 1;
+        public const int RESOLUTION = RENDERSIZE * PIXEL_SCALE;
 
         public const int ANIM_TIME_MS = 400;
         public const int MOVE_TIME_MS = 200;
@@ -28,7 +30,7 @@ namespace SPBitsy
         private Environment _environment;
         private GetInputState _getInput;
         private IRenderSurface _surface;
-
+        
         #endregion
 
         #region CONSTRUCTOR
@@ -82,7 +84,7 @@ namespace SPBitsy
 
             if(_environment.DialogBuffer.IsActive)
             {
-                _environment.DialogRenderer.Draw(_environment.DialogBuffer, deltaTime);
+                _environment.DialogRenderer.Draw(_environment.DialogBuffer, deltaTime, _surface);
                 _environment.DialogBuffer.Update(deltaTime);
             }
             else if(!_environment.isEnding)
@@ -92,10 +94,10 @@ namespace SPBitsy
                 if(_environment.GetPlayer().WalkingPath.Count > 0)
                 {
                     var dest = _environment.GetPlayer().WalkingPath.Last();
-                    _surface.FillTile(Color.HalfWhite, dest.x * TILESIZE, dest.y * TILESIZE);
+                    _surface.FillArea(Color.HalfWhite, dest.x * PIXEL_SCALE, dest.y * PIXEL_SCALE, TILESIZE * PIXEL_SCALE, TILESIZE * PIXEL_SCALE);
                 }
             }
-
+            
             if (!_environment.DialogBuffer.IsActive && !_environment.isEnding)
             {
                 //handle inputs
@@ -385,7 +387,7 @@ namespace SPBitsy
 
             _environment.isDialogMode = true;
             _environment.DialogRenderer.Reset();
-            _environment.DialogRenderer.SetCentered(_environment.isNarrating);
+            _environment.DialogRenderer.IsCentered = _environment.isNarrating;
             _environment.DialogBuffer.Reset();
 
             if(scriptId == null)
@@ -560,74 +562,6 @@ namespace SPBitsy
             public Loc Destination;
         }
 
-        public class GfxTileSheet
-        {
-            public readonly int width;
-            public readonly int height;
-            public readonly int frameCount;
-            private BitArray _pixels;
-
-            public GfxTileSheet(int w, int h, int frameCount)
-            {
-                this.width = w;
-                this.height = h;
-                this.frameCount = frameCount;
-                _pixels = new BitArray(w * h * frameCount);
-            }
-
-            public void SetPixels(IEnumerable<bool> pixels)
-            {
-                int i = 0;
-                foreach(var p in pixels)
-                {
-                    if (i < _pixels.Length)
-                        _pixels[i] = p;
-                    else
-                        break;
-                    i++;
-                }
-            }
-
-            public void SetPixels(params byte[] pixels)
-            {
-                int i = 0;
-                foreach (var p in pixels)
-                {
-                    if (i < _pixels.Length)
-                        _pixels[i] = (p != 0);
-                    else
-                        break;
-                    i++;
-                }
-            }
-
-            public void Draw(int frame, int x, int y, Color c, IRenderSurface context)
-            {
-                if (context == null) return;
-                if (frame < 0 || frame >= frameCount) return;
-                
-                int offset = frame * width * height;
-                for (int i = 0; i < width; i++)
-                {
-                    for (int j = 0; j < height; j++)
-                    {
-                        if (_pixels[offset + j * width + i])
-                        {
-                            context.SetPixel(c, x + i, y + j);
-                        }
-                    }
-                }
-            }
-
-            public static GfxTileSheet CreateStatic(int w, int h, params byte[] pixels)
-            {
-                var tile = new GfxTileSheet(w, h, 1);
-                tile.SetPixels(pixels);
-                return tile;
-            }
-
-        }
-
         public class Anim
         {
             public bool IsAnimated;
@@ -642,7 +576,7 @@ namespace SPBitsy
                 }
             }
         }
-
+        
         public struct Color
         {
             public byte r;
@@ -684,6 +618,7 @@ namespace SPBitsy
         #region Fields
 
         public readonly Random Rng;
+        public IFont Font;
 
         public bool UseHandler = true;
         private Dictionary<string, object> _variables = new Dictionary<string, object>();
@@ -699,12 +634,12 @@ namespace SPBitsy
         public readonly Dictionary<string, BitsyGame.Item> Items = new Dictionary<string, BitsyGame.Item>();
         public readonly Dictionary<string, string> Dialog = new Dictionary<string, string>();
         public readonly Dictionary<string, string> Endings = new Dictionary<string, string>();
-        public readonly Dictionary<string, BitsyGame.GfxTileSheet> ImageStore = new Dictionary<string, BitsyGame.GfxTileSheet>();
+        public readonly Dictionary<string, GfxTileSheet> ImageStore = new Dictionary<string, GfxTileSheet>();
 
         public readonly SceneRenderer SceneRenderer;
         public readonly DialogRenderer DialogRenderer;
         public readonly DialogBuffer DialogBuffer;
-
+        
         public bool isNarrating;
         public bool isEnding;
         public bool isDialogMode;
@@ -734,6 +669,17 @@ namespace SPBitsy
             this.SceneRenderer = new SceneRenderer(this);
             this.DialogRenderer = new DialogRenderer(this);
             this.DialogBuffer = new DialogBuffer();
+            this.Palettes[BitsyGame.ID_DEFAULT] = new BitsyGame.Palette()
+            {
+                Id = BitsyGame.ID_DEFAULT,
+                Name = BitsyGame.ID_DEFAULT,
+                Colors = new BitsyGame.Color[]
+                {
+                    new BitsyGame.Color(0,0,0),
+                    new BitsyGame.Color(255,0,0),
+                    new BitsyGame.Color(255,255,255),
+                }
+            };
         }
 
         public Environment(Random rng)

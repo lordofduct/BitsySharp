@@ -15,7 +15,6 @@ namespace SPBitsy.Unity
         //caches
         private Color32[] _color = new Color32[1];
         private Color32[] _surface;
-        private Color32[] _tile;
 
         #endregion
 
@@ -42,7 +41,7 @@ namespace SPBitsy.Unity
         public void SetPixel(BitsyGame.Color color, int x, int y)
         {
             x = x + _margin;
-            y = BitsyGame.RENDERSIZE - y - 1 + _margin;
+            y = BitsyGame.RESOLUTION - y - 1 + _margin;
 
             _color[0].r = color.r;
             _color[0].g = color.g;
@@ -74,26 +73,7 @@ namespace SPBitsy.Unity
             }
             _texture.SetPixels32(_surface);
         }
-
-        public void FillTile(BitsyGame.Color color, int x, int y)
-        {
-            x = x + _margin;
-            y = BitsyGame.RENDERSIZE - y - 1 + _margin;
-
-            if (_tile == null)
-            {
-                _tile = new Color32[BitsyGame.TILESIZE * BitsyGame.TILESIZE];
-            }
-            for (int i = 0; i < _tile.Length; i++)
-            {
-                _tile[i].r = color.r;
-                _tile[i].g = color.g;
-                _tile[i].b = color.b;
-                _tile[i].a = color.a;
-            }
-            _texture.SetPixels32(x, y, BitsyGame.TILESIZE, BitsyGame.TILESIZE, _tile);
-        }
-
+        
         #endregion
 
         #region IDisposable Interface
@@ -111,7 +91,6 @@ namespace SPBitsy.Unity
                 _texture = null;
             }
             _surface = null;
-            _tile = null;
         }
 
         #endregion
@@ -120,14 +99,14 @@ namespace SPBitsy.Unity
 
         public static TextureRenderSurface Create()
         {
-            var text = new Texture2D(BitsyGame.RENDERSIZE, BitsyGame.RENDERSIZE, TextureFormat.RGB24, false);
+            var text = new Texture2D(BitsyGame.RESOLUTION, BitsyGame.RESOLUTION, TextureFormat.RGB24, false);
             text.filterMode = FilterMode.Point;
             return new TextureRenderSurface(text);
         }
 
         public static TextureRenderSurface Create(int margin)
         {
-            var text = new Texture2D(BitsyGame.RENDERSIZE + margin + margin, BitsyGame.RENDERSIZE + margin + margin, TextureFormat.RGB24, false);
+            var text = new Texture2D(BitsyGame.RESOLUTION + margin + margin, BitsyGame.RESOLUTION + margin + margin, TextureFormat.RGB24, false);
             text.filterMode = FilterMode.Point;
             return new TextureRenderSurface(text)
             {
