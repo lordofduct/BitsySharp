@@ -234,7 +234,7 @@ namespace SPBitsy
         private Environment _env;
         private IRenderSurface _context;
 
-        public BitsyGame.Color BackgroundColor = new BitsyGame.Color(255, 0, 0); //BitsyGame.Color.Black;
+        public BitsyGame.Color BackgroundColor = BitsyGame.Color.Black;
         
         private bool _isCentered = false;
         private int _effectTimer;
@@ -435,8 +435,8 @@ namespace SPBitsy
                 {
                     ln = this.QueueLine();
 
-                    int next = Math.Min(i + DialogRenderer.CHARS_PER_ROW, text.Length - 1);
-                    int end = text.LastIndexOf(' ', next, next - i);
+                    int next = i + DialogRenderer.CHARS_PER_ROW;
+                    int end = (next < text.Length) ? text.LastIndexOf(' ', next, next - i) : text.Length;
                     if (end < 0) end = next + 1;
 
                     ln.length = end - i;
@@ -525,7 +525,10 @@ namespace SPBitsy
             for(int i = 0; i < rowCnt; i++)
             {
                 var ln = _lines[i];
-                for(int j = 0; j < ln.length; j++)
+                int cnt = ln.length;
+                if (i == _rowIndex && cnt > _charIndex) cnt = _charIndex + 1;
+
+                for(int j = 0; j < cnt; j++)
                 {
                     handler(ln, i, j);
                 }
