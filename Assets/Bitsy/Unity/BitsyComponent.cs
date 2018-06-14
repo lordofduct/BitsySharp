@@ -22,10 +22,12 @@ namespace SPBitsy.Unity
         #endregion
 
         #region CONSTRUCTOR
-
-        // Use this for initialization
+        
         void Start()
         {
+            if (this.GameData == null) return;
+            if (this.Renderer == null) this.Renderer = this.GetComponent<Renderer>();
+
             _surface = TextureRenderSurface.Create(this.Margin);
             this.Renderer.material.mainTexture = _surface.Texture;
 
@@ -54,11 +56,6 @@ namespace SPBitsy.Unity
             {
                 Debug.LogException(ex, this);
             }
-
-            //_surface.Texture.SetPixel(MARGIN - 1, MARGIN - 1, Color.red);
-            //_surface.Texture.SetPixel(MARGIN - 1, MARGIN + 128, Color.red);
-            //_surface.Texture.SetPixel(MARGIN + 128, MARGIN - 1, Color.red);
-            //_surface.Texture.SetPixel(MARGIN + 128, MARGIN + 128, Color.red);
             
             _surface.Texture.Apply();
         }
