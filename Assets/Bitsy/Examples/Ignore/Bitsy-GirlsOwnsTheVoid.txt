@@ -1,0 +1,6111 @@
+==GIRLS OWN THE VOID=={br}a faux platformer
+
+# BITSY VERSION 4.8
+
+! ROOM_FORMAT 1
+
+PAL 0
+155,188,15
+139,172,15
+15,56,15
+48,98,48
+
+ROOM 0
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,1b,1b,1b,1b,1b,1b,1b,1b,1b,1b,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME intro1
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 8,2
+ITM 0 10,2
+ITM 0 9,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 4,2
+ITM 0 3,2
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 2 13,5
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,6
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,11
+ITM 6 1,10
+ITM 6 1,7
+ITM 6 1,4
+ITM 6 2,1
+ITM 6 3,1
+ITM 6 4,1
+ITM 6 6,1
+ITM 6 5,1
+ITM 6 7,1
+ITM 6 8,1
+ITM 6 9,1
+ITM 6 10,1
+ITM 6 11,1
+ITM 6 12,1
+ITM 6 13,1
+ITM 6 14,2
+ITM 6 14,3
+ITM 6 14,4
+ITM 6 14,5
+ITM 6 14,6
+ITM 6 14,7
+ITM 6 14,8
+ITM 6 14,9
+ITM 6 14,10
+ITM 6 13,12
+ITM 6 12,12
+ITM 6 11,12
+ITM 6 10,12
+ITM 6 9,12
+ITM 6 8,12
+ITM 6 6,12
+ITM 6 5,12
+ITM 6 3,12
+ITM 6 2,12
+ITM 6 4,12
+ITM 6 7,12
+ITM 4 13,11
+ITM 7 2,2
+ITM 8 14,1
+ITM 8 2,11
+ITM 9 13,2
+ITM 9 1,12
+ITM 6 14,11
+ITM a 14,12
+ITM c 2,5
+ITM b 1,5
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 4,0
+ITM d 5,0
+ITM d 6,0
+ITM d 7,0
+ITM d 8,0
+ITM d 9,0
+ITM d 10,0
+ITM d 11,0
+ITM d 12,0
+ITM d 13,0
+ITM d 14,0
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,6
+ITM e 0,7
+ITM e 0,8
+ITM e 0,9
+ITM e 0,10
+ITM e 0,11
+ITM e 0,12
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,5
+ITM f 15,6
+ITM f 15,7
+ITM f 15,8
+ITM f 15,9
+ITM f 15,10
+ITM f 15,11
+ITM f 15,12
+ITM f 15,13
+ITM f 15,14
+ITM f 15,15
+ITM h 15,0
+ITM g 0,0
+ITM 4 1,1
+ITM k 5,9
+EXT 12,9 1 4,9
+PAL 0
+
+ROOM 1
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,1b,1b,1b,1b,0,1b,0,1b,1b,1b,15,0,c
+a,0,12,0,0,0,0,0,1c,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME intro2
+ITM 0 3,2
+ITM 0 4,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 8,2
+ITM 0 9,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 4 13,11
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 3,12
+ITM 6 4,12
+ITM 6 5,12
+ITM 6 6,12
+ITM 6 8,12
+ITM 6 7,12
+ITM 6 9,12
+ITM 6 10,12
+ITM 6 11,12
+ITM 6 12,12
+ITM 6 3,1
+ITM 6 4,1
+ITM 6 5,1
+ITM 6 7,1
+ITM 6 6,1
+ITM 6 8,1
+ITM 6 9,1
+ITM 6 10,1
+ITM 6 11,1
+ITM 6 12,1
+ITM 7 2,2
+ITM 8 2,11
+ITM 9 13,2
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 6 14,2
+ITM 6 14,3
+ITM 6 14,4
+ITM 6 14,5
+ITM 6 14,6
+ITM 6 14,7
+ITM 6 14,8
+ITM 6 14,10
+ITM 6 14,11
+ITM 6 14,9
+ITM 6 13,12
+ITM 6 2,1
+ITM 6 1,2
+ITM 8 14,1
+ITM 9 1,12
+ITM a 14,12
+ITM 4 1,1
+ITM 6 1,11
+ITM 6 2,12
+ITM 6 13,1
+ITM c 2,5
+ITM b 1,5
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 4,0
+ITM d 5,0
+ITM d 6,0
+ITM d 7,0
+ITM d 8,0
+ITM d 9,0
+ITM d 10,0
+ITM d 11,0
+ITM d 12,0
+ITM d 13,0
+ITM d 14,0
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,6
+ITM e 0,7
+ITM e 0,8
+ITM e 0,9
+ITM e 0,10
+ITM e 0,11
+ITM e 0,12
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM f 15,1
+ITM f 15,2
+ITM f 15,4
+ITM f 15,3
+ITM f 15,5
+ITM f 15,8
+ITM f 15,9
+ITM f 15,10
+ITM f 15,12
+ITM f 15,13
+ITM f 15,15
+ITM f 15,14
+ITM f 15,11
+ITM f 15,6
+ITM f 15,7
+ITM g 0,0
+ITM h 15,0
+ITM l 7,8
+ITM m 9,8
+EXT 3,9 0 11,9
+EXT 7,8 2 8,8
+EXT 9,8 2 8,8
+EXT 12,9 3 4,9
+PAL 0
+
+ROOM 2
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,1b,1b,1b,0,0,0,15,0,c
+a,0,12,1b,1b,1b,1b,0,0,0,1b,1b,1b,15,0,c
+a,0,12,0,0,0,0,0,1c,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME intro3
+ITM 0 3,2
+ITM 0 4,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 8,2
+ITM 0 9,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 4 13,11
+ITM 4 1,1
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 10,11
+ITM 5 7,11
+ITM 6 1,2
+ITM 6 2,1
+ITM 6 3,1
+ITM 6 6,1
+ITM 6 5,1
+ITM 6 4,1
+ITM 6 7,1
+ITM 6 8,1
+ITM 6 9,1
+ITM 6 10,1
+ITM 6 11,1
+ITM 6 12,1
+ITM 6 13,1
+ITM 6 14,2
+ITM 6 14,3
+ITM 6 14,5
+ITM 6 14,6
+ITM 6 14,4
+ITM 6 14,7
+ITM 6 14,8
+ITM 6 14,9
+ITM 6 14,10
+ITM 6 14,11
+ITM 6 13,12
+ITM 6 11,12
+ITM 6 12,12
+ITM 6 10,12
+ITM 6 8,12
+ITM 6 7,12
+ITM 6 6,12
+ITM 6 5,12
+ITM 6 4,12
+ITM 6 3,12
+ITM 6 9,12
+ITM 6 1,10
+ITM 6 1,9
+ITM 6 1,8
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,4
+ITM 6 1,3
+ITM 6 1,11
+ITM 6 2,12
+ITM 7 2,2
+ITM 8 2,11
+ITM 8 14,1
+ITM 9 1,12
+ITM 9 13,2
+ITM a 14,12
+ITM c 2,5
+ITM b 1,5
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 4,0
+ITM d 5,0
+ITM d 6,0
+ITM d 7,0
+ITM d 8,0
+ITM d 10,0
+ITM d 9,0
+ITM d 11,0
+ITM d 13,0
+ITM d 12,0
+ITM d 14,0
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,6
+ITM e 0,7
+ITM e 0,8
+ITM e 0,9
+ITM e 0,10
+ITM e 0,11
+ITM e 0,12
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM f 15,2
+ITM f 15,1
+ITM f 15,3
+ITM f 15,4
+ITM f 15,5
+ITM f 15,6
+ITM f 15,7
+ITM f 15,8
+ITM f 15,9
+ITM f 15,10
+ITM f 15,11
+ITM f 15,12
+ITM f 15,13
+ITM f 15,14
+ITM f 15,15
+ITM g 0,0
+ITM h 15,0
+EXT 9,8 1 9,9
+EXT 7,8 1 7,9
+PAL 0
+
+ROOM 3
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,1b,1b,1b,1b,1b,1b,1b,1b,1b,1b,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME intro4
+ITM 0 3,2
+ITM 0 4,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 9,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 8,2
+ITM 2 13,5
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 4 13,11
+ITM 4 1,1
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 6 3,12
+ITM 6 5,12
+ITM 6 4,12
+ITM 6 6,12
+ITM 6 7,12
+ITM 6 8,12
+ITM 6 9,12
+ITM 6 12,12
+ITM 6 11,12
+ITM 6 10,12
+ITM 6 13,12
+ITM 6 14,11
+ITM 6 14,10
+ITM 6 14,8
+ITM 6 14,7
+ITM 6 14,5
+ITM 6 14,4
+ITM 6 14,2
+ITM 6 14,3
+ITM 6 14,6
+ITM 6 14,9
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 11,1
+ITM 6 10,1
+ITM 6 9,1
+ITM 6 8,1
+ITM 6 7,1
+ITM 6 6,1
+ITM 6 5,1
+ITM 6 4,1
+ITM 6 3,1
+ITM 6 2,1
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 2,12
+ITM 7 2,2
+ITM 8 2,11
+ITM 8 14,1
+ITM 6 1,11
+ITM 9 1,12
+ITM 9 13,2
+ITM a 14,12
+ITM b 1,5
+ITM c 2,5
+ITM h 15,0
+ITM g 0,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,5
+ITM f 15,6
+ITM f 15,7
+ITM f 15,8
+ITM f 15,9
+ITM f 15,10
+ITM f 15,11
+ITM f 15,13
+ITM f 15,14
+ITM f 15,15
+ITM f 15,12
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,6
+ITM e 0,7
+ITM e 0,8
+ITM e 0,9
+ITM e 0,10
+ITM e 0,11
+ITM e 0,12
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 5,0
+ITM d 4,0
+ITM d 10,0
+ITM d 12,0
+ITM d 13,0
+ITM d 14,0
+ITM d 11,0
+ITM d 7,0
+ITM d 8,0
+ITM d 9,0
+ITM d 6,0
+EXT 3,9 1 11,9
+PAL 0
+
+ROOM 4
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,1d,1d,1d,1n,1t,1d,22,1d,1d,1d,15,0,c
+a,0,12,1d,1e,1i,1o,1u,1y,23,27,2b,1d,15,0,c
+a,11,12,1d,1d,1j,1p,1v,1z,24,28,1d,1d,15,0,c
+a,0,12,1d,1f,1k,1d,1d,1d,1d,1z,2c,1d,15,0,c
+a,0,12,1d,1g,1l,1q,1q,1d,1d,29,2d,1d,15,0,c
+a,0,12,1d,1h,1m,1r,1w,20,25,2a,2e,1d,15,0,c
+a,0,12,1d,1d,1d,1s,1x,21,26,1d,1d,1d,15,0,c
+a,0,12,1d,1d,1d,1d,1d,1d,1d,1d,1d,1d,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME intro5
+ITM g 0,0
+ITM h 15,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,5
+ITM f 15,8
+ITM f 15,9
+ITM f 15,11
+ITM f 15,13
+ITM f 15,14
+ITM f 15,15
+ITM f 15,12
+ITM f 15,10
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,7
+ITM e 0,8
+ITM e 0,9
+ITM e 0,10
+ITM e 0,12
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM e 0,11
+ITM e 0,6
+ITM d 13,0
+ITM d 14,0
+ITM d 12,0
+ITM d 11,0
+ITM d 5,0
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 4,0
+ITM d 7,0
+ITM d 6,0
+ITM d 8,0
+ITM d 9,0
+ITM d 10,0
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 0 12,2
+ITM 0 11,2
+ITM 0 10,2
+ITM 0 9,2
+ITM 0 8,2
+ITM 0 7,2
+ITM 0 6,2
+ITM 0 5,2
+ITM 0 4,2
+ITM 0 3,2
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 12,11
+ITM 5 11,11
+ITM 5 10,11
+ITM 4 1,1
+ITM 4 13,11
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,11
+ITM 6 1,10
+ITM 6 2,12
+ITM 6 3,12
+ITM 6 4,12
+ITM 6 5,12
+ITM 6 6,12
+ITM 6 7,12
+ITM 6 8,12
+ITM 6 10,12
+ITM 6 11,12
+ITM 6 13,12
+ITM 6 12,12
+ITM 6 9,12
+ITM 6 14,11
+ITM 6 14,10
+ITM 6 14,9
+ITM 6 14,8
+ITM 6 14,6
+ITM 6 14,5
+ITM 6 14,7
+ITM 6 14,4
+ITM 6 14,3
+ITM 6 14,2
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 11,1
+ITM 6 9,1
+ITM 6 8,1
+ITM 6 7,1
+ITM 6 6,1
+ITM 6 4,1
+ITM 6 3,1
+ITM 6 2,1
+ITM 6 5,1
+ITM 6 10,1
+ITM 8 14,1
+ITM 8 2,11
+ITM a 14,12
+ITM 9 1,12
+ITM 9 13,2
+ITM 7 2,2
+ITM f 15,7
+ITM f 15,6
+ITM c 2,5
+ITM b 1,5
+PAL 0
+
+ROOM 5
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,2m,2n,2m,2o,2m,2m,2n,2m,2m,2m,15,0,c
+a,0,12,2m,2n,2m,2g,2m,2m,2n,2m,2n,2m,15,0,c
+a,11,12,2m,2m,2m,2g,2m,2n,2m,2f,2m,2n,15,0,c
+a,0,12,2m,2f,2h,2i,2h,2h,2j,2l,2m,2m,15,0,c
+a,0,12,2m,2m,2m,2g,2n,2m,2g,2m,2n,2m,15,0,c
+a,0,12,2n,2n,2m,2g,2m,2m,2g,2n,2m,2m,15,0,c
+a,0,12,2m,2m,2m,2f,2m,2n,2k,2h,2h,2h,15,0,c
+a,0,12,2m,2n,2m,2m,2n,2n,2m,2n,2m,2m,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME overworld
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,7
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 9,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 0 3,2
+ITM 0 4,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 8,2
+ITM 0 9,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 9 13,2
+ITM 9 1,12
+ITM a 14,12
+ITM c 2,5
+ITM b 1,5
+ITM 7 2,2
+ITM 4 13,11
+ITM 4 1,1
+ITM 8 2,11
+ITM 8 14,1
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 1,7
+ITM 6 2,12
+ITM 6 3,12
+ITM 6 4,12
+ITM 6 6,12
+ITM 6 7,12
+ITM 6 8,12
+ITM 6 9,12
+ITM 6 10,12
+ITM 6 12,12
+ITM 6 13,12
+ITM 6 11,12
+ITM 6 5,12
+ITM 6 14,11
+ITM 6 14,10
+ITM 6 14,9
+ITM 6 14,8
+ITM 6 14,7
+ITM 6 14,5
+ITM 6 14,4
+ITM 6 14,3
+ITM 6 14,2
+ITM 6 14,6
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 11,1
+ITM 6 9,1
+ITM 6 7,1
+ITM 6 6,1
+ITM 6 5,1
+ITM 6 3,1
+ITM 6 2,1
+ITM 6 4,1
+ITM 6 8,1
+ITM 6 10,1
+ITM g 0,0
+ITM h 15,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,5
+ITM f 15,6
+ITM f 15,7
+ITM f 15,8
+ITM f 15,9
+ITM f 15,10
+ITM f 15,11
+ITM f 15,12
+ITM f 15,13
+ITM f 15,14
+ITM f 15,15
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 4,0
+ITM d 5,0
+ITM d 7,0
+ITM d 8,0
+ITM d 9,0
+ITM d 10,0
+ITM d 13,0
+ITM d 11,0
+ITM d 12,0
+ITM d 6,0
+ITM d 14,0
+ITM e 0,1
+ITM e 0,3
+ITM e 0,2
+ITM e 0,4
+ITM e 0,5
+ITM e 0,6
+ITM e 0,7
+ITM e 0,8
+ITM e 0,9
+ITM e 0,10
+ITM e 0,11
+ITM e 0,12
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM j 4,6
+ITM j 10,5
+ITM j 6,9
+ITM o 4,9
+ITM o 11,6
+ITM o 8,10
+ITM o 8,3
+ITM o 3,4
+ITM o 11,4
+ITM o 7,8
+ITM o 5,10
+ITM o 3,8
+ITM o 11,8
+ITM o 10,10
+ITM o 8,5
+ITM o 12,4
+ITM o 10,3
+ITM o 5,7
+ITM o 4,4
+ITM 5 8,11
+ITM 5 7,11
+EXT 4,6 6 4,9
+EXT 6,9 b 4,9
+EXT 10,5 g 4,9
+PAL 0
+
+ROOM 6
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,1b,1b,1b,1b,1b,1b,1b,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,1b,1b,1b,1b,0,0,1c,0,0,1b,15,0,c
+a,0,12,0,0,0,0,0,1c,1c,1c,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level1a
+ITM 2 13,4
+ITM 2 13,3
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,7
+ITM 3 2,6
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 7,11
+ITM 5 6,11
+ITM 5 8,11
+ITM 5 10,11
+ITM 5 12,11
+ITM 5 11,11
+ITM 5 9,11
+ITM 0 3,2
+ITM 0 4,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 8,2
+ITM 0 9,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM a 14,12
+ITM c 2,5
+ITM b 1,5
+ITM 9 13,2
+ITM 9 1,12
+ITM 8 2,11
+ITM 8 14,1
+ITM 7 2,2
+ITM 4 1,1
+ITM 4 13,11
+ITM 6 1,3
+ITM 6 1,2
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 1,9
+ITM 6 2,12
+ITM 6 4,12
+ITM 6 6,12
+ITM 6 8,12
+ITM 6 10,12
+ITM 6 12,12
+ITM 6 13,12
+ITM 6 11,12
+ITM 6 9,12
+ITM 6 7,12
+ITM 6 5,12
+ITM 6 3,12
+ITM 6 14,11
+ITM 6 14,10
+ITM 6 14,8
+ITM 6 14,4
+ITM 6 14,7
+ITM 6 14,5
+ITM 6 14,6
+ITM 6 14,3
+ITM 6 14,2
+ITM 6 14,9
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 11,1
+ITM 6 10,1
+ITM 6 9,1
+ITM 6 8,1
+ITM 6 7,1
+ITM 6 6,1
+ITM 6 5,1
+ITM 6 4,1
+ITM 6 2,1
+ITM 6 3,1
+ITM g 0,0
+ITM h 15,0
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 4,0
+ITM d 6,0
+ITM d 5,0
+ITM d 7,0
+ITM d 9,0
+ITM d 10,0
+ITM d 12,0
+ITM d 13,0
+ITM d 14,0
+ITM d 11,0
+ITM d 8,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,5
+ITM f 15,6
+ITM f 15,7
+ITM f 15,8
+ITM f 15,9
+ITM f 15,10
+ITM f 15,11
+ITM f 15,12
+ITM f 15,14
+ITM f 15,15
+ITM f 15,13
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,6
+ITM e 0,7
+ITM e 0,8
+ITM e 0,9
+ITM e 0,10
+ITM e 0,11
+ITM e 0,12
+ITM e 0,13
+ITM e 0,15
+ITM e 0,14
+EXT 7,8 7 8,8
+EXT 11,8 7 10,8
+EXT 8,7 7 8,8
+EXT 10,7 7 10,8
+EXT 12,9 8 4,9
+EXT 3,9 5 5,6
+PAL 0
+
+ROOM 7
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,1b,1b,1b,1b,1b,1b,1b,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,1b,1b,1b,1b,0,0,1c,0,0,1b,15,0,c
+a,0,12,0,0,0,0,0,1c,1c,1c,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level1b
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 0 12,2
+ITM 0 11,2
+ITM 0 10,2
+ITM 0 9,2
+ITM 0 8,2
+ITM 0 7,2
+ITM 0 6,2
+ITM 0 5,2
+ITM 0 4,2
+ITM 0 3,2
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,7
+ITM 3 2,6
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 10,11
+ITM 4 13,11
+ITM 8 2,11
+ITM 8 14,1
+ITM 7 2,2
+ITM 9 13,2
+ITM 9 1,12
+ITM a 14,12
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 2,12
+ITM 6 4,12
+ITM 6 5,12
+ITM 6 6,12
+ITM 6 8,12
+ITM 6 9,12
+ITM 6 11,12
+ITM 6 13,12
+ITM 6 12,12
+ITM 6 10,12
+ITM 6 7,12
+ITM 6 3,12
+ITM 6 14,11
+ITM 6 14,8
+ITM 6 14,7
+ITM 6 14,4
+ITM 6 14,3
+ITM 6 14,2
+ITM 6 14,5
+ITM 6 14,6
+ITM 6 14,9
+ITM 6 14,10
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 11,1
+ITM 6 10,1
+ITM 6 8,1
+ITM 6 6,1
+ITM 6 5,1
+ITM 6 4,1
+ITM 6 3,1
+ITM 6 2,1
+ITM 6 7,1
+ITM 6 9,1
+ITM 4 1,1
+ITM c 2,5
+ITM b 1,5
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,6
+ITM e 0,7
+ITM e 0,8
+ITM e 0,9
+ITM e 0,11
+ITM e 0,12
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM e 0,10
+ITM d 1,0
+ITM d 4,0
+ITM d 6,0
+ITM d 7,0
+ITM d 9,0
+ITM d 10,0
+ITM d 14,0
+ITM d 13,0
+ITM d 12,0
+ITM d 11,0
+ITM d 8,0
+ITM d 5,0
+ITM d 3,0
+ITM d 2,0
+ITM g 0,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,6
+ITM f 15,8
+ITM f 15,9
+ITM f 15,10
+ITM f 15,11
+ITM f 15,15
+ITM f 15,14
+ITM f 15,13
+ITM f 15,12
+ITM f 15,7
+ITM f 15,4
+ITM f 15,5
+ITM h 15,0
+EXT 8,7 6 9,7
+EXT 10,7 6 9,7
+EXT 11,8 6 11,9
+EXT 7,8 6 7,9
+PAL 0
+
+ROOM 8
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,1b,1b,15,0,c
+a,11,12,0,16,16,16,0,0,1b,0,0,0,15,0,c
+a,0,12,0,0,0,0,1b,1b,0,0,1c,1c,15,0,c
+a,0,12,0,0,1b,1b,0,0,0,1c,0,0,15,0,c
+a,0,12,1b,1b,0,0,0,1c,1c,1b,1b,1b,15,0,c
+a,0,12,0,0,0,1c,1c,0,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level1c
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 3 2,6
+ITM 0 3,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 8,2
+ITM 0 9,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 10,2
+ITM 0 7,2
+ITM 0 4,2
+ITM 5 3,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 10,11
+ITM 5 7,11
+ITM 5 4,11
+ITM 8 2,11
+ITM 8 14,1
+ITM 4 1,1
+ITM 4 13,11
+ITM 7 2,2
+ITM 9 13,2
+ITM 9 1,12
+ITM a 14,12
+ITM c 2,5
+ITM b 1,5
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 2,12
+ITM 6 4,12
+ITM 6 5,12
+ITM 6 8,12
+ITM 6 9,12
+ITM 6 10,12
+ITM 6 12,12
+ITM 6 13,12
+ITM 6 11,12
+ITM 6 7,12
+ITM 6 6,12
+ITM 6 3,12
+ITM 6 14,11
+ITM 6 14,9
+ITM 6 14,8
+ITM 6 14,6
+ITM 6 14,5
+ITM 6 14,3
+ITM 6 14,2
+ITM 6 14,4
+ITM 6 14,7
+ITM 6 14,10
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 10,1
+ITM 6 9,1
+ITM 6 8,1
+ITM 6 6,1
+ITM 6 4,1
+ITM 6 2,1
+ITM 6 3,1
+ITM 6 5,1
+ITM 6 7,1
+ITM 6 11,1
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,6
+ITM f 15,8
+ITM f 15,9
+ITM f 15,11
+ITM f 15,13
+ITM f 15,14
+ITM f 15,15
+ITM f 15,12
+ITM f 15,10
+ITM f 15,7
+ITM f 15,5
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,7
+ITM e 0,8
+ITM e 0,9
+ITM e 0,11
+ITM e 0,12
+ITM e 0,14
+ITM e 0,15
+ITM e 0,13
+ITM e 0,10
+ITM e 0,6
+ITM g 0,0
+ITM h 15,0
+ITM d 2,0
+ITM d 1,0
+ITM d 4,0
+ITM d 5,0
+ITM d 7,0
+ITM d 8,0
+ITM d 9,0
+ITM d 11,0
+ITM d 12,0
+ITM d 14,0
+ITM d 13,0
+ITM d 10,0
+ITM d 6,0
+ITM d 3,0
+EXT 5,8 9 6,8
+EXT 7,7 9 7,8
+EXT 9,6 9 10,6
+EXT 10,5 9 10,6
+EXT 3,9 6 11,9
+EXT 12,5 a 4,5
+EXT 12,9 a 4,9
+PAL 0
+
+ROOM 9
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,1b,1b,15,0,c
+a,11,12,0,16,16,16,0,0,1b,0,1b,0,15,0,c
+a,0,12,0,0,0,0,1b,1b,0,0,1c,1c,15,0,c
+a,0,12,0,0,1b,1b,0,0,0,1c,0,0,15,0,c
+a,0,12,1b,1b,0,0,0,1c,1c,1b,1b,1b,15,0,c
+a,0,12,0,0,0,1c,1c,0,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level1d
+ITM 6 1,2
+ITM 6 1,4
+ITM 6 1,3
+ITM 8 2,11
+ITM 8 14,1
+ITM a 14,12
+ITM c 2,5
+ITM b 1,5
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 9,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 8,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 7 2,2
+ITM 4 1,1
+ITM 4 13,11
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,5
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 3 2,3
+ITM 3 2,4
+ITM 0 3,2
+ITM 0 4,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 8,2
+ITM 0 9,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 9 13,2
+ITM 9 1,12
+ITM 6 1,6
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 4,12
+ITM 6 5,12
+ITM 6 6,12
+ITM 6 9,12
+ITM 6 10,12
+ITM 6 11,12
+ITM 6 12,12
+ITM 6 13,12
+ITM 6 8,12
+ITM 6 7,12
+ITM 6 3,12
+ITM 6 2,12
+ITM 6 1,11
+ITM 6 1,7
+ITM 6 2,1
+ITM 6 3,1
+ITM 6 4,1
+ITM 6 6,1
+ITM 6 7,1
+ITM 6 8,1
+ITM 6 11,1
+ITM 6 12,1
+ITM 6 13,1
+ITM 6 10,1
+ITM 6 9,1
+ITM 6 5,1
+ITM 6 14,2
+ITM 6 14,4
+ITM 6 14,5
+ITM 6 14,6
+ITM 6 14,7
+ITM 6 14,9
+ITM 6 14,10
+ITM 6 14,11
+ITM 6 14,8
+ITM 6 14,3
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,6
+ITM e 0,7
+ITM e 0,9
+ITM e 0,11
+ITM e 0,13
+ITM e 0,15
+ITM e 0,14
+ITM e 0,12
+ITM e 0,10
+ITM e 0,8
+ITM e 0,5
+ITM e 0,4
+ITM d 4,0
+ITM d 5,0
+ITM d 6,0
+ITM d 8,0
+ITM d 9,0
+ITM d 10,0
+ITM d 12,0
+ITM d 13,0
+ITM d 14,0
+ITM d 11,0
+ITM d 7,0
+ITM d 3,0
+ITM d 2,0
+ITM d 1,0
+ITM g 0,0
+ITM h 15,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,5
+ITM f 15,10
+ITM f 15,12
+ITM f 15,14
+ITM f 15,15
+ITM f 15,13
+ITM f 15,11
+ITM f 15,9
+ITM f 15,7
+ITM f 15,8
+ITM f 15,6
+ITM f 15,4
+ITM p 9,9
+EXT 5,8 8 5,9
+EXT 7,7 8 8,7
+EXT 9,6 8 9,7
+EXT 10,5 8 11,5
+PAL 0
+
+ROOM a
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,1b,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,0,15,0,c
+a,0,12,1c,1c,1c,1c,0,0,0,0,2r,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,2p,2q,2t,15,0,c
+a,0,12,1b,1b,1b,1b,1b,1b,1b,1b,2s,2u,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level1e
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,9
+ITM 2 13,8
+ITM 2 13,10
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 3 2,7
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 8,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 9,11
+ITM 5 7,11
+ITM 0 3,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 12,2
+ITM 0 9,2
+ITM 0 8,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 4,2
+ITM 0 5,2
+ITM 4 1,1
+ITM 4 13,11
+ITM 8 2,11
+ITM 7 2,2
+ITM 9 13,2
+ITM 9 1,12
+ITM a 14,12
+ITM c 2,5
+ITM b 1,5
+ITM 6 2,1
+ITM 6 5,1
+ITM 6 6,1
+ITM 6 9,1
+ITM 6 10,1
+ITM 6 11,1
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 8,1
+ITM 6 7,1
+ITM 6 4,1
+ITM 6 3,1
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 3,12
+ITM 6 5,12
+ITM 6 7,12
+ITM 6 9,12
+ITM 6 11,12
+ITM 6 12,12
+ITM 6 13,12
+ITM 6 10,12
+ITM 6 8,12
+ITM 6 6,12
+ITM 6 4,12
+ITM 6 2,12
+ITM 6 14,11
+ITM 6 14,9
+ITM 6 14,7
+ITM 6 14,5
+ITM 6 14,4
+ITM 6 14,3
+ITM 6 14,2
+ITM 6 14,8
+ITM 6 14,10
+ITM 6 14,6
+ITM 8 14,1
+ITM h 15,0
+ITM g 0,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,6
+ITM f 15,7
+ITM f 15,8
+ITM f 15,10
+ITM f 15,11
+ITM f 15,12
+ITM f 15,14
+ITM f 15,15
+ITM f 15,13
+ITM f 15,9
+ITM f 15,5
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,6
+ITM e 0,7
+ITM e 0,9
+ITM e 0,10
+ITM e 0,12
+ITM e 0,14
+ITM e 0,15
+ITM e 0,13
+ITM e 0,11
+ITM e 0,8
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 4,0
+ITM d 6,0
+ITM d 7,0
+ITM d 9,0
+ITM d 10,0
+ITM d 11,0
+ITM d 12,0
+ITM d 13,0
+ITM d 14,0
+ITM d 8,0
+ITM d 5,0
+ITM n 7,5
+EXT 3,5 8 11,5
+EXT 7,5 a 7,9
+EXT 3,9 8 11,9
+EXT 12,9 5 5,6
+PAL 0
+
+ROOM b
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,1b,1b,1b,1b,1b,1b,1c,1c,1c,1c,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level2a
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,7
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 5 4,11
+ITM 5 3,11
+ITM 5 5,11
+ITM 5 9,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 8,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 4 13,11
+ITM 8 2,11
+ITM 0 3,2
+ITM 0 5,2
+ITM 0 7,2
+ITM 0 9,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 10,2
+ITM 0 8,2
+ITM 0 6,2
+ITM 0 4,2
+ITM 8 14,1
+ITM 7 2,2
+ITM 9 1,12
+ITM 4 1,1
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,11
+ITM 6 1,10
+ITM 6 2,12
+ITM 6 4,12
+ITM 6 5,12
+ITM 6 6,12
+ITM 6 7,12
+ITM 6 8,12
+ITM 6 13,12
+ITM 6 12,12
+ITM 6 11,12
+ITM 6 10,12
+ITM 6 9,12
+ITM 6 3,12
+ITM 6 14,10
+ITM 6 14,11
+ITM 6 14,9
+ITM 6 14,7
+ITM 6 14,5
+ITM 6 14,3
+ITM 6 14,2
+ITM 6 14,4
+ITM 6 14,6
+ITM 6 14,8
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 11,1
+ITM 6 7,1
+ITM 6 4,1
+ITM 6 2,1
+ITM 6 3,1
+ITM 6 5,1
+ITM 6 6,1
+ITM 6 10,1
+ITM 6 9,1
+ITM 6 8,1
+ITM 9 13,2
+ITM b 1,5
+ITM c 2,5
+ITM a 14,12
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,6
+ITM e 0,8
+ITM e 0,9
+ITM e 0,10
+ITM e 0,11
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM e 0,12
+ITM e 0,7
+ITM e 0,5
+ITM d 1,0
+ITM d 8,0
+ITM d 9,0
+ITM d 11,0
+ITM d 14,0
+ITM d 13,0
+ITM d 12,0
+ITM d 10,0
+ITM d 6,0
+ITM d 7,0
+ITM d 5,0
+ITM d 4,0
+ITM d 2,0
+ITM d 3,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,8
+ITM f 15,9
+ITM f 15,10
+ITM f 15,12
+ITM f 15,13
+ITM f 15,15
+ITM f 15,14
+ITM f 15,11
+ITM f 15,7
+ITM f 15,6
+ITM f 15,5
+ITM h 15,0
+ITM g 0,0
+EXT 3,9 5 6,8
+EXT 12,9 c 4,9
+PAL 0
+
+ROOM c
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,1c,1c,1c,1c,1c,15,0,c
+a,0,12,0,0,0,0,0,1c,0,0,0,0,15,0,c
+a,0,12,0,0,1c,1c,1c,1c,0,1c,1c,1c,15,0,c
+a,0,12,1c,1c,1c,0,0,0,0,1c,1b,1b,15,0,c
+a,0,12,0,0,0,0,1c,1c,1c,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level2b
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,8
+ITM 2 13,5
+ITM 4 13,11
+ITM 4 1,1
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 8 2,11
+ITM 8 14,1
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM c 2,5
+ITM b 1,5
+ITM 0 3,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 9,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 7,2
+ITM 0 8,2
+ITM 0 4,2
+ITM 7 2,2
+ITM 9 13,2
+ITM 9 1,12
+ITM 6 1,6
+ITM 6 1,11
+ITM 6 1,10
+ITM 6 1,8
+ITM 6 1,7
+ITM 6 1,9
+ITM 6 1,4
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 2,1
+ITM 6 3,1
+ITM 6 4,1
+ITM 6 5,1
+ITM 6 6,1
+ITM 6 7,1
+ITM 6 8,1
+ITM 6 12,1
+ITM 6 13,1
+ITM 6 11,1
+ITM 6 9,1
+ITM 6 10,1
+ITM 6 14,2
+ITM 6 14,3
+ITM 6 14,5
+ITM 6 14,6
+ITM 6 14,7
+ITM 6 14,9
+ITM 6 14,10
+ITM 6 14,11
+ITM 6 14,8
+ITM 6 14,4
+ITM 6 13,12
+ITM 6 12,12
+ITM 6 11,12
+ITM 6 10,12
+ITM 6 9,12
+ITM 6 8,12
+ITM 6 6,12
+ITM 6 5,12
+ITM 6 4,12
+ITM 6 3,12
+ITM 6 2,12
+ITM 6 7,12
+ITM a 14,12
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,6
+ITM e 0,7
+ITM e 0,9
+ITM e 0,10
+ITM e 0,11
+ITM e 0,12
+ITM e 0,14
+ITM e 0,15
+ITM e 0,13
+ITM e 0,8
+ITM g 0,0
+ITM h 15,0
+ITM d 1,0
+ITM d 3,0
+ITM d 4,0
+ITM d 5,0
+ITM d 7,0
+ITM d 8,0
+ITM d 10,0
+ITM d 11,0
+ITM d 12,0
+ITM d 13,0
+ITM d 14,0
+ITM d 9,0
+ITM d 6,0
+ITM d 2,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,5
+ITM f 15,6
+ITM f 15,7
+ITM f 15,8
+ITM f 15,9
+ITM f 15,10
+ITM f 15,11
+ITM f 15,12
+ITM f 15,13
+ITM f 15,14
+ITM f 15,15
+ITM f 15,4
+EXT 3,9 b 11,9
+EXT 6,8 d 7,8
+EXT 9,6 d 9,8
+EXT 12,6 e 4,6
+PAL 0
+
+ROOM d
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,1c,1c,1c,1c,1c,15,0,c
+a,0,12,0,0,0,0,0,1c,0,0,0,0,15,0,c
+a,0,12,0,0,1c,1c,1c,1c,0,1c,1c,1c,15,0,c
+a,0,12,1c,1c,1c,0,0,0,0,1c,1b,1b,15,0,c
+a,0,12,0,0,0,0,1c,1c,1c,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level2c
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,6
+ITM 2 13,5
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 3 2,3
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,9
+ITM 3 2,10
+ITM 3 2,8
+ITM 3 2,4
+ITM 4 13,11
+ITM 4 1,1
+ITM 8 2,11
+ITM 8 14,1
+ITM 0 3,2
+ITM 0 4,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 8,2
+ITM 0 9,2
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 10,11
+ITM c 2,5
+ITM b 1,5
+ITM 7 2,2
+ITM 9 13,2
+ITM 9 1,12
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 1,9
+ITM 6 2,12
+ITM 6 5,12
+ITM 6 7,12
+ITM 6 8,12
+ITM 6 10,12
+ITM 6 11,12
+ITM 6 12,12
+ITM 6 13,12
+ITM 6 9,12
+ITM 6 6,12
+ITM 6 3,12
+ITM 6 4,12
+ITM a 14,12
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 2,1
+ITM 6 4,1
+ITM 6 5,1
+ITM 6 7,1
+ITM 6 9,1
+ITM 6 10,1
+ITM 6 11,1
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 8,1
+ITM 6 6,1
+ITM 6 3,1
+ITM 6 14,2
+ITM 6 14,4
+ITM 6 14,5
+ITM 6 14,6
+ITM 6 14,7
+ITM 6 14,11
+ITM 6 14,10
+ITM 6 14,9
+ITM 6 14,8
+ITM 6 14,3
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,5
+ITM e 0,6
+ITM e 0,8
+ITM e 0,10
+ITM e 0,12
+ITM e 0,14
+ITM e 0,15
+ITM e 0,13
+ITM e 0,11
+ITM e 0,9
+ITM e 0,7
+ITM e 0,4
+ITM g 0,0
+ITM d 1,0
+ITM d 5,0
+ITM d 10,0
+ITM d 11,0
+ITM d 12,0
+ITM d 14,0
+ITM d 13,0
+ITM d 9,0
+ITM d 8,0
+ITM d 7,0
+ITM d 6,0
+ITM d 4,0
+ITM d 3,0
+ITM d 2,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,5
+ITM f 15,6
+ITM f 15,7
+ITM f 15,9
+ITM f 15,10
+ITM f 15,12
+ITM f 15,14
+ITM f 15,15
+ITM f 15,13
+ITM f 15,11
+ITM f 15,8
+ITM h 15,0
+ITM q 9,7
+EXT 3,9 b 11,9
+EXT 9,6 c 10,6
+EXT 6,8 c 6,9
+EXT 12,9 e 4,9
+PAL 0
+
+ROOM e
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,1b,1b,1b,0,15,0,c
+a,0,12,0,19,18,17,1c,0,0,1a,0,0,15,0,c
+a,11,12,1c,1c,1c,1c,1c,0,1c,1c,1c,1c,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,2r,0,15,0,c
+a,0,12,1c,1c,1c,1c,1c,1c,1c,2p,2q,2t,15,0,c
+a,0,12,1b,1b,1b,1b,1b,1b,1b,1b,2s,2u,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level2d
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 1,4
+ITM 6 1,3
+ITM 6 3,1
+ITM 6 4,1
+ITM 6 5,1
+ITM 6 6,1
+ITM 6 7,1
+ITM 6 8,1
+ITM 6 9,1
+ITM 6 11,1
+ITM 6 12,1
+ITM 6 13,1
+ITM 6 10,1
+ITM 6 2,1
+ITM 6 1,2
+ITM 6 1,11
+ITM 6 2,12
+ITM 6 6,12
+ITM 6 7,12
+ITM 6 9,12
+ITM 6 11,12
+ITM 6 12,12
+ITM 6 8,12
+ITM 6 10,12
+ITM 6 5,12
+ITM 6 3,12
+ITM 6 4,12
+ITM 6 14,2
+ITM 6 14,3
+ITM 6 14,5
+ITM 6 14,6
+ITM 6 14,8
+ITM 6 14,9
+ITM 6 14,10
+ITM 6 14,11
+ITM 6 13,12
+ITM 6 14,7
+ITM 6 14,4
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 8,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 9,11
+ITM 5 7,11
+ITM 4 13,11
+ITM 4 1,1
+ITM 0 3,2
+ITM 0 4,2
+ITM 0 5,2
+ITM 0 8,2
+ITM 0 9,2
+ITM 0 10,2
+ITM 0 12,2
+ITM 0 11,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 8 2,11
+ITM 8 14,1
+ITM a 14,12
+ITM 9 1,12
+ITM 9 13,2
+ITM 7 2,2
+ITM c 2,5
+ITM b 1,5
+ITM e 0,1
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,6
+ITM e 0,8
+ITM e 0,10
+ITM e 0,11
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM e 0,12
+ITM e 0,9
+ITM e 0,7
+ITM e 0,2
+ITM g 0,0
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 4,0
+ITM d 5,0
+ITM d 7,0
+ITM d 10,0
+ITM d 11,0
+ITM d 13,0
+ITM d 14,0
+ITM d 12,0
+ITM d 9,0
+ITM d 8,0
+ITM d 6,0
+ITM f 15,1
+ITM f 15,3
+ITM f 15,4
+ITM f 15,6
+ITM f 15,10
+ITM f 15,13
+ITM f 15,15
+ITM f 15,14
+ITM f 15,11
+ITM f 15,12
+ITM f 15,8
+ITM f 15,9
+ITM f 15,7
+ITM f 15,5
+ITM f 15,2
+ITM h 15,0
+ITM n 10,6
+ITM r 12,3
+EXT 3,9 d 11,9
+EXT 12,9 5 6,8
+EXT 3,6 c 11,6
+EXT 8,4 f 9,4
+EXT 10,6 e 10,9
+PAL 0
+
+ROOM f
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,1b,1b,1b,1b,0,15,0,c
+a,0,12,0,19,18,17,1c,0,0,1a,0,0,15,0,c
+a,11,12,1c,1c,1c,1c,1c,0,1c,1c,1c,1c,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,2r,0,15,0,c
+a,0,12,1c,1c,1c,1c,1c,1c,1c,2p,2q,2t,15,0,c
+a,0,12,1b,1b,1b,1b,1b,1b,1b,1b,2s,2u,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level2e
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,6
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 4 13,11
+ITM 4 1,1
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 8,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 9,11
+ITM 5 7,11
+ITM 5 4,11
+ITM 5 3,11
+ITM 8 2,11
+ITM 8 14,1
+ITM 7 2,2
+ITM a 14,12
+ITM 9 1,12
+ITM 9 13,2
+ITM 0 3,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 8,2
+ITM 0 9,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 10,2
+ITM 0 7,2
+ITM 0 4,2
+ITM 6 2,1
+ITM 6 3,1
+ITM 6 6,1
+ITM 6 10,1
+ITM 6 12,1
+ITM 6 13,1
+ITM 6 11,1
+ITM 6 9,1
+ITM 6 7,1
+ITM 6 8,1
+ITM 6 5,1
+ITM 6 4,1
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 2,12
+ITM 6 7,12
+ITM 6 8,12
+ITM 6 12,12
+ITM 6 13,12
+ITM 6 10,12
+ITM 6 11,12
+ITM 6 9,12
+ITM 6 6,12
+ITM 6 5,12
+ITM 6 3,12
+ITM 6 4,12
+ITM 6 14,11
+ITM 6 14,9
+ITM 6 14,8
+ITM 6 14,6
+ITM 6 14,2
+ITM 6 14,3
+ITM 6 14,5
+ITM 6 14,4
+ITM 6 14,7
+ITM 6 14,10
+ITM c 2,5
+ITM b 1,5
+ITM g 0,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,4
+ITM f 15,7
+ITM f 15,9
+ITM f 15,10
+ITM f 15,11
+ITM f 15,13
+ITM f 15,14
+ITM f 15,15
+ITM f 15,12
+ITM f 15,8
+ITM f 15,6
+ITM f 15,5
+ITM f 15,3
+ITM e 0,1
+ITM e 0,3
+ITM e 0,5
+ITM e 0,6
+ITM e 0,8
+ITM e 0,10
+ITM e 0,12
+ITM e 0,14
+ITM e 0,15
+ITM e 0,13
+ITM e 0,11
+ITM e 0,9
+ITM e 0,7
+ITM e 0,4
+ITM e 0,2
+ITM d 2,0
+ITM d 4,0
+ITM d 6,0
+ITM d 8,0
+ITM d 9,0
+ITM d 11,0
+ITM d 12,0
+ITM d 14,0
+ITM d 13,0
+ITM d 10,0
+ITM d 7,0
+ITM d 5,0
+ITM d 3,0
+ITM d 1,0
+ITM h 15,0
+EXT 8,4 e 8,6
+PAL 0
+
+ROOM g
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,1c,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,1c,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,1c,0,0,15,0,c
+a,0,12,1b,1b,1b,1b,0,0,1c,1b,1b,1b,15,0,c
+a,0,12,0,0,0,0,0,1c,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level3a
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,7
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 3 2,6
+ITM 4 13,11
+ITM 4 1,1
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 5,11
+ITM 8 2,11
+ITM 8 14,1
+ITM 0 3,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 8,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 9,2
+ITM 0 5,2
+ITM 0 4,2
+ITM 9 13,2
+ITM 9 1,12
+ITM a 14,12
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,2
+ITM 6 1,6
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 1,7
+ITM 6 2,12
+ITM 6 3,12
+ITM 6 4,12
+ITM 6 6,12
+ITM 6 8,12
+ITM 6 9,12
+ITM 6 10,12
+ITM 6 12,12
+ITM 6 13,12
+ITM 6 11,12
+ITM 6 7,12
+ITM 6 5,12
+ITM 6 14,11
+ITM 6 14,9
+ITM 6 14,5
+ITM 6 14,2
+ITM 6 14,4
+ITM 6 14,3
+ITM 6 14,8
+ITM 6 14,6
+ITM 6 14,7
+ITM 6 14,10
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 10,1
+ITM 6 8,1
+ITM 6 6,1
+ITM 6 4,1
+ITM 6 3,1
+ITM 6 2,1
+ITM 6 5,1
+ITM 6 7,1
+ITM 6 9,1
+ITM 6 11,1
+ITM 7 2,2
+ITM c 2,5
+ITM b 1,5
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,5
+ITM e 0,7
+ITM e 0,9
+ITM e 0,11
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM e 0,12
+ITM e 0,10
+ITM e 0,8
+ITM e 0,6
+ITM e 0,4
+ITM g 0,0
+ITM d 1,0
+ITM d 3,0
+ITM d 6,0
+ITM d 7,0
+ITM d 9,0
+ITM d 11,0
+ITM d 13,0
+ITM d 14,0
+ITM d 12,0
+ITM d 10,0
+ITM d 8,0
+ITM d 4,0
+ITM d 2,0
+ITM d 5,0
+ITM h 15,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,4
+ITM f 15,6
+ITM f 15,7
+ITM f 15,9
+ITM f 15,11
+ITM f 15,12
+ITM f 15,14
+ITM f 15,15
+ITM f 15,13
+ITM f 15,10
+ITM f 15,8
+ITM f 15,5
+ITM f 15,3
+EXT 3,9 5 10,6
+EXT 7,8 h 8,8
+EXT 8,7 h 8,8
+EXT 9,6 h 10,6
+EXT 10,5 h 10,6
+EXT 11,4 h 12,4
+PAL 0
+
+ROOM h
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,1c,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,1c,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,1c,0,0,15,0,c
+a,0,12,1b,1b,1b,1b,0,0,1c,1b,1b,1b,15,0,c
+a,0,12,0,0,0,0,0,1c,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level3b
+ITM g 0,0
+ITM h 15,0
+ITM d 4,0
+ITM d 8,0
+ITM d 11,0
+ITM d 12,0
+ITM d 14,0
+ITM d 13,0
+ITM d 10,0
+ITM d 9,0
+ITM d 6,0
+ITM d 5,0
+ITM d 2,0
+ITM d 1,0
+ITM d 3,0
+ITM d 7,0
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 3 2,4
+ITM 3 2,3
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 6,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 7,11
+ITM 5 5,11
+ITM 0 3,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 8,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 9,2
+ITM 0 7,2
+ITM 0 4,2
+ITM 4 13,11
+ITM 4 1,1
+ITM 8 2,11
+ITM 8 14,1
+ITM 7 2,2
+ITM 9 13,2
+ITM a 14,12
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 3,12
+ITM 6 2,12
+ITM 9 1,12
+ITM 6 4,12
+ITM 6 9,12
+ITM 6 11,12
+ITM 6 13,12
+ITM 6 12,12
+ITM 6 10,12
+ITM 6 8,12
+ITM 6 6,12
+ITM 6 5,12
+ITM 6 7,12
+ITM 6 14,11
+ITM 6 14,10
+ITM 6 14,9
+ITM 6 14,6
+ITM 6 14,5
+ITM 6 14,4
+ITM 6 14,3
+ITM 6 14,2
+ITM 6 14,8
+ITM 6 14,7
+ITM 6 1,4
+ITM 6 1,3
+ITM 6 1,2
+ITM 6 2,1
+ITM 6 6,1
+ITM 6 8,1
+ITM 6 9,1
+ITM 6 11,1
+ITM 6 12,1
+ITM 6 13,1
+ITM 6 10,1
+ITM 6 7,1
+ITM 6 5,1
+ITM 6 4,1
+ITM 6 3,1
+ITM c 2,5
+ITM b 1,5
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,4
+ITM e 0,6
+ITM e 0,7
+ITM e 0,8
+ITM e 0,9
+ITM e 0,10
+ITM e 0,12
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM e 0,11
+ITM e 0,5
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,6
+ITM f 15,7
+ITM f 15,9
+ITM f 15,11
+ITM f 15,12
+ITM f 15,14
+ITM f 15,15
+ITM f 15,13
+ITM f 15,10
+ITM f 15,8
+ITM f 15,5
+ITM f 15,1
+EXT 3,9 5 10,6
+EXT 7,8 g 7,9
+EXT 8,7 g 9,7
+EXT 9,6 g 9,7
+EXT 10,5 g 11,5
+EXT 12,3 i 7,9
+EXT 11,4 g 11,5
+PAL 0
+
+ROOM i
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,19,18,17,0,0,0,0,1a,0,0,15,0,c
+a,11,12,16,16,16,0,0,0,0,0,0,1c,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,1c,0,15,0,c
+a,0,12,0,0,0,0,0,0,19,1c,17,0,15,0,c
+a,0,12,0,0,0,0,0,0,1c,16,16,0,15,0,c
+a,0,12,0,0,0,0,0,1c,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,1c,0,0,0,0,0,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level3c
+ITM 2 13,3
+ITM 2 13,5
+ITM 2 13,7
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,8
+ITM 2 13,6
+ITM 2 13,4
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 8 2,11
+ITM 8 14,1
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 6,11
+ITM 5 8,11
+ITM 5 10,11
+ITM 5 12,11
+ITM 5 11,11
+ITM 5 9,11
+ITM 5 7,11
+ITM 5 5,11
+ITM 0 3,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 11,2
+ITM 0 10,2
+ITM 0 9,2
+ITM 0 8,2
+ITM 0 5,2
+ITM 0 4,2
+ITM 4 13,11
+ITM 4 1,1
+ITM 7 2,2
+ITM 9 1,12
+ITM 9 13,2
+ITM 0 12,2
+ITM 6 2,1
+ITM 6 4,1
+ITM 6 5,1
+ITM 6 7,1
+ITM 6 8,1
+ITM 6 10,1
+ITM 6 11,1
+ITM 6 12,1
+ITM 6 13,1
+ITM 6 9,1
+ITM 6 6,1
+ITM 6 3,1
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 1,8
+ITM 6 2,12
+ITM 6 3,12
+ITM 6 5,12
+ITM 6 7,12
+ITM 6 8,12
+ITM 6 10,12
+ITM 6 11,12
+ITM 6 13,12
+ITM 6 12,12
+ITM 6 9,12
+ITM 6 6,12
+ITM 6 4,12
+ITM 6 14,11
+ITM 6 14,10
+ITM 6 14,9
+ITM 6 14,8
+ITM 6 14,7
+ITM 6 14,6
+ITM 6 14,5
+ITM 6 14,4
+ITM 6 14,2
+ITM 6 14,3
+ITM a 14,12
+ITM c 2,5
+ITM b 1,5
+ITM g 0,0
+ITM h 15,0
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 5,0
+ITM d 8,0
+ITM d 9,0
+ITM d 10,0
+ITM d 13,0
+ITM d 14,0
+ITM d 12,0
+ITM d 11,0
+ITM d 7,0
+ITM d 6,0
+ITM d 4,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,4
+ITM f 15,7
+ITM f 15,8
+ITM f 15,10
+ITM f 15,11
+ITM f 15,12
+ITM f 15,14
+ITM f 15,15
+ITM f 15,13
+ITM f 15,9
+ITM f 15,6
+ITM f 15,5
+ITM f 15,3
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,5
+ITM e 0,6
+ITM e 0,9
+ITM e 0,10
+ITM e 0,11
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM e 0,12
+ITM e 0,8
+ITM e 0,7
+ITM e 0,4
+EXT 6,9 h 12,4
+EXT 7,8 j 8,8
+EXT 8,7 j 8,8
+EXT 9,6 j 10,6
+EXT 10,5 j 10,6
+EXT 11,4 j 12,4
+PAL 0
+
+ROOM j
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,19,18,17,0,0,0,0,1a,0,0,15,0,c
+a,11,12,16,16,16,0,0,0,0,0,0,1c,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,1c,0,15,0,c
+a,0,12,0,0,0,0,0,0,19,1c,17,0,15,0,c
+a,0,12,0,0,0,0,0,0,1c,16,16,0,15,0,c
+a,0,12,0,0,0,0,0,1c,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,1c,0,0,0,0,0,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level3d
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 0 12,2
+ITM 0 11,2
+ITM 0 8,2
+ITM 0 7,2
+ITM 0 5,2
+ITM 0 4,2
+ITM 0 3,2
+ITM 0 6,2
+ITM 0 9,2
+ITM 0 10,2
+ITM 3 2,4
+ITM 3 2,3
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,9
+ITM 3 2,10
+ITM 3 2,8
+ITM 5 3,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 8,11
+ITM 5 10,11
+ITM 5 12,11
+ITM 5 11,11
+ITM 5 9,11
+ITM 5 7,11
+ITM 5 4,11
+ITM 4 13,11
+ITM 4 1,1
+ITM 8 2,11
+ITM 7 2,2
+ITM 9 13,2
+ITM 9 1,12
+ITM a 14,12
+ITM 6 2,12
+ITM 6 5,12
+ITM 6 6,12
+ITM 6 8,12
+ITM 6 10,12
+ITM 6 11,12
+ITM 6 12,12
+ITM 6 13,12
+ITM 6 9,12
+ITM 6 7,12
+ITM 6 4,12
+ITM 6 3,12
+ITM 6 1,11
+ITM 6 1,10
+ITM 6 1,8
+ITM 6 1,7
+ITM 6 1,6
+ITM 6 1,9
+ITM 6 1,4
+ITM 6 1,3
+ITM 6 1,2
+ITM 6 2,1
+ITM 6 4,1
+ITM 6 6,1
+ITM 6 8,1
+ITM 6 9,1
+ITM 6 11,1
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 10,1
+ITM 6 7,1
+ITM 6 5,1
+ITM 6 3,1
+ITM 6 14,2
+ITM 6 14,4
+ITM 6 14,5
+ITM 6 14,6
+ITM 6 14,8
+ITM 6 14,9
+ITM 6 14,10
+ITM 6 14,11
+ITM 6 14,7
+ITM 6 14,3
+ITM 8 14,1
+ITM c 2,5
+ITM b 1,5
+ITM e 0,1
+ITM e 0,3
+ITM e 0,4
+ITM e 0,6
+ITM e 0,8
+ITM e 0,10
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM e 0,12
+ITM e 0,11
+ITM e 0,9
+ITM e 0,7
+ITM e 0,5
+ITM e 0,2
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 5,0
+ITM d 6,0
+ITM d 8,0
+ITM d 9,0
+ITM d 11,0
+ITM d 12,0
+ITM d 13,0
+ITM d 14,0
+ITM d 10,0
+ITM d 7,0
+ITM d 4,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,5
+ITM f 15,6
+ITM f 15,7
+ITM f 15,11
+ITM f 15,12
+ITM f 15,15
+ITM f 15,14
+ITM f 15,13
+ITM f 15,10
+ITM f 15,9
+ITM f 15,8
+ITM g 0,0
+ITM h 15,0
+EXT 7,8 i 7,9
+EXT 8,7 i 9,7
+EXT 9,6 i 9,7
+EXT 10,5 i 11,5
+EXT 12,3 k 4,9
+EXT 11,4 i 11,5
+PAL 0
+
+ROOM k
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,19,18,17,2v,0,0,0,0,15,0,c
+a,0,12,0,0,16,16,16,2v,0,1a,0,0,15,0,c
+a,11,12,0,0,0,0,1b,2v,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,1c,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,1c,0,0,19,18,17,0,15,0,c
+a,0,12,0,0,1c,0,0,0,16,16,16,0,15,0,c
+a,0,12,0,1c,0,0,0,0,0,0,0,0,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level3e
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,8
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 7,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 12,11
+ITM 5 11,11
+ITM 5 10,11
+ITM 5 6,11
+ITM 0 7,2
+ITM 0 8,2
+ITM 0 10,2
+ITM 0 12,2
+ITM 0 11,2
+ITM 0 9,2
+ITM 0 6,2
+ITM 0 5,2
+ITM 0 4,2
+ITM 0 3,2
+ITM 4 13,11
+ITM 4 1,1
+ITM 8 14,1
+ITM 9 13,2
+ITM 9 1,12
+ITM a 14,12
+ITM 7 2,2
+ITM 6 1,4
+ITM 6 1,3
+ITM 6 1,2
+ITM 6 2,1
+ITM 6 4,1
+ITM 6 8,1
+ITM 6 10,1
+ITM 6 12,1
+ITM 6 13,1
+ITM 6 11,1
+ITM 6 9,1
+ITM 6 7,1
+ITM 6 6,1
+ITM 6 3,1
+ITM 6 5,1
+ITM 6 14,2
+ITM 6 14,4
+ITM 6 14,5
+ITM 6 14,7
+ITM 6 14,8
+ITM 6 14,9
+ITM 6 14,10
+ITM 6 14,11
+ITM 6 14,6
+ITM 6 14,3
+ITM 6 13,12
+ITM 6 12,12
+ITM 6 9,12
+ITM 6 8,12
+ITM 6 6,12
+ITM 6 4,12
+ITM 6 2,12
+ITM 6 3,12
+ITM 6 5,12
+ITM 6 7,12
+ITM 6 10,12
+ITM 6 11,12
+ITM 6 1,11
+ITM 6 1,10
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 8 2,11
+ITM c 2,5
+ITM b 1,5
+ITM d 1,0
+ITM d 3,0
+ITM d 4,0
+ITM d 7,0
+ITM d 8,0
+ITM d 10,0
+ITM d 11,0
+ITM d 14,0
+ITM d 13,0
+ITM d 12,0
+ITM d 9,0
+ITM d 6,0
+ITM d 5,0
+ITM d 2,0
+ITM e 0,1
+ITM e 0,3
+ITM e 0,4
+ITM e 0,8
+ITM e 0,9
+ITM e 0,10
+ITM e 0,12
+ITM e 0,15
+ITM e 0,14
+ITM e 0,13
+ITM e 0,11
+ITM e 0,5
+ITM e 0,6
+ITM e 0,7
+ITM e 0,2
+ITM f 15,1
+ITM f 15,3
+ITM f 15,4
+ITM f 15,9
+ITM f 15,12
+ITM f 15,13
+ITM f 15,14
+ITM f 15,15
+ITM f 15,11
+ITM f 15,10
+ITM f 15,5
+ITM f 15,8
+ITM f 15,7
+ITM f 15,6
+ITM f 15,2
+ITM g 0,0
+ITM h 15,0
+ITM s 8,6
+EXT 3,9 j 12,4
+EXT 4,8 l 5,8
+EXT 5,7 l 5,8
+EXT 6,6 l 7,6
+PAL 0
+
+ROOM l
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,19,18,17,2v,0,0,0,0,15,0,c
+a,0,12,0,0,16,16,16,2v,0,1a,0,0,15,0,c
+a,11,12,0,0,0,0,1b,2v,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,1c,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,1c,0,0,19,18,17,0,15,0,c
+a,0,12,0,0,1c,0,0,0,16,16,16,0,15,0,c
+a,0,12,0,1c,0,0,0,0,0,0,0,0,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level3f
+ITM 2 13,8
+ITM 2 13,10
+ITM 2 13,9
+ITM 2 13,7
+ITM 2 13,5
+ITM 2 13,4
+ITM 2 13,3
+ITM 2 13,6
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,8
+ITM 3 2,10
+ITM 3 2,9
+ITM 3 2,7
+ITM 5 4,11
+ITM 5 8,11
+ITM 5 9,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 7,11
+ITM 5 6,11
+ITM 5 5,11
+ITM 5 3,11
+ITM 0 3,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 8,2
+ITM 0 9,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 7,2
+ITM 0 4,2
+ITM 8 2,11
+ITM 8 14,1
+ITM 4 1,1
+ITM 7 2,2
+ITM 4 13,11
+ITM 9 13,2
+ITM 9 1,12
+ITM 6 1,2
+ITM 6 1,4
+ITM 6 1,3
+ITM 6 1,6
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,11
+ITM 6 1,10
+ITM 6 1,7
+ITM 6 2,12
+ITM 6 3,12
+ITM 6 4,12
+ITM 6 6,12
+ITM 6 8,12
+ITM 6 13,12
+ITM 6 12,12
+ITM 6 11,12
+ITM 6 9,12
+ITM 6 10,12
+ITM 6 7,12
+ITM 6 5,12
+ITM 6 14,11
+ITM 6 14,10
+ITM 6 14,9
+ITM 6 14,8
+ITM 6 14,7
+ITM 6 14,3
+ITM 6 14,2
+ITM 6 14,4
+ITM 6 14,6
+ITM 6 14,5
+ITM 6 13,1
+ITM 6 10,1
+ITM 6 9,1
+ITM 6 7,1
+ITM 6 5,1
+ITM 6 4,1
+ITM 6 2,1
+ITM 6 3,1
+ITM 6 6,1
+ITM 6 8,1
+ITM 6 11,1
+ITM 6 12,1
+ITM a 14,12
+ITM c 2,5
+ITM b 1,5
+ITM d 2,0
+ITM d 4,0
+ITM d 5,0
+ITM d 7,0
+ITM d 9,0
+ITM d 11,0
+ITM d 12,0
+ITM d 13,0
+ITM d 14,0
+ITM d 10,0
+ITM d 8,0
+ITM d 6,0
+ITM d 3,0
+ITM d 1,0
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,5
+ITM e 0,6
+ITM e 0,8
+ITM e 0,9
+ITM e 0,12
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM e 0,11
+ITM e 0,10
+ITM e 0,7
+ITM e 0,4
+ITM f 15,1
+ITM f 15,3
+ITM f 15,5
+ITM f 15,6
+ITM f 15,9
+ITM f 15,11
+ITM f 15,12
+ITM f 15,13
+ITM f 15,15
+ITM f 15,14
+ITM f 15,10
+ITM f 15,8
+ITM f 15,7
+ITM f 15,4
+ITM f 15,2
+ITM g 0,0
+ITM h 15,0
+EXT 4,8 k 4,9
+EXT 5,7 k 6,7
+EXT 6,6 k 6,7
+PAL 0
+
+ROOM m
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,2w,0,2w,2x,2w,2w,0,2w,0,0,15,0,c
+a,0,12,0,2w,2w,2w,0,2x,2x,2w,2w,2x,15,0,c
+a,11,12,0,2w,0,0,2w,0,2w,2x,2w,0,15,0,c
+a,0,12,2x,2x,2x,0,0,2x,0,2w,0,2w,15,0,c
+a,0,12,0,0,2w,0,2w,0,0,0,2x,2x,15,0,c
+a,0,12,0,2x,0,0,0,2w,0,2x,2w,0,15,0,c
+a,0,12,2w,2w,0,2x,2x,0,0,0,2w,2x,15,0,c
+a,0,12,0,0,2x,0,2x,0,2w,2w,2w,0,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level3g
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,6
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 4 1,1
+ITM 8 2,11
+ITM a 14,12
+ITM 9 13,2
+ITM 9 1,12
+ITM c 2,5
+ITM b 1,5
+ITM 7 2,2
+ITM 8 14,1
+ITM 6 3,1
+ITM 6 13,1
+ITM 6 12,1
+ITM 6 11,1
+ITM 6 10,1
+ITM 6 9,1
+ITM 6 8,1
+ITM 6 7,1
+ITM 6 6,1
+ITM 6 5,1
+ITM 6 4,1
+ITM 6 2,1
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 2,12
+ITM 6 4,12
+ITM 6 5,12
+ITM 6 7,12
+ITM 6 8,12
+ITM 6 10,12
+ITM 6 13,12
+ITM 6 11,12
+ITM 6 12,12
+ITM 6 9,12
+ITM 6 6,12
+ITM 6 3,12
+ITM 6 14,11
+ITM 6 14,10
+ITM 6 14,9
+ITM 6 14,8
+ITM 6 14,6
+ITM 6 14,5
+ITM 6 14,4
+ITM 6 14,2
+ITM 6 14,3
+ITM 4 13,11
+ITM 0 3,2
+ITM 0 4,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 8,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 9,2
+ITM 0 5,2
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 12,11
+ITM 5 11,11
+ITM 5 10,11
+ITM 5 9,11
+ITM 5 7,11
+ITM 5 6,11
+ITM 5 8,11
+ITM e 0,6
+ITM e 0,8
+ITM e 0,11
+ITM e 0,13
+ITM e 0,15
+ITM e 0,14
+ITM e 0,12
+ITM e 0,10
+ITM e 0,9
+ITM e 0,7
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,2
+ITM e 0,1
+ITM d 1,0
+ITM d 3,0
+ITM d 4,0
+ITM d 6,0
+ITM d 7,0
+ITM d 9,0
+ITM d 10,0
+ITM d 11,0
+ITM d 13,0
+ITM d 14,0
+ITM d 12,0
+ITM d 8,0
+ITM d 5,0
+ITM d 2,0
+ITM f 15,1
+ITM f 15,3
+ITM f 15,4
+ITM f 15,8
+ITM f 15,10
+ITM f 15,11
+ITM f 15,14
+ITM f 15,15
+ITM f 15,13
+ITM f 15,12
+ITM f 15,9
+ITM f 15,6
+ITM f 15,7
+ITM f 15,5
+ITM f 15,2
+ITM g 0,0
+ITM h 15,0
+ITM 6 14,7
+PAL 0
+
+ROOM n
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,2r,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,2p,2q,2t,15,0,c
+a,0,12,1b,1b,1b,1b,1b,1b,1b,1b,2s,2u,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME level3h
+ITM 4 13,11
+ITM 4 1,1
+ITM 2 13,3
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,8
+ITM 2 13,4
+ITM 5 3,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM 5 9,11
+ITM 5 8,11
+ITM 5 5,11
+ITM 5 4,11
+ITM 8 2,11
+ITM 8 14,1
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM a 14,12
+ITM b 1,5
+ITM c 2,5
+ITM e 0,1
+ITM e -1,3
+ITM e 0,3
+ITM e 0,4
+ITM e 0,7
+ITM e 0,8
+ITM e 0,10
+ITM e 0,13
+ITM e 0,14
+ITM e 0,15
+ITM e 0,12
+ITM e 0,11
+ITM e 0,9
+ITM e 0,6
+ITM e 0,5
+ITM e 0,2
+ITM 9 1,12
+ITM 9 13,2
+ITM 7 2,2
+ITM 0 3,2
+ITM 0 6,2
+ITM 0 8,2
+ITM 0 10,2
+ITM 0 12,2
+ITM 0 11,2
+ITM 0 9,2
+ITM 0 7,2
+ITM 0 5,2
+ITM 0 4,2
+ITM 6 2,1
+ITM 6 7,1
+ITM 6 9,1
+ITM 6 13,1
+ITM 6 10,1
+ITM 6 12,1
+ITM 6 11,1
+ITM 6 8,1
+ITM 6 6,1
+ITM 6 5,1
+ITM 6 4,1
+ITM 6 3,1
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 1,4
+ITM 6 1,6
+ITM 6 1,8
+ITM 6 1,9
+ITM 6 1,11
+ITM 6 1,10
+ITM 6 1,7
+ITM 6 2,12
+ITM 6 3,12
+ITM 6 4,12
+ITM 6 6,12
+ITM 6 7,12
+ITM 6 9,12
+ITM 6 11,12
+ITM 6 12,12
+ITM 6 13,12
+ITM 6 10,12
+ITM 6 8,12
+ITM 6 5,12
+ITM 6 14,11
+ITM 6 14,10
+ITM 6 14,8
+ITM 6 14,7
+ITM 6 14,5
+ITM 6 14,4
+ITM 6 14,3
+ITM 6 14,2
+ITM 6 14,6
+ITM 6 14,9
+ITM g 0,0
+ITM h 15,0
+ITM d 1,0
+ITM d 5,0
+ITM d 6,0
+ITM d 7,0
+ITM d 10,0
+ITM d 11,0
+ITM d 13,0
+ITM d 14,0
+ITM d 12,0
+ITM d 9,0
+ITM d 8,0
+ITM d 3,0
+ITM d 4,0
+ITM d 2,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,4
+ITM f 15,5
+ITM f 15,6
+ITM f 15,8
+ITM f 15,9
+ITM f 15,10
+ITM f 15,12
+ITM f 15,13
+ITM f 15,14
+ITM f 15,15
+ITM f 15,11
+ITM f 15,7
+EXT 12,9 5 10,6
+PAL 0
+
+ROOM o
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,1d,1d,1d,1d,1d,1d,1d,1d,1d,1d,15,0,c
+a,0,12,1d,1d,1d,1d,1d,1d,1d,1d,1d,1d,15,0,c
+a,11,12,1d,1d,1d,1d,1d,1d,1d,1d,1d,1d,15,0,c
+a,0,12,1d,1d,1d,1d,1d,1d,1d,1d,1d,1d,15,0,c
+a,0,12,1d,1d,1d,1d,2y,1d,1d,1d,1d,1d,15,0,c
+a,0,12,1d,1d,1d,1d,1d,1d,1d,1d,1d,1d,15,0,c
+a,0,12,1d,1d,1d,1d,1d,1d,1d,1d,1d,1d,15,0,c
+a,0,12,1d,1d,1d,1d,1d,1d,1d,1d,1d,1d,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME void
+ITM 6 2,12
+ITM 6 3,12
+ITM 6 5,12
+ITM 6 6,12
+ITM 6 7,12
+ITM 6 8,12
+ITM 6 9,12
+ITM 6 11,12
+ITM 6 12,12
+ITM 6 10,12
+ITM 6 4,12
+ITM 4 13,11
+ITM 4 1,1
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,5
+ITM 2 13,6
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,7
+ITM 6 2,1
+ITM 6 4,1
+ITM 6 5,1
+ITM 6 3,1
+ITM 3 2,3
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,9
+ITM 3 2,10
+ITM 3 2,6
+ITM 3 2,4
+ITM 0 3,2
+ITM 0 4,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 9,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 10,2
+ITM 0 8,2
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 7,11
+ITM 5 8,11
+ITM 5 10,11
+ITM 5 12,11
+ITM 5 11,11
+ITM 5 9,11
+ITM 5 6,11
+ITM 8 2,11
+ITM 8 14,1
+ITM a 14,12
+ITM 7 2,2
+ITM 6 1,11
+ITM 6 1,9
+ITM 6 1,8
+ITM 6 1,7
+ITM 6 1,6
+ITM 6 1,10
+ITM 6 1,4
+ITM 6 1,2
+ITM 6 1,3
+ITM 6 6,1
+ITM 6 8,1
+ITM 6 9,1
+ITM 6 11,1
+ITM 6 12,1
+ITM 6 13,1
+ITM 6 10,1
+ITM 6 7,1
+ITM 6 14,2
+ITM 6 14,4
+ITM 6 14,6
+ITM 6 14,7
+ITM 6 14,9
+ITM 6 14,11
+ITM 6 13,12
+ITM 6 14,10
+ITM 6 14,8
+ITM 6 14,5
+ITM 6 14,3
+ITM 9 13,2
+ITM 9 1,12
+ITM c 2,5
+ITM b 1,5
+ITM e 0,1
+ITM e 0,3
+ITM e 0,4
+ITM e 0,5
+ITM e 0,6
+ITM e 0,9
+ITM e 0,10
+ITM e 0,12
+ITM e 0,15
+ITM e 0,13
+ITM e 0,14
+ITM e 0,11
+ITM e 0,7
+ITM e 0,8
+ITM e 0,2
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,5
+ITM f 15,7
+ITM f 15,8
+ITM f 15,14
+ITM f 15,15
+ITM f 15,13
+ITM f 15,12
+ITM f 15,11
+ITM f 15,10
+ITM f 15,9
+ITM f 15,6
+ITM f 15,4
+ITM d 1,0
+ITM d 2,0
+ITM d 3,0
+ITM d 5,0
+ITM d 7,0
+ITM d 11,0
+ITM d 13,0
+ITM d 14,0
+ITM d 12,0
+ITM d 8,0
+ITM d 9,0
+ITM d 10,0
+ITM d 6,0
+ITM d 4,0
+ITM g 0,0
+ITM h 15,0
+EXT 7,8 7 8,8
+EXT 11,8 7 10,8
+EXT 8,7 7 8,8
+EXT 10,7 7 10,8
+EXT 12,9 8 4,9
+EXT 3,9 5 5,6
+PAL 0
+
+ROOM p
+g,b,b,b,b,b,b,b,b,b,b,b,b,b,b,e
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,k,14,14,14,14,14,14,14,14,14,14,l,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,19,18,17,0,0,0,1a,0,0,15,0,c
+a,11,12,0,16,16,16,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,0,0,15,0,c
+a,0,12,1b,1b,1b,1b,1b,1b,1b,1b,1b,1b,15,0,c
+a,0,12,0,0,0,0,0,0,0,0,2z,0,15,0,c
+a,0,12,o,o,o,o,o,o,o,o,o,o,15,0,c
+a,0,n,13,13,13,13,13,13,13,13,13,13,m,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,p,q,r,s,t,u,v,w,y,z,10,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+a,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c
+NAME ending
+ITM 2 13,3
+ITM 2 13,4
+ITM 2 13,6
+ITM 2 13,7
+ITM 2 13,8
+ITM 2 13,9
+ITM 2 13,10
+ITM 2 13,5
+ITM 3 2,3
+ITM 3 2,4
+ITM 3 2,6
+ITM 3 2,7
+ITM 3 2,8
+ITM 3 2,10
+ITM 3 2,9
+ITM 5 3,11
+ITM 5 4,11
+ITM 5 5,11
+ITM 5 6,11
+ITM 5 7,11
+ITM 5 9,11
+ITM 5 8,11
+ITM 5 10,11
+ITM 5 11,11
+ITM 5 12,11
+ITM c 2,5
+ITM b 1,5
+ITM a 14,12
+ITM 9 1,12
+ITM 7 2,2
+ITM 8 2,11
+ITM 8 14,1
+ITM 4 1,1
+ITM 4 13,11
+ITM 0 3,2
+ITM 0 4,2
+ITM 0 10,2
+ITM 0 11,2
+ITM 0 12,2
+ITM 0 5,2
+ITM 0 6,2
+ITM 0 7,2
+ITM 0 8,2
+ITM 0 9,2
+ITM 6 2,1
+ITM 6 4,1
+ITM 6 5,1
+ITM 6 7,1
+ITM 6 9,1
+ITM 6 12,1
+ITM 6 13,1
+ITM 6 11,1
+ITM 6 10,1
+ITM 6 8,1
+ITM 6 6,1
+ITM 6 3,1
+ITM 6 1,2
+ITM 6 1,4
+ITM 6 1,3
+ITM 6 1,6
+ITM 6 1,7
+ITM 6 1,9
+ITM 6 1,10
+ITM 6 1,11
+ITM 6 1,8
+ITM 6 2,12
+ITM 6 3,12
+ITM 6 5,12
+ITM 6 6,12
+ITM 6 8,12
+ITM 6 11,12
+ITM 6 13,12
+ITM 6 7,12
+ITM 6 4,12
+ITM 6 9,12
+ITM 6 10,12
+ITM 6 12,12
+ITM 6 14,11
+ITM 6 14,10
+ITM 6 14,8
+ITM 6 14,7
+ITM 6 14,5
+ITM 6 14,4
+ITM 6 13,2
+ITM 6 14,2
+ITM 6 14,3
+ITM 6 14,6
+ITM 6 14,9
+ITM h 15,0
+ITM g 0,0
+ITM f 15,1
+ITM f 15,2
+ITM f 15,3
+ITM f 15,5
+ITM f 15,6
+ITM f 15,8
+ITM f 15,9
+ITM f 15,10
+ITM f 15,11
+ITM f 15,13
+ITM f 15,14
+ITM f 15,15
+ITM f 15,12
+ITM e 0,1
+ITM e 0,2
+ITM e 0,3
+ITM e 0,6
+ITM e 0,8
+ITM e 0,9
+ITM e 0,11
+ITM e 0,14
+ITM e 0,15
+ITM e 0,12
+ITM e 0,13
+ITM e 0,10
+ITM e 0,7
+ITM e 0,5
+ITM e 0,4
+ITM d 1,0
+ITM d 2,0
+ITM d 4,0
+ITM d 6,0
+ITM d 7,0
+ITM d 10,0
+ITM d 11,0
+ITM d 14,0
+ITM d 13,0
+ITM d 12,0
+ITM d 9,0
+ITM d 8,0
+ITM d 5,0
+ITM d 3,0
+ITM f 15,4
+ITM f 15,7
+EXT 3,9 1 11,9
+PAL 0
+
+TIL 10
+00000000
+10110100
+10101100
+10000000
+00000000
+00000000
+11100000
+00000000
+NAME words12
+COL 2
+
+TIL 11
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+>
+00000000
+00000000
+00000001
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME light3
+WAL false
+COL 2
+
+TIL 12
+00000001
+00000001
+00000001
+00000001
+00000001
+00000001
+00000001
+00000001
+NAME frame1
+WAL true
+COL 2
+
+TIL 13
+11111111
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME frame2
+WAL true
+COL 2
+
+TIL 14
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+11111111
+NAME frame3
+WAL true
+COL 2
+
+TIL 15
+10000000
+10000000
+10000000
+10000000
+10000000
+10000000
+10000000
+10000000
+NAME frame4
+WAL true
+COL 2
+
+TIL 16
+10011011
+11111111
+01111110
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME cloud1
+
+TIL 17
+00000000
+00000000
+00000000
+10000000
+01000000
+00111100
+00000010
+00000001
+NAME cloud2
+WAL true
+
+TIL 18
+00000000
+01111100
+10000010
+00000001
+00000000
+00000000
+00000000
+00000000
+NAME cloud3
+WAL true
+
+TIL 19
+00000000
+00000000
+00000000
+00001111
+00010001
+01100000
+10000000
+10000000
+NAME cloud4
+WAL true
+
+TIL 20
+11111100
+11110011
+11001111
+00111111
+11111100
+11110000
+11000000
+00000110
+NAME sandwich24
+COL 2
+
+TIL 21
+10001111
+10111111
+01111111
+11111110
+11111001
+11100111
+00011111
+11111111
+NAME sandwich25
+COL 2
+
+TIL 22
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+>
+11111111
+11111111
+11111111
+11111111
+11111111
+10111111
+01111111
+01111111
+NAME sandwich26
+COL 2
+
+TIL 23
+11111111
+11111111
+11111111
+11111111
+11111110
+11111101
+11111111
+11111111
+>
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME sandwich27
+COL 2
+
+TIL 24
+11111111
+11111111
+11111111
+11111111
+00111111
+11001111
+11110011
+11111100
+NAME sandwich28
+COL 2
+
+TIL 25
+11111100
+11110011
+11001111
+00000111
+00000000
+00000111
+00001111
+00111110
+NAME sandwich29
+COL 2
+
+TIL 26
+11111001
+11100111
+10011111
+01111111
+11111111
+11111111
+11111111
+11111111
+NAME sandwich30
+COL 2
+
+TIL 27
+11101111
+11011111
+10111111
+01111111
+11111111
+11111111
+11111111
+11111111
+>
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111100
+11110011
+NAME sandwich31
+COL 2
+
+TIL 28
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+>
+11001111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME sandwich32
+COL 2
+
+TIL 29
+11111100
+11110011
+11001111
+00111111
+11111100
+11110011
+11001111
+00111100
+NAME sandwich33
+COL 2
+
+TIL a
+01000000
+01000000
+01000000
+01000000
+01000000
+01000000
+01000000
+01000000
+NAME gamegrl1
+WAL true
+COL 2
+
+TIL b
+00000000
+11111111
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME gamegrl2
+WAL true
+COL 2
+
+TIL c
+00000010
+00000010
+00000010
+00000010
+00000010
+00000010
+00000010
+00000010
+NAME gamegrl3
+WAL true
+COL 2
+
+TIL e
+00000000
+11000000
+00110000
+00001000
+00000100
+00000100
+00000010
+00000010
+NAME gamegrl4
+WAL true
+COL 2
+
+TIL g
+00000000
+00000011
+00001100
+00010000
+00100000
+00100000
+01000000
+01000000
+NAME gamegrl5
+WAL true
+COL 2
+
+TIL k
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000001
+NAME gamegrl7
+WAL true
+COL 2
+
+TIL l
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+10000000
+NAME gamegrl8
+WAL true
+COL 2
+
+TIL m
+10000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME gamegrl9
+WAL true
+COL 2
+
+TIL n
+00000001
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME gamegrl10
+WAL true
+COL 2
+
+TIL o
+11111111
+11011111
+00100101
+10011011
+01010100
+01001001
+00000000
+00000000
+NAME ground
+WAL true
+
+TIL p
+00000000
+00000000
+00000000
+00101000
+01010101
+01010101
+01000100
+00000000
+NAME words1
+COL 2
+
+TIL q
+00000000
+00000000
+00000000
+10001010
+11011010
+00101010
+10011001
+00000000
+NAME words2
+COL 2
+
+TIL r
+00000000
+00000000
+00000000
+10110011
+10100101
+10010101
+10110011
+00000000
+NAME words3
+COL 2
+
+TIL s
+00000000
+00000000
+00000000
+00101000
+01010101
+01000101
+01000100
+00000000
+NAME words4
+COL 2
+
+TIL t
+00000000
+00000000
+00000000
+11001000
+01011100
+01010000
+11001000
+00000000
+NAME words5
+COL 2
+
+TIL u
+00000000
+00011100
+00100000
+00100000
+01001100
+01100101
+00111001
+00000000
+NAME words6
+COL 2
+
+TIL v
+00000000
+01000110
+10100101
+10100101
+11101000
+00101000
+00101000
+00000000
+NAME words8
+COL 2
+
+TIL w
+00000000
+01101110
+10101000
+00101100
+01010000
+01010000
+01011100
+00000000
+NAME words9
+COL 2
+
+TIL y
+00000000
+00011100
+00100000
+00100000
+01001101
+01100101
+00111001
+00000000
+NAME words10
+COL 2
+
+TIL z
+00000000
+10111000
+10100100
+10100100
+00111001
+01010001
+01001001
+00000000
+NAME words11
+COL 2
+
+TIL 1a
+10001001
+01000010
+00011000
+00111101
+10111100
+00011000
+01000010
+10010001
+>
+00010000
+01000010
+00011000
+10111100
+00111101
+00011000
+01000010
+00001000
+NAME sun
+WAL false
+
+TIL 1b
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME invwall
+WAL true
+
+TIL 1c
+11111111
+11011011
+10110101
+11101011
+11010111
+10101101
+11011011
+11111111
+NAME box
+WAL true
+COL 3
+
+TIL 1d
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME sandwich1
+COL 2
+
+TIL 1e
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+>
+11111111
+11111111
+11111111
+11111111
+11111111
+11110111
+11111001
+11111110
+NAME sandwich2
+COL 2
+
+TIL 1f
+11111111
+11111111
+11111111
+11111110
+11111101
+11111101
+11111100
+11111101
+NAME sandwich3
+COL 2
+
+TIL 1g
+11111101
+11111101
+11111100
+11111000
+11110000
+11111000
+11111101
+11111101
+NAME sandwich4
+COL 2
+
+TIL 1h
+11111101
+11111110
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME sandwich5
+COL 2
+
+TIL 1i
+10111111
+11011111
+11101111
+11110111
+11111011
+11111101
+11111111
+11111111
+>
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+01111111
+NAME sandwich6
+COL 2
+
+TIL 1j
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111100
+>
+10011111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111100
+NAME sandwich7
+COL 2
+
+TIL 1k
+11110011
+11001111
+10111111
+01111111
+11111111
+11111111
+11111111
+00111111
+NAME sandwich8
+COL 2
+
+TIL 1l
+11001111
+11111111
+11111111
+00111111
+00001111
+00110011
+10111100
+11001111
+NAME sandwich9
+COL 2
+
+TIL 1m
+11110111
+11111011
+01111101
+10011110
+11100111
+11111001
+11111110
+11111111
+NAME sandwich10
+COL 2
+
+TIL 1n
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+>
+11111111
+11111111
+11111111
+11111111
+11111111
+11110111
+11111011
+11111011
+NAME sandwich11
+COL 2
+
+TIL 1o
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+>
+11111101
+11111101
+11111110
+11111110
+11111111
+11111111
+11111111
+11111111
+NAME sandwich12
+COL 2
+
+TIL 1p
+11111111
+11111111
+11111111
+11111100
+11110011
+11001111
+00111111
+11111111
+NAME sandwich13
+COL 2
+
+TIL 1q
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+00111111
+NAME sandwich14
+COL 2
+
+TIL 1r
+11001111
+11110011
+11111100
+11111101
+00000010
+11111110
+01111110
+10011110
+NAME sandwich15
+COL 2
+
+TIL 1s
+11100111
+11111001
+11111110
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME sandwich16
+COL 2
+
+TIL 1t
+11111111
+11111111
+11111111
+11111111
+11111111
+11111101
+11111101
+11111101
+>
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME sandwich17
+COL 2
+
+TIL 1u
+11111101
+11111101
+11111101
+11111111
+11111111
+11111111
+11111111
+11111100
+>
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111100
+NAME sandwich18
+COL 2
+
+TIL 1v
+11110011
+11001111
+00111111
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME sandwich19
+COL 2
+
+TIL 1w
+11001111
+11110011
+11111101
+00111110
+11001111
+11110011
+11111101
+11111110
+NAME sandwich20
+COL 2
+
+TIL 1x
+00001111
+11110111
+01111000
+10011111
+11100111
+11111011
+11111100
+11111111
+NAME sandwich21
+COL 2
+
+TIL 1y
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+>
+11111110
+11111110
+11111101
+11111101
+11111111
+11111111
+11111111
+11111111
+NAME sandwich22
+COL 2
+
+TIL 1z
+00111111
+11001111
+11110011
+11111100
+11111111
+11111111
+11111111
+11111111
+NAME sandwich23
+COL 2
+
+TIL 2a
+11111011
+11111011
+11110111
+11101110
+00011001
+11100111
+10011111
+01111111
+NAME sandwich34
+COL 2
+
+TIL 2b
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+>
+11111111
+11111111
+11111111
+11111111
+11111111
+01111111
+11111111
+11111111
+NAME sandwich35
+COL 2
+
+TIL 2c
+11111111
+11111111
+11111111
+11111111
+00111111
+11011111
+11011111
+00101111
+NAME sandwich36
+COL 2
+
+TIL 2d
+11101111
+11101111
+11011111
+00101111
+11101111
+11101111
+10011111
+01101111
+NAME sandwich37
+COL 2
+
+TIL 2e
+11101111
+11101111
+10011111
+01111111
+11111111
+11111111
+11111111
+11111111
+NAME sandwich38
+COL 2
+
+TIL 2f
+10000001
+00111100
+01000010
+01011010
+01011010
+01000010
+00111100
+10000001
+NAME overw1
+
+TIL 2g
+11000011
+11000011
+11000011
+11000011
+11000011
+11000011
+11000011
+11000011
+NAME overw2
+
+TIL 2h
+11111111
+11111111
+00000000
+00000000
+00000000
+00000000
+11111111
+11111111
+NAME overw3
+
+TIL 2i
+11000011
+11000011
+00000000
+00000000
+00000000
+00000000
+11000011
+11000011
+NAME overw4
+
+TIL 2j
+11111111
+11111111
+00000000
+00000000
+00000000
+00000000
+11000011
+11000011
+NAME overw5
+
+TIL 2k
+11000011
+11000011
+11000000
+11000000
+11000000
+11000000
+11111111
+11111111
+NAME overw6
+
+TIL 2l
+11000011
+11000011
+00000011
+00000011
+00000011
+00000011
+11111111
+11111111
+NAME overw7
+
+TIL 2m
+11111111
+11111111
+11101111
+11101111
+11111101
+11011101
+11011111
+11111111
+>
+11111111
+11111111
+11110111
+11101111
+11111110
+11011101
+11011111
+11111111
+NAME overw8
+WAL true
+
+TIL 2n
+10111111
+01011011
+10110111
+11111111
+10111101
+10111011
+11111111
+11111111
+>
+10111111
+01010111
+10110111
+11111111
+11011011
+10111011
+11111111
+11111111
+WAL true
+
+TIL 2o
+11111111
+11100111
+11000011
+10000001
+11000011
+11001011
+11000011
+11111111
+
+TIL 2p
+00000000
+11111111
+10000000
+10110101
+10100010
+10110101
+10000000
+11111111
+>
+00000000
+01111111
+01000000
+01011010
+01010001
+01011010
+01000000
+01111111
+NAME exit1
+WAL true
+
+TIL 2q
+00000011
+11111110
+00000000
+01011100
+01001000
+01001000
+00000000
+11111110
+>
+00000001
+11111111
+00000000
+10101110
+00100100
+10100100
+00000000
+11111111
+NAME exit2
+WAL true
+
+TIL 2r
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000010
+>
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000001
+NAME exit3
+
+TIL 2s
+00000011
+00000010
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+>
+00000001
+00000001
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME exit4
+WAL true
+
+TIL 2t
+00000000
+10000000
+01000000
+00100000
+00010000
+00100000
+01000000
+10000000
+>
+10000000
+01000000
+00100000
+00010000
+00001000
+00010000
+00100000
+01000000
+NAME exit5
+WAL true
+
+TIL 2u
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+>
+10000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME exit6
+WAL true
+
+TIL 2v
+00110000
+00011000
+01110000
+01001100
+00011000
+00001110
+00110010
+00011000
+NAME vine
+COL 3
+
+TIL 2w
+00000000
+00001000
+00001000
+01001000
+01001000
+01001000
+01001000
+00000000
+>
+00000010
+00000010
+00000010
+00000010
+00000010
+00010010
+00010010
+00010000
+NAME wind1
+
+TIL 2x
+00000010
+01000010
+01000010
+01000010
+01000010
+01000010
+01000010
+00000010
+>
+00000001
+00010001
+00010001
+00010001
+00010001
+00010001
+00010001
+00000001
+
+TIL 2y
+11111111
+11011011
+11100111
+11100111
+11111111
+11000011
+11100111
+11011011
+>
+11011011
+11100111
+11100111
+11011011
+11100111
+11100111
+11011011
+11111111
+NAME sGirly
+COL 2
+
+TIL 2z
+00100000
+01011100
+00110000
+11111110
+10011010
+00101111
+00101100
+01100110
+>
+00000000
+01110100
+00110100
+01011010
+00111110
+00101000
+00101100
+00000000
+NAME voidly
+COL 2
+
+SPR A
+00000000
+00100100
+00011000
+00011000
+00000000
+00111100
+00011000
+00100100
+>
+00100100
+00011000
+00011000
+00100100
+00011000
+00011000
+00100100
+00000000
+POS 0 4,9
+
+SPR a
+00000000
+00011000
+00111000
+00011000
+00100100
+01011010
+00011000
+00100100
+NAME boy
+DLG SPR_0
+POS 3 11,9
+
+SPR b
+00111111
+01101111
+11011111
+00000111
+01101111
+00111111
+01111111
+11111111
+>
+00001111
+01111111
+00111111
+11111111
+00111111
+00101111
+00001111
+11111111
+NAME momvoid1
+DLG SPR_2
+POS 5 12,9
+
+SPR c
+00000001
+00000001
+00111011
+00001111
+00011111
+00011111
+00111111
+01111111
+>
+00000001
+00010011
+00011001
+00000111
+00011111
+00011111
+00111111
+00111111
+NAME momvoid2
+POS 5 12,8
+
+SPR d
+01111111
+00011111
+00000111
+00000111
+00011111
+00100111
+00000011
+00000000
+>
+00111111
+00011111
+01101111
+00000111
+00001111
+00010011
+00010011
+00000000
+NAME momvoid3
+POS 5 12,10
+
+SPR e
+00000000
+00001010
+00001010
+00001010
+01001110
+00111110
+00111100
+00100100
+NAME bunny
+DLG SPR_1
+POS 8 9,9
+
+SPR f
+00000000
+00011000
+00111100
+01111110
+00111100
+00110100
+00111100
+00000000
+NAME house
+DLG SPR_5
+POS 5 6,3
+
+SPR g
+00000000
+00100010
+01010101
+01001001
+00111110
+01001001
+00110110
+00000000
+>
+00010100
+00101010
+00101010
+00011100
+00101010
+00110110
+00000000
+00000000
+NAME raincloud
+DLG SPR_3
+POS f 12,3
+
+SPR h
+00001000
+00010000
+00111000
+11010100
+11101110
+11111110
+11111110
+01111100
+NAME tomato
+DLG SPR_4
+POS l 8,6
+
+ITM 0
+11111111
+00000000
+11111111
+00000000
+11111111
+11111111
+11111111
+00000000
+NAME igamegrl1
+COL 3
+
+ITM 2
+01111111
+01111111
+01111111
+01111111
+01111111
+01111111
+01111111
+01111111
+NAME igamegrl3
+COL 3
+
+ITM 3
+11111110
+11111110
+11111110
+11111110
+11111110
+11111110
+11111110
+11111110
+NAME igamegrl4
+COL 3
+
+ITM 4
+01111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME igamegrl5
+COL 3
+
+ITM 5
+00000000
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME igamegrl6
+COL 3
+
+ITM 6
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME igamegrl7
+COL 3
+
+ITM 7
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111110
+NAME igamegrl8
+COL 3
+
+ITM 8
+11111110
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME igamegrl9
+COL 3
+
+ITM 9
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+01111111
+NAME igamegrl10
+COL 3
+
+ITM a
+11111111
+11111111
+11111110
+11111110
+11111100
+11111000
+11110000
+11000000
+NAME igamegrl11
+COL 3
+
+ITM b
+11111111
+11111110
+11111100
+11111110
+11111111
+11111111
+11110101
+11111111
+NAME light1
+COL 3
+
+ITM c
+11111110
+11111110
+01111110
+11111110
+11111110
+11111110
+00111110
+11111110
+NAME light2
+COL 3
+
+ITM d
+11111111
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME bg1
+COL 1
+
+ITM e
+10000000
+10000000
+10000000
+10000000
+10000000
+10000000
+10000000
+10000000
+NAME bg2
+COL 1
+
+ITM f
+00000001
+00000001
+00000001
+00000001
+00000001
+00000001
+00000001
+00000001
+NAME bg3
+COL 1
+
+ITM g
+11111111
+11111100
+11110000
+11100000
+11000000
+11000000
+10000000
+10000000
+NAME bg4
+COL 1
+
+ITM h
+11111111
+00111111
+00001111
+00000111
+00000011
+00000011
+00000001
+00000001
+NAME bg5
+COL 1
+
+ITM j
+00000000
+00000000
+00000000
+00011000
+00011000
+00000000
+00000000
+00000000
+>
+00000000
+00111100
+01000010
+01000010
+01000010
+01000010
+00111100
+00000000
+
+ITM k
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME intro1
+DLG ITM_0
+
+ITM l
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME whee1
+DLG ITM_1
+
+ITM m
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME whee2
+DLG ITM_2
+
+ITM n
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME whee3
+DLG ITM_3
+
+ITM o
+00000000
+00000100
+00000100
+00000000
+01000000
+01000010
+00000101
+00000010
+>
+00000000
+00000010
+00000100
+00000000
+00100000
+01000010
+00000101
+00000010
+NAME igrass
+COL 3
+
+ITM p
+00000000
+00001010
+00001010
+00001010
+01001110
+00111110
+00111100
+00100100
+NAME ibun
+
+ITM q
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME whee4
+DLG ITM_4
+
+ITM r
+00000000
+00100010
+01010101
+01001001
+00111110
+01001001
+00110110
+00000000
+>
+00010100
+00101010
+00101010
+00011100
+00101010
+00110110
+00000000
+00000000
+NAME ibutt
+
+ITM s
+00001000
+00010000
+00111000
+11010100
+11101110
+11111110
+11111110
+01111100
+NAME itomat
+
+DLG SPR_0
+"""
+{clr1}Girly:{clr1} Hi there! What a beautiful day it is today!
+{clr1}Boyly:{clr1} lol dumb girl wat u doing outside??? go back to the kitchen and make me a sandwich{br}
+{clr1}G(music "S")irly:{clr1} ..............{br}
+{clr1}G(music "music")irly:{clr1} Okay! Of course I will make you a sandwich!
+{clr1}Girly:{clr1} I have a secret special recipe that I'll cook up just for you!{br}
+{clr1}G(exitNow "intro5,3,3")irly:{clr1} The VOID SANDWICH!!!!!{br}
+{clr1}Girly:{clr1} By tapping into the inherent femininity of The Unfathomable Void, I can make a tasty dish that will knock your socks off!{br}
+{clr1}Girly:{clr1} I'll need several other ingredients though...
+{clr1}Girly:{clr1} Some ham slices!{br}
+{clr1}Girly:{clr1} A sprinkle of salt!{br}
+{clr1}Girly:{clr1} A tomato!{br}
+{clr1}Girly:{clr1} If I get those things, then I can travel to the void and ask for her blessing in making the sandwich!
+{clr1}G(exitNow "overworld,6,4")irly:{clr1} All right! We are on our way!
+"""
+
+DLG ITM_0
+{clr1}Girly:{clr1} Wowee! What an amazing day it is! I wonder what the world has in store for me today?
+
+DLG ITM_1
+{clr1}Girly:{clr1} {wvy}WHEEEEE!{wvy}
+
+DLG ITM_2
+{clr1}Girly:{clr1} {wvy}YAHOOOO!{wvy}
+
+DLG SPR_1
+"""
+{sequence
+  - {clr1}Girly:{clr1} Hello, Mrs. Bunny!{br}
+    {clr1}Mrs. Bunny:{clr1} Hello, dearie.{br}
+    {clr1}Girly:{clr1} You seem down! Are you okay?
+    {clr1}Mrs. Bunny:{clr1} Well, I don't know if you heard the news, but my husband, Mr. Piggy, passed away last evening.
+    {clr1}Girly:{clr1} Oh my! My condolences!{br}
+    {clr1}Mrs. Bunny:{clr1} It's alright, dearie, he wasn't the kindest man to me by any stretch...but he's with The Void now.
+    {clr1}Mrs. Bunny:{clr1} I just came back from his funeral this morning. We served the most lovely ham platter at the reception. I brought some home as leftovers. Would you like to try some?
+    {clr1}Girly:{clr1} Why, certainly, Mrs. Bunny! You're in my thoughts!
+    {rbw}***YOU GOT: HAM!!!!***{rbw}{ingredience = ingredience + 1}
+  - {clr1}Mrs. Bunny:{clr1} See you around, dearie!
+}
+"""
+
+DLG SPR_2
+"""
+{
+  - ingredience == 3 ?
+    {clr1}Girly:{clr1} I have all 3 ingredients! Time to go to The Void!
+    {clr1}G(exitNow "void,3,3")irly:{clr1} Hello, Void!{br}
+    {clr1}VOID:{clr1} ..........{br}
+    {clr1}Girly:{clr1} I am here with ingredients to make a sandwich! 
+    {clr1}Girly:{clr1} I would like to ask to imbue your essence within it!
+    {clr1}VOID:{clr1} ..........{br}
+    <YOU FEEL AN ETERNAL OPPRESSIVENESS OVERWHELM YOU, BUT YOU ARE NOT SCARED!>{br}
+    <THE VOID IMBUES HER ESSENCE INTO THE SANDWICH!>
+    {rbw}***YOU GOT A VOID SANDWICH!!***{rbw}{br}
+    {clr1}Girly:{clr1} Hooray! Now to deliver it!
+    {clr1}G(exitNow "intro4,8,9")irly:{clr1} Hello! I brought you the sandwich you asked for!
+    {clr1}Boyly:{clr1} bout time{br}
+    <BOYLY TAKES AND EATS THE SANDWICH!>
+    {clr1}Boyly:{clr1} ....{br}
+    {clr1}Boyly:{clr1} aaa...aaahh...{br}
+    {clr1}B(exitNow "ending,8,9")oyly:{clr1} aaaaAAA{shk}AUAUUGGGHHHGHKKHJ{shk}{br}
+    {clr1}G(exitNow "intro1,8,9")irly:{clr1} ...{br}
+    {clr1}Girly:{clr1} Yippee! The sandwich worked!(musicEnd "S")(end "THE END")
+  - else ?
+    {clr1}Girly:{clr1} I shouldn't bother her until I have the rest of the ingredients.{br}
+    {clr1}Girly:{clr1} I only have {say ingredience} so far!
+}
+"""
+
+DLG ITM_3
+{clr1}Girly:{clr1} {shk}WHOOAAAA!{shk}
+
+DLG ITM_4
+{clr1}Girly:{clr1} OHHHHHH WALL JUMP!!
+
+DLG SPR_3
+"""
+{sequence
+  - {clr1}Girly:{clr1} Hello, Mr. Butterfly!{br}
+    {clr1}Mr. Butterfly:{clr1} Goodness, and who exactly are you? You don't look like the distinguished type at all!
+    {clr1}Girly:{clr1} Uh...{br}
+    {clr1}Mr. Butterfly:{clr1} I only hang out with {wvy}true{wvy} butterfly fans. You just look like a girl.{br}
+    {clr1}Mr. Butterfly:{clr1} Do you even know any facts about butterflies?
+    {clr1}Girly:{clr1} I know that there are approximately 20,000 species of butterflies in the world!{br}
+    {clr1}Girly:{clr1} I know that they're tetrachromatic, meaning that they see way more colors than humans do!
+    {clr1}Girly:{clr1} I know that butterflies are unable to fly if the temperature drops below 55 degrees Fahrenheit!
+    {clr1}Mr. Butterfly:{clr1} {shk}Whaaat!!{shk} You do know butterfly facts!
+    {clr1}Mr. Butterfly:{clr1} That can't be right, just look at you!
+    {clr1}Mr. Butterfly:{clr1} {shk}WAAAHHHHH{shk} I'M REALLY SALTY NOW!
+    {clr1}Girly:{clr1} Wow! So salty I can taste it from here! Let me collect some of that for my sandwich!{br}
+    {rbw}***YOU GOT SALT!!***{rbw}{ingredience = ingredience + 1}
+  - {clr1}Mr. Butterfly:{clr1} {shk}WAAAHHHHHHH{shk}
+}
+"""
+
+DLG SPR_4
+"""
+{sequence
+  - {clr1}Girly:{clr1} Hello, Mr. Sky Tomato!{br}
+    {clr1}Mr. Sky Tomato:{clr1} hey....{br}
+    {clr1}Girly:{clr1} May I please have a slice from you for my void sandwich?
+    {clr1}Mr. Sky Tomato:{clr1} .......{br}
+    {clr1}Mr. Sky Tomato:{clr1} ............{br}
+    {clr1}Mr. Sky Tomato:{clr1} ...absolutely{br}
+    {clr1}Girly:{clr1} Thank you!!{br}
+    <AS YOU REACH AND TAKE A SLICE OF TOMATO, THE TOMATO SWINGS AWAY AND YOU LOSE YOU BALANCE!>{br}
+    <YOU START TO FALL!>{br}
+    {clr1}Girly:{clr1} {shk}A(exitNow "level3g,8,7")AAAAAAAAAAAAH!{shk}{br}
+    {clr1}Girly:{clr1} {shk}O(exitNow "level3h,8,9")OOOOF!{shk}{br}
+    <YOU HEAR DISTANT LAUGHTER FROM ABOVE!>
+    {clr1}Girly:{clr1} That's wasn't very nice!{br}
+    {clr1}Girly:{clr1} But! I got my tomato slice!
+    {rbw}***YOU GOT A TOMATO!!***{rbw}{ingredience = ingredience + 1}
+  - {clr1}Mr. Sky Tomato:{clr1} that was...so funny...
+}
+"""
+
+DLG SPR_5
+{clr1}Girly:{clr1} I should make the sandwich before going back!
+
+VAR ingredience
+0
