@@ -223,9 +223,9 @@ namespace SPBitsy
                 }
                 else if (curIndex > -1)
                 {
-                    if (isConditionDone)
+                    if (!isConditionDone)
                     {
-                        if (state.Char() == '?' || state.Char() == '\n')
+                        if (state.Char() == '?' || state.Char() == Sym.cLineBreak)
                         {
                             isConditionDone = true;
                         }
@@ -250,6 +250,7 @@ namespace SPBitsy
             for (int i = 0; i < conditionStrings.Count; i++)
             {
                 var str = Utils.Release(conditionStrings[i]);
+                if (str != null) str = str.Trim();
                 if (str == "else")
                 {
                     conditions[i] = new ElseNode();
@@ -264,6 +265,7 @@ namespace SPBitsy
             for (int i = 0; i < resultStrings.Count; i++)
             {
                 var str = Utils.Release(resultStrings[i]);
+                if (str != null) str = str.Trim();
                 var dialogState = new ParserState(new BlockNode(BlockMode.Dialog), str);
                 dialogState = ParseDialog(dialogState);
                 results[i] = dialogState.RootNode;
@@ -279,7 +281,7 @@ namespace SPBitsy
             var builder = Utils.GetTempStringBuilder();
             var args = new List<Node>();
 
-            while (!(state.Char() == '\n' || state.Done()))
+            while (!(state.Char() == Sym.cLineBreak || state.Done()))
             {
                 if (state.MatchAhead(Sym.CodeOpen))
                 {

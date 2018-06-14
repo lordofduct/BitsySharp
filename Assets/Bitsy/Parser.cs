@@ -44,10 +44,10 @@ namespace SPBitsy
 
             try
             {
-                _environment.Title = reader.ReadLine();
+                _environment.Title = reader.ReadLineSafe();
 
                 string line;
-                while ((line = reader.ReadLine()) != null)
+                while ((line = reader.ReadLineSafe()) != null)
                 {
                     if (string.IsNullOrEmpty(line) || line[0] == '#') continue;
 
@@ -111,7 +111,7 @@ namespace SPBitsy
             List<BitsyGame.Color> colors = new List<BitsyGame.Color>();
 
             string line;
-            while (!string.IsNullOrEmpty(line = reader.ReadLine()))
+            while (!string.IsNullOrEmpty(line = reader.ReadLineSafe()))
             {
                 if (line.StartsWith("NAME"))
                 {
@@ -152,7 +152,7 @@ namespace SPBitsy
                         room.Tilemap = new string[BitsyGame.MAPSIZE, BitsyGame.MAPSIZE];
                         for (int i = 0; i < BitsyGame.MAPSIZE; i++)
                         {
-                            line = reader.ReadLine();
+                            line = reader.ReadLineSafe();
                             for (int j = 0; j < BitsyGame.MAPSIZE; j++)
                             {
                                 room.Tilemap[i, j] = line[j].ToString();
@@ -165,7 +165,7 @@ namespace SPBitsy
                         room.Tilemap = new string[BitsyGame.MAPSIZE, BitsyGame.MAPSIZE];
                         for (int j = 0; j < BitsyGame.MAPSIZE; j++)
                         {
-                            var lines = reader.ReadLine().Split(',');
+                            var lines = reader.ReadLineSafe().Split(',');
                             for (int i = 0; i < BitsyGame.MAPSIZE; i++)
                             {
                                 room.Tilemap[i, j] = lines[i];
@@ -175,7 +175,7 @@ namespace SPBitsy
                     break;
             }
 
-            while (!string.IsNullOrEmpty(line = reader.ReadLine()))
+            while (!string.IsNullOrEmpty(line = reader.ReadLineSafe()))
             {
                 switch (GetLineArg(line, 0))
                 {
@@ -287,7 +287,7 @@ namespace SPBitsy
             string line;
             if (reader.Peek() >= 0 && ((char)reader.Peek()) == 'D')
             {
-                tile.DrawId = GetLineArg(reader.ReadLine(), 1);
+                tile.DrawId = GetLineArg(reader.ReadLineSafe(), 1);
             }
             else
             {
@@ -299,7 +299,7 @@ namespace SPBitsy
             tile.Anim.IsAnimated = tile.Anim.FrameCount > 1;
 
 
-            while (!string.IsNullOrEmpty(line = reader.ReadLine()))
+            while (!string.IsNullOrEmpty(line = reader.ReadLineSafe()))
             {
                 switch (GetLineArg(line, 0))
                 {
@@ -337,7 +337,7 @@ namespace SPBitsy
             string line;
             if (reader.Peek() >= 0 && ((char)reader.Peek()) == 'D')
             {
-                sprite.DrawId = GetLineArg(reader.ReadLine(), 1);
+                sprite.DrawId = GetLineArg(reader.ReadLineSafe(), 1);
             }
             else
             {
@@ -348,7 +348,7 @@ namespace SPBitsy
             sprite.Anim.FrameIndex = 0;
             sprite.Anim.IsAnimated = sprite.Anim.FrameCount > 1;
 
-            while (!string.IsNullOrEmpty(line = reader.ReadLine()))
+            while (!string.IsNullOrEmpty(line = reader.ReadLineSafe()))
             {
                 switch (GetLineArg(line, 0))
                 {
@@ -399,7 +399,7 @@ namespace SPBitsy
             string line;
             if (reader.Peek() >= 0 && ((char)reader.Peek()) == 'D')
             {
-                item.DrawId = GetLineArg(reader.ReadLine(), 1);
+                item.DrawId = GetLineArg(reader.ReadLineSafe(), 1);
             }
             else
             {
@@ -410,7 +410,7 @@ namespace SPBitsy
             item.Anim.FrameIndex = 0;
             item.Anim.IsAnimated = item.Anim.FrameCount > 1;
 
-            while (!string.IsNullOrEmpty(line = reader.ReadLine()))
+            while (!string.IsNullOrEmpty(line = reader.ReadLineSafe()))
             {
                 switch (GetLineArg(line, 0))
                 {
@@ -445,7 +445,7 @@ namespace SPBitsy
             loop:
             for (int i = 0; i < BitsyGame.TILESIZE; i++)
             {
-                line = reader.ReadLine();
+                line = reader.ReadLineSafe();
                 for (int j = 0; j < 8; j++)
                 {
                     lst.Add(line[j] != '0');
@@ -467,17 +467,17 @@ namespace SPBitsy
         {
             string id = GetLineArg(header, 1);
 
-            string line = reader.ReadLine();
+            string line = reader.ReadLineSafe();
             if (line == Sym.DialogOpen)
             {
                 var builder = Utils.GetTempStringBuilder();
-                builder.AppendLine(line);
+                builder.AppendLineSafe(line);
                 while (true)
                 {
-                    line = reader.ReadLine();
+                    line = reader.ReadLineSafe();
                     if (line == null) throw new System.InvalidOperationException("End of file.");
 
-                    builder.AppendLine(line);
+                    builder.AppendLineSafe(line);
                     if (line == Sym.DialogClose) break;
                 }
                 _environment.Dialog[id] = Utils.Release(builder);
@@ -491,14 +491,14 @@ namespace SPBitsy
         private void ParseEnding(TextReader reader, string header)
         {
             string id = GetLineArg(header, 1);
-            string val = reader.ReadLine();
+            string val = reader.ReadLineSafe();
             _environment.Endings[id] = val;
         }
 
         private void ParseVariable(TextReader reader, string header)
         {
             string id = GetLineArg(header, 1);
-            string val = reader.ReadLine();
+            string val = reader.ReadLineSafe();
             this._variables[id] = val;
         }
 

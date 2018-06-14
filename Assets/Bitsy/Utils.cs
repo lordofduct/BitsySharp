@@ -168,7 +168,40 @@ namespace SPBitsy
 
         #endregion
 
-        #region StringBuilder Methods
+        #region String Methods
+
+        /// <summary>
+        /// Reads a line from a TextReader and strips all carriage returns from it.
+        /// 
+        /// This is useful when parsing a bitsy script. Since text files from windows machines may have carriage returns, the script interpreter can't handle them. 
+        /// Thing is, rewriting the interpreter to deal with them is a nuisance. It's easier to just strip them before hand when parsing.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        public static string ReadLineSafe(this System.IO.TextReader reader)
+        {
+            if (reader == null) return null;
+            var ln = reader.ReadLine();
+            if (ln == null) return null;
+            return ln.Replace("\r", "");
+        }
+
+        /// <summary>
+        /// Appends a line to a StringBuilder only using '\n' newline character.
+        /// 
+        /// In some environments AppendLine appends a carriage return as well as newline. 
+        /// The script interpreter can't handle carriage returns, so this remedies that 
+        /// when building strings for the script interpreter.
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="line"></param>
+        public static void AppendLineSafe(this StringBuilder builder, string line)
+        {
+            if (builder == null) return;
+
+            builder.Append(line);
+            builder.Append('\n');
+        }
 
         private const int MAX_BUILDERS = 10;
         private static Stack<StringBuilder> _builderPool = new Stack<StringBuilder>(MAX_BUILDERS);
