@@ -673,7 +673,7 @@ namespace SPBitsy
         public const string OP_SUB = "-";
         private readonly static string[] OP_SYMBOLS = new string[] { OP_SUB, OP_ADD, OP_DIV, OP_MULT, OP_LTE, OP_GTE, OP_LT, OP_GT, OP_EQUAL }; //used for expression parsing
 
-        public static bool HasOperator(string op)
+        private static bool HasOperator(string op)
         {
             switch (op)
             {
@@ -693,7 +693,7 @@ namespace SPBitsy
             }
         }
 
-        public static void EvalOperator(Environment env, string op, Node left, Node right, Action<object> onReturn)
+        private static void EvalOperator(Environment env, string op, Node left, Node right, Action<object> onReturn)
         {
             if (op == OP_SET)
             {
@@ -897,7 +897,7 @@ namespace SPBitsy
 
         }
 
-        public enum BlockType
+        private enum BlockType
         {
             Block,
             Function,
@@ -911,13 +911,13 @@ namespace SPBitsy
             Else
         }
 
-        public enum BlockMode
+        private enum BlockMode
         {
             Code,
             Dialog
         }
 
-        public abstract class Node
+        private abstract class Node
         {
             public readonly BlockType type;
             public NodeParent Parent;
@@ -947,7 +947,7 @@ namespace SPBitsy
 
         }
 
-        public abstract class NodeParent : Node
+        private abstract class NodeParent : Node
         {
             public readonly List<Node> Children = new List<Node>();
 
@@ -988,12 +988,12 @@ namespace SPBitsy
         /// This is a hack fix to get better performance, though really the entire interpreter should probably be rewritten to match 
         /// a C# sensibility rather than the JS one.
         /// </summary>
-        public interface IQuickEvalNode
+        private interface IQuickEvalNode
         {
             object EvalNow(Environment env);
         }
 
-        public class BlockNode : NodeParent
+        private class BlockNode : NodeParent
         {
             public BlockMode Mode;
 
@@ -1044,7 +1044,7 @@ namespace SPBitsy
             }
         }
 
-        public class FuncNode : Node
+        private class FuncNode : Node
         {
 
             public string FuncName;
@@ -1114,7 +1114,7 @@ namespace SPBitsy
 
         }
 
-        public class LiteralNode : Node, IQuickEvalNode
+        private class LiteralNode : Node, IQuickEvalNode
         {
 
             public object Value;
@@ -1136,7 +1136,7 @@ namespace SPBitsy
 
         }
 
-        public class VariableNode : Node, IQuickEvalNode
+        private class VariableNode : Node, IQuickEvalNode
         {
 
             public string VarName;
@@ -1158,7 +1158,7 @@ namespace SPBitsy
 
         }
 
-        public class ExpNode : Node
+        private class ExpNode : Node
         {
 
             public string Operator;
@@ -1190,7 +1190,7 @@ namespace SPBitsy
 
 
 
-        public abstract class SequenceBase : Node
+        private abstract class SequenceBase : Node
         {
             public Node[] Options;
 
@@ -1213,7 +1213,7 @@ namespace SPBitsy
 
         }
 
-        public class SequenceNode : SequenceBase
+        private class SequenceNode : SequenceBase
         {
 
             public SequenceNode(Node[] options) : base(BlockType.Sequence, options)
@@ -1235,7 +1235,7 @@ namespace SPBitsy
 
         }
 
-        public class CycleNode : SequenceBase
+        private class CycleNode : SequenceBase
         {
 
             public CycleNode(Node[] options) : base(BlockType.Cycle, options)
@@ -1255,7 +1255,7 @@ namespace SPBitsy
 
         }
 
-        public class ShuffleNode : SequenceBase
+        private class ShuffleNode : SequenceBase
         {
 
             private Node[] _shuffledOptions;
@@ -1288,7 +1288,7 @@ namespace SPBitsy
 
         }
 
-        public class IfNode : Node
+        private class IfNode : Node
         {
 
             private Node[] _conditions;
@@ -1343,7 +1343,7 @@ namespace SPBitsy
 
         }
 
-        public class ElseNode : Node, IQuickEvalNode
+        private class ElseNode : Node, IQuickEvalNode
         {
 
             public ElseNode() : base(BlockType.Else)
