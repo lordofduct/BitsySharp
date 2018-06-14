@@ -25,3 +25,5 @@
 /*.suo
 /ExportedObj
 /UpgradeLog.htm
+Assets/Bitsy/Examples/Ignore/*
+Assets/Bitsy/Examples/Ignore.meta
