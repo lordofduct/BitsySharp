@@ -428,67 +428,63 @@ namespace SPBitsy
 
         public void AddText(string text, System.Action onFinish)
         {
-            if (string.IsNullOrEmpty(text)) return;
-
-            /*
-            Line ln = null;
-            if(text.Length > 0)
+            if (string.IsNullOrEmpty(text))
             {
-                int i = 0;
-                while (i < text.Length)
-                {
-                    ln = this.QueueLine();
-
-                    int next = i + DialogRenderer.CHARS_PER_ROW;
-                    int end = (next < text.Length) ? text.LastIndexOf(' ', next, next - i) : text.Length;
-                    if (end < 0) end = next + 1;
-
-                    ln.length = end - i;
-                    if(ln.length > 0)
-                    {
-                        for (int j = 0; j < ln.length; j++)
-                        {
-                            ln.chars[j].character = text[i + j];
-                            ln.chars[j].color = this.DefaultTextColor;
-                            ln.chars[j].effect = _activeEffectsFullDelegate;
-                        }
-                    }
-                    i = end + 1;
-                }
+                //empty text isn't really allowed... so make it a single space
+                text = " ";
             }
-            else
-            {
-                //blank text
-                ln = this.QueueLine();
-                ln.length = 0;
-            }
-            
-            ln.OnPrint = onFinish;
-            */
-            
+
+            if (_lines.Count == 0) this.QueueLine();
+
             Line ln = null;
             int i = 0;
             while(i < text.Length)
             {
-                ln = _lines.Count > 0 ? _lines[_lines.Count - 1] : this.QueueLine();
+                ln = _lines[_lines.Count - 1];
+                //if (ln.length > 0) ln.length++; //add a space if we're appending to an existing line.
                 int offset = ln.length;
 
-                int next = i + DialogRenderer.CHARS_PER_ROW - offset + 1;
-                int end = (next < text.Length) ? text.LastIndexOf(' ', next, next - i) : text.Length;
-                if (end < 0) end = next + 1;
-
-                int len = end - i;
-                ln.length += len;
-                if(len > 0)
+                int start = i;
+                int avail = DialogRenderer.CHARS_PER_ROW - offset;
+                int end = i + avail;
+                if (end >= text.Length)
                 {
-                    for(int j = 0; j < len; j++)
+                    //reach the end of the text, just fill it out
+                    end = text.Length;
+                    i = end;
+                }
+                else
+                {
+                    this.QueueLine(); //queue up a line to be used next loop
+
+                    end = text.LastIndexOf(' ', end, avail);
+                    if (end < 0)
                     {
-                        ln.chars[j + offset].character = text[i + j];
+                        if (avail < DialogRenderer.CHARS_PER_ROW)
+                        {
+                            //can't fit, so go to next line
+                            continue;
+                        }
+                        else
+                        {
+                            //some mad man stuck a 32+ character string in, just print that shit
+                            end = i + avail;
+                        }
+                    }
+                    i = end + 1;
+                }
+
+                int len = end - start;
+                ln.length += len;
+                if (len > 0)
+                {
+                    for (int j = 0; j < len; j++)
+                    {
+                        ln.chars[j + offset].character = text[start + j];
                         ln.chars[j + offset].color = this.DefaultTextColor;
                         ln.chars[j + offset].effect = _activeEffectsFullDelegate;
                     }
                 }
-                i = end + 1;
             }
 
             if (ln != null && ln.length > 0)
@@ -523,33 +519,27 @@ namespace SPBitsy
         public void Skip()
         {
             this.DidPageFinishThisFrame = false;
-            
-            //make sure we call OnPrint as needed
-            if(_rowIndex < _lines.Count)
+            if (_lines.Count == 0) return;
+
+            int pageIndex = (_rowIndex / DialogRenderer.ROWS_PER_PAGE);
+            int nextPageRowIndex = (pageIndex + 1) * DialogRenderer.ROWS_PER_PAGE;
+            // add new characters until you get to the end of the current line of dialog
+            while (_rowIndex < nextPageRowIndex)
             {
-                //if it's the last char of the line, it was called last update so skip ahead
-                if(_charIndex == _lines[_rowIndex].length - 1)
+                this.DoNextChar();
+
+                if (_isDialogReadyToContinue)
                 {
+                    //make sure to push the rowIndex past the end to break out of the loop
                     _rowIndex++;
                     _charIndex = 0;
                 }
-
-                //loop rows and call OnPrint if needed
-                for (int i = _rowIndex; i < _lines.Count; i++)
-                {
-                    _rowIndex = i;
-                    _charIndex = _lines[_rowIndex].length - 1;
-                    for(int j = 0; j < _charIndex + 1; j++)
-                    {
-                        if (_lines[_rowIndex].chars[j].onPrint != null)
-                            _lines[_rowIndex].chars[j].onPrint();
-                    }
-                }
             }
-            
-            //set to end
-            _rowIndex = _lines.Count - 1;
+
+            //set to end of page
+            _rowIndex = Math.Min(nextPageRowIndex - 1, _lines.Count - 1);
             _charIndex = _lines[_rowIndex].length - 1;
+            _isDialogReadyToContinue = true;
         }
 
         public void ForeachActiveChar(ForeachCharCallback handler)
@@ -560,7 +550,7 @@ namespace SPBitsy
             {
                 var ln = _lines[low + i];
                 int cnt = ln.length;
-                if (i == _rowIndex && cnt > _charIndex) cnt = _charIndex + 1;
+                if ((low + i) == _rowIndex && cnt > _charIndex) cnt = _charIndex + 1;
 
                 for(int j = 0; j < cnt; j++)
                 {
@@ -592,8 +582,8 @@ namespace SPBitsy
                 _isDialogReadyToContinue = true;
                 this.DidPageFinishThisFrame = true;
             }
-
-            if (_charIndex + 1 == _lines[_rowIndex].length && _lines[_rowIndex].chars[_charIndex].onPrint != null)
+            
+            if (_charIndex < _lines[_rowIndex].length && _lines[_rowIndex].chars[_charIndex].onPrint != null)
                 _lines[_rowIndex].chars[_charIndex].onPrint();
         }
 
