@@ -399,7 +399,7 @@ namespace SPBitsy
 
             if(scriptId == null)
             {
-                ScriptInterpreter.Interpret(_environment, dialog, () =>
+                _environment.ScriptInterpreter.Interpret(_environment, dialog, () =>
                 {
                     if (!_environment.DialogBuffer.IsActive)
                         this.ExitDialog();
@@ -407,9 +407,9 @@ namespace SPBitsy
             }
             else
             {
-                if (!_environment.HasScript(scriptId))
-                    ScriptInterpreter.Compile(_environment, scriptId, dialog);
-                ScriptInterpreter.Run(_environment, scriptId, () =>
+                if (!_environment.ScriptInterpreter.HasScript(scriptId))
+                    _environment.ScriptInterpreter.Compile(_environment, scriptId, dialog);
+                _environment.ScriptInterpreter.Run(_environment, scriptId, () =>
                 {
                     if (!_environment.DialogBuffer.IsActive)
                         this.ExitDialog();
@@ -618,7 +618,6 @@ namespace SPBitsy
 
         public bool UseHandler = true;
         private Dictionary<string, object> _variables = new Dictionary<string, object>();
-        private Dictionary<string, ScriptInterpreter.Node> _scripts = new Dictionary<string, ScriptInterpreter.Node>();
 
         public string Title;
 
@@ -632,6 +631,7 @@ namespace SPBitsy
         public readonly Dictionary<string, string> Endings = new Dictionary<string, string>();
         public readonly Dictionary<string, GfxTileSheet> ImageStore = new Dictionary<string, GfxTileSheet>();
 
+        public readonly ScriptInterpreter ScriptInterpreter;
         public readonly SceneRenderer SceneRenderer;
         public readonly DialogRenderer DialogRenderer;
         public readonly DialogBuffer DialogBuffer;
@@ -665,6 +665,7 @@ namespace SPBitsy
         public Environment()
         {
             this.Rng = new Random();
+            this.ScriptInterpreter = new ScriptInterpreter(this);
             this.SceneRenderer = new SceneRenderer(this);
             this.DialogRenderer = new DialogRenderer(this);
             this.DialogBuffer = new DialogBuffer();
@@ -684,9 +685,21 @@ namespace SPBitsy
         public Environment(Random rng)
         {
             this.Rng = rng;
+            this.ScriptInterpreter = new ScriptInterpreter(this);
             this.SceneRenderer = new SceneRenderer(this);
             this.DialogRenderer = new DialogRenderer(this);
             this.DialogBuffer = new DialogBuffer();
+            this.Palettes[BitsyGame.ID_DEFAULT] = new BitsyGame.Palette()
+            {
+                Id = BitsyGame.ID_DEFAULT,
+                Name = BitsyGame.ID_DEFAULT,
+                Colors = new BitsyGame.Color[]
+                {
+                    new BitsyGame.Color(0,0,0),
+                    new BitsyGame.Color(255,0,0),
+                    new BitsyGame.Color(255,255,255),
+                }
+            };
         }
 
         #endregion
@@ -882,25 +895,6 @@ namespace SPBitsy
         #endregion
 
         #region Scripts
-
-        public bool HasScript(string key)
-        {
-            return _scripts.ContainsKey(key);
-        }
-
-        public ScriptInterpreter.Node GetScript(string key)
-        {
-            ScriptInterpreter.Node node;
-            if (_scripts.TryGetValue(key, out node))
-                return node;
-            else
-                return null;
-        }
-
-        public void SetScript(string key, ScriptInterpreter.Node node)
-        {
-            _scripts[key] = node;
-        }
 
         #endregion
 
