@@ -915,7 +915,8 @@ namespace SPBitsy
 
         #region Fields
 
-        private Dictionary<InputId, InputState> _states = new Dictionary<InputId, InputState>();
+        /// store InputId as int because the 'DefaultComparer' boxes enums when looking up by enum key.
+        private Dictionary<int, InputState> _states = new Dictionary<int, InputState>();
         public PollInputActiveCallback GetInputActive;
 
         #endregion
@@ -935,12 +936,12 @@ namespace SPBitsy
         {
             if (this.GetInputActive != null)
             {
-                _states[InputId.Any] = GetNextState(_states[InputId.Any], this.GetInputActive(InputId.Any));
-                _states[InputId.Up] = GetNextState(_states[InputId.Up], this.GetInputActive(InputId.Up));
-                _states[InputId.Down] = GetNextState(_states[InputId.Down], this.GetInputActive(InputId.Down));
-                _states[InputId.Right] = GetNextState(_states[InputId.Right], this.GetInputActive(InputId.Right));
-                _states[InputId.Left] = GetNextState(_states[InputId.Left], this.GetInputActive(InputId.Left));
-                _states[InputId.Action] = GetNextState(_states[InputId.Action], this.GetInputActive(InputId.Action));
+                _states[(int)InputId.Any] = GetNextState(_states[(int)InputId.Any], this.GetInputActive(InputId.Any));
+                _states[(int)InputId.Up] = GetNextState(_states[(int)InputId.Up], this.GetInputActive(InputId.Up));
+                _states[(int)InputId.Down] = GetNextState(_states[(int)InputId.Down], this.GetInputActive(InputId.Down));
+                _states[(int)InputId.Right] = GetNextState(_states[(int)InputId.Right], this.GetInputActive(InputId.Right));
+                _states[(int)InputId.Left] = GetNextState(_states[(int)InputId.Left], this.GetInputActive(InputId.Left));
+                _states[(int)InputId.Action] = GetNextState(_states[(int)InputId.Action], this.GetInputActive(InputId.Action));
             }
             else
                 this.Reset();
@@ -948,18 +949,18 @@ namespace SPBitsy
 
         public void Reset()
         {
-            _states[InputId.Any] = InputState.None;
-            _states[InputId.Up] = InputState.None;
-            _states[InputId.Down] = InputState.None;
-            _states[InputId.Right] = InputState.None;
-            _states[InputId.Left] = InputState.None;
-            _states[InputId.Action] = InputState.None;
+            _states[(int)InputId.Any] = InputState.None;
+            _states[(int)InputId.Up] = InputState.None;
+            _states[(int)InputId.Down] = InputState.None;
+            _states[(int)InputId.Right] = InputState.None;
+            _states[(int)InputId.Left] = InputState.None;
+            _states[(int)InputId.Action] = InputState.None;
         }
 
         public InputState GetInputState(InputId id)
         {
             InputState st;
-            if (_states.TryGetValue(id, out st))
+            if (_states.TryGetValue((int)id, out st))
                 return st;
             else
                 return InputState.None;
