@@ -28,7 +28,6 @@ namespace SPBitsy
         #region Fields
         
         private Environment _environment;
-        private GetInputState _getInput;
         private IRenderSurface _surface;
         
         #endregion
@@ -53,10 +52,9 @@ namespace SPBitsy
 
         #region Methods
 
-        public void Begin(Environment environment, GetInputState input, IRenderSurface renderSurface)
+        public void Begin(Environment environment, IRenderSurface renderSurface)
         {
             _environment = environment;
-            _getInput = input;
             _surface = renderSurface;
 
             _environment.VariableChanged += this.OnVariableChanged;
@@ -72,6 +70,8 @@ namespace SPBitsy
         /// <param name="deltaTime">Number of milliseconds since last update.</param>
         public void Tick(int deltaTime)
         {
+            _environment.Inputs.Update();
+
             if(!_environment.isNarrating && !_environment.isEnding)
             {
                 this.UpdateAnimation(deltaTime);
@@ -138,11 +138,9 @@ namespace SPBitsy
 
         private void HandleGeneralInput()
         {
-            if (_getInput == null) return;
-
             if (_environment.DialogBuffer.IsActive)
             {
-                if (_getInput(InputId.Any))
+                if (_environment.Inputs.GetInputState(BitsyInput.InputId.Any) == BitsyInput.InputState.Down)
                 {
                     if (_environment.DialogBuffer.CanContinue)
                     {
@@ -158,7 +156,7 @@ namespace SPBitsy
             }
             else if (_environment.isEnding)
             {
-                if (_getInput(InputId.Any))
+                if (_environment.Inputs.GetInputState(BitsyInput.InputId.Any) == BitsyInput.InputState.Down)
                 {
                     //TODO - register if any input down and signal quit
                 }
@@ -167,15 +165,13 @@ namespace SPBitsy
 
         private Direction GetInputDirection()
         {
-            if (_getInput == null) return Direction.None;
-
-            if (_getInput(InputId.Up))
+            if (_environment.Inputs.GetInputState(BitsyInput.InputId.Up) > BitsyInput.InputState.None)
                 return Direction.Up;
-            else if (_getInput(InputId.Down))
+            else if (_environment.Inputs.GetInputState(BitsyInput.InputId.Down) > BitsyInput.InputState.None)
                 return Direction.Down;
-            else if (_getInput(InputId.Right))
+            else if (_environment.Inputs.GetInputState(BitsyInput.InputId.Right) > BitsyInput.InputState.None)
                 return Direction.Right;
-            else if (_getInput(InputId.Left))
+            else if (_environment.Inputs.GetInputState(BitsyInput.InputId.Left) > BitsyInput.InputState.None)
                 return Direction.Left;
 
             return Direction.None;
@@ -458,15 +454,6 @@ namespace SPBitsy
         
         #region Special Types
 
-        public enum InputId
-        {
-            Any = -1,
-            Up = 0,
-            Down = 1,
-            Left = 2,
-            Right = 3
-        }
-        
         public enum Direction
         {
             None = -1,
@@ -475,8 +462,6 @@ namespace SPBitsy
             Left = 2,
             Right = 3
         }
-
-        public delegate bool GetInputState(InputId id);
 
         public class NameTable
         {
@@ -639,6 +624,9 @@ namespace SPBitsy
         public readonly SceneRenderer SceneRenderer;
         public readonly DialogRenderer DialogRenderer;
         public readonly DialogBuffer DialogBuffer;
+
+        public readonly BitsyInput Inputs = new BitsyInput();
+        
         
         public bool isNarrating;
         public bool isEnding;
@@ -902,6 +890,125 @@ namespace SPBitsy
         {
             _scripts[key] = node;
         }
+
+        #endregion
+
+        #region Special Types
+
+        #endregion
+
+    }
+
+    public class BitsyInput
+    {
+
+        #region Fields
+
+        private Dictionary<InputId, InputState> _states = new Dictionary<InputId, InputState>();
+        public PollInputActive GetInputActive;
+
+        #endregion
+
+        #region CONSTRUCTOR
+
+        public BitsyInput()
+        {
+            _states[InputId.Any] = InputState.None;
+            _states[InputId.Up] = InputState.None;
+            _states[InputId.Down] = InputState.None;
+            _states[InputId.Right] = InputState.None;
+            _states[InputId.Left] = InputState.None;
+            _states[InputId.Action] = InputState.None;
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void Update()
+        {
+            if (this.GetInputActive != null)
+            {
+                _states[InputId.Any] = GetNextState(_states[InputId.Any], this.GetInputActive(InputId.Any));
+                _states[InputId.Up] = GetNextState(_states[InputId.Up], this.GetInputActive(InputId.Up));
+                _states[InputId.Down] = GetNextState(_states[InputId.Down], this.GetInputActive(InputId.Down));
+                _states[InputId.Right] = GetNextState(_states[InputId.Right], this.GetInputActive(InputId.Right));
+                _states[InputId.Left] = GetNextState(_states[InputId.Left], this.GetInputActive(InputId.Left));
+                _states[InputId.Action] = GetNextState(_states[InputId.Action], this.GetInputActive(InputId.Action));
+            }
+            else
+            {
+                _states[InputId.Any] = InputState.None;
+                _states[InputId.Up] = InputState.None;
+                _states[InputId.Down] = InputState.None;
+                _states[InputId.Right] = InputState.None;
+                _states[InputId.Left] = InputState.None;
+                _states[InputId.Action] = InputState.None;
+            }
+        }
+
+        public InputState GetInputState(InputId id)
+        {
+            InputState st;
+            if (_states.TryGetValue(id, out st))
+                return st;
+            else
+                return InputState.None;
+        }
+
+        public static InputState GetNextState(InputState current, bool active)
+        {
+            if (active)
+            {
+                switch (current)
+                {
+                    case InputState.None:
+                    case InputState.Released:
+                        return InputState.Down;
+                    case InputState.Down:
+                    case InputState.Held:
+                        return InputState.Held;
+                }
+            }
+            else
+            {
+                switch (current)
+                {
+                    case InputState.None:
+                    case InputState.Released:
+                        return InputState.None;
+                    case InputState.Down:
+                    case InputState.Held:
+                        return InputState.Released;
+                }
+            }
+
+            return InputState.None;
+        }
+
+        #endregion
+
+        #region Special Types
+
+        public enum InputId
+        {
+            Any = -1,
+            Up = 0,
+            Down = 1,
+            Left = 2,
+            Right = 3,
+            Action = 4
+        }
+
+        public enum InputState : sbyte
+        {
+            None = 0,
+            Down = 1,
+            Held = 2,
+            Released = -1
+        }
+
+        public delegate bool PollInputActive(InputId id);
 
         #endregion
 

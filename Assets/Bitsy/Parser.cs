@@ -34,9 +34,10 @@ namespace SPBitsy
             this.ResetFlags();
         }
 
-        public Environment Parse(TextReader reader, IFont font = null)
+        public Environment Parse(TextReader reader, BitsyInput.PollInputActive getInputCallback, IFont font = null)
         {
             _environment = new Environment();
+            _environment.Inputs.GetInputActive = getInputCallback;
             _environment.Font = font ?? BasicBitsyFont.LoadFont();
             _variables = new Dictionary<string, string>();
             _spriteStartLocations = new Dictionary<string, BitsyGame.Loc>();

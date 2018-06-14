@@ -33,11 +33,11 @@ namespace SPBitsy.Unity
             Environment environment;
             using (var reader = new System.IO.StringReader(this.GameData.text))
             {
-                environment = parser.Parse(reader);
+                environment = parser.Parse(reader, BitsyUnityUtils.GetInputWASD);
             }
-
+            
             _game = new BitsyGame();
-            _game.Begin(environment, BitsyUnityUtils.GetInputWASD, _surface);
+            _game.Begin(environment, _surface);
         }
 
         #endregion
