@@ -34,7 +34,7 @@ namespace SPBitsy
             this.ResetFlags();
         }
 
-        public Environment Parse(TextReader reader, BitsyInput.PollInputActive getInputCallback, IFont font = null)
+        public Environment Parse(TextReader reader, BitsyInput.PollInputActiveCallback getInputCallback, IFont font = null)
         {
             _environment = new Environment();
             _environment.Inputs.GetInputActive = getInputCallback;

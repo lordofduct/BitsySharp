@@ -70,66 +70,77 @@ namespace SPBitsy
         /// <param name="deltaTime">Number of milliseconds since last update.</param>
         public void Tick(int deltaTime)
         {
-            _environment.Inputs.Update();
+            try
+            {
+                _environment.Inputs.Update();
 
-            if(!_environment.isNarrating && !_environment.isEnding)
-            {
-                this.UpdateAnimation(deltaTime);
-                _environment.SceneRenderer.DrawRoom(_environment.GetCurrentRoom(), _surface);
-            }
-            else
-            {
-                _surface.FillSurface(_environment.GetCurrentPalette().Colors[0]);
-            }
-
-            if(_environment.DialogBuffer.IsActive)
-            {
-                _environment.DialogRenderer.Draw(_environment.DialogBuffer, deltaTime, _surface);
-                _environment.DialogBuffer.Update(deltaTime);
-            }
-            else if(!_environment.isEnding)
-            {
-                this.MoveSprites(deltaTime);
-
-                if(_environment.GetPlayer().WalkingPath.Count > 0)
+                if (!_environment.isNarrating && !_environment.isEnding)
                 {
-                    var dest = _environment.GetPlayer().WalkingPath.Last();
-                    _surface.FillArea(Color.HalfWhite, dest.x * PIXEL_SCALE, dest.y * PIXEL_SCALE, TILESIZE * PIXEL_SCALE, TILESIZE * PIXEL_SCALE);
+                    this.UpdateAnimation(deltaTime);
+                    _environment.SceneRenderer.DrawRoom(_environment.GetCurrentRoom(), _surface);
                 }
-            }
-            
-            if (!_environment.DialogBuffer.IsActive && !_environment.isEnding)
-            {
-                //handle inputs
-                var dir = this.GetInputDirection();
-                var last = _environment.lastMoveDirection;
-                _environment.lastMoveDirection = dir;
-
-                if(dir != Direction.None)
+                else
                 {
-                    if (last != dir)
+                    _surface.FillSurface(_environment.GetCurrentPalette().Colors[0]);
+                }
+
+                if (_environment.DialogBuffer.IsActive)
+                {
+                    _environment.DialogRenderer.Draw(_environment.DialogBuffer, deltaTime, _surface);
+                    _environment.DialogBuffer.Update(deltaTime);
+                }
+                else if (!_environment.isEnding)
+                {
+                    this.MoveSprites(deltaTime);
+
+                    if (_environment.GetPlayer().WalkingPath.Count > 0)
                     {
-                        this.MovePlayer(dir);
-                        _environment.moveHoldCounter = 500;
+                        var dest = _environment.GetPlayer().WalkingPath.Last();
+                        _surface.FillArea(Color.HalfWhite, dest.x * PIXEL_SCALE, dest.y * PIXEL_SCALE, TILESIZE * PIXEL_SCALE, TILESIZE * PIXEL_SCALE);
                     }
-                    else
+                }
+
+                if (!_environment.DialogBuffer.IsActive && !_environment.isEnding)
+                {
+                    //handle inputs
+                    var dir = this.GetInputDirection();
+                    var last = _environment.lastMoveDirection;
+                    _environment.lastMoveDirection = dir;
+
+                    if (dir != Direction.None)
                     {
-                        _environment.moveHoldCounter -= deltaTime;
-                        if(_environment.moveHoldCounter <= 0)
+                        if (last != dir)
                         {
-                            _environment.moveHoldCounter = 150;
                             this.MovePlayer(dir);
+                            _environment.moveHoldCounter = 500;
+                        }
+                        else
+                        {
+                            _environment.moveHoldCounter -= deltaTime;
+                            if (_environment.moveHoldCounter <= 0)
+                            {
+                                _environment.moveHoldCounter = 150;
+                                this.MovePlayer(dir);
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                this.HandleGeneralInput();
-            }
+                else
+                {
+                    this.HandleGeneralInput();
+                }
 
-            if (_environment.didPlayerMoveThisFrame && _environment.onPlayerMoved != null) _environment.onPlayerMoved();
-            _environment.didPlayerMoveThisFrame = false;
+                if (_environment.didPlayerMoveThisFrame && _environment.onPlayerMoved != null) _environment.onPlayerMoved();
+                _environment.didPlayerMoveThisFrame = false;
+            }
+            catch(System.Exception ex)
+            {
+                _environment.Inputs.Reset();
+                _environment.DialogBuffer.Reset();
+                _environment.isNarrating = false;
+                _environment.didPlayerMoveThisFrame = false;
+                throw new InvalidOperationException("Bitsy hit a bug...", ex);
+            }
         }
 
         #endregion
@@ -905,7 +916,7 @@ namespace SPBitsy
         #region Fields
 
         private Dictionary<InputId, InputState> _states = new Dictionary<InputId, InputState>();
-        public PollInputActive GetInputActive;
+        public PollInputActiveCallback GetInputActive;
 
         #endregion
 
@@ -913,12 +924,7 @@ namespace SPBitsy
 
         public BitsyInput()
         {
-            _states[InputId.Any] = InputState.None;
-            _states[InputId.Up] = InputState.None;
-            _states[InputId.Down] = InputState.None;
-            _states[InputId.Right] = InputState.None;
-            _states[InputId.Left] = InputState.None;
-            _states[InputId.Action] = InputState.None;
+            this.Reset();
         }
 
         #endregion
@@ -937,14 +943,17 @@ namespace SPBitsy
                 _states[InputId.Action] = GetNextState(_states[InputId.Action], this.GetInputActive(InputId.Action));
             }
             else
-            {
-                _states[InputId.Any] = InputState.None;
-                _states[InputId.Up] = InputState.None;
-                _states[InputId.Down] = InputState.None;
-                _states[InputId.Right] = InputState.None;
-                _states[InputId.Left] = InputState.None;
-                _states[InputId.Action] = InputState.None;
-            }
+                this.Reset();
+        }
+
+        public void Reset()
+        {
+            _states[InputId.Any] = InputState.None;
+            _states[InputId.Up] = InputState.None;
+            _states[InputId.Down] = InputState.None;
+            _states[InputId.Right] = InputState.None;
+            _states[InputId.Left] = InputState.None;
+            _states[InputId.Action] = InputState.None;
         }
 
         public InputState GetInputState(InputId id)
@@ -1008,7 +1017,7 @@ namespace SPBitsy
             Released = -1
         }
 
-        public delegate bool PollInputActive(InputId id);
+        public delegate bool PollInputActiveCallback(InputId id);
 
         #endregion
 

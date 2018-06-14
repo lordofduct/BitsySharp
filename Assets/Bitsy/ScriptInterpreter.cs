@@ -303,6 +303,7 @@ namespace SPBitsy
                 {
                     builder.Append(state.Char());
                 }
+                state.Step();
             }
 
             if (builder.Length > 0)
@@ -609,8 +610,13 @@ namespace SPBitsy
                 case FUNC_CLR3:
                 case FUNC_WVY:
                 case FUNC_SHK:
-                    env.DialogBuffer.ToggleTextEffect(name);
-                    if (onReturn != null) onReturn(null);
+                    {
+                        if (env.DialogBuffer.HasTextEffect(name))
+                            env.DialogBuffer.RemoveTextEffect(name);
+                        else
+                            env.DialogBuffer.AddTextEffect(name, TextEffects.CreateEffectCallback(name));
+                        if (onReturn != null) onReturn(null);
+                    }
                     break;
             }
         }

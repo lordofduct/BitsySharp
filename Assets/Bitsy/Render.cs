@@ -225,7 +225,7 @@ namespace SPBitsy
         public const int TXTBOX_HEIGHT = 8 + 4 + 2 + 5; //8 for text, 4 for top-bottom padding, 2 for line padding, 5 for arrow
         public const int TXTBOX_TOP_POS = 12;
         public const int TXTBOX_LEFT_POS = 12;
-        public const int TXTBOX_BOTTOM_POS = BitsyGame.RENDERSIZE - 12;
+        public const int TXTBOX_BOTTOM_POS = BitsyGame.RENDERSIZE - TXTBOX_HEIGHT - 12;
         public const int CHARS_PER_ROW = 32;
         public const int ROWS_PER_PAGE = 2;
 
@@ -234,8 +234,6 @@ namespace SPBitsy
         private Environment _env;
         private IRenderSurface _context;
 
-        public BitsyGame.Color BackgroundColor = BitsyGame.Color.Black;
-        
         private bool _isCentered = false;
         private int _effectTimer;
         
@@ -277,7 +275,7 @@ namespace SPBitsy
             _effectTimer += deltaTime;
             _context = context;
             
-            this.DrawTextboxBackground();
+            this.DrawTextboxBackground(buffer);
             
             buffer.ForeachActiveChar(this.DrawChar);
 
@@ -317,10 +315,10 @@ namespace SPBitsy
             }
         }
 
-        private void DrawTextboxBackground()
+        private void DrawTextboxBackground(DialogBuffer buffer)
         {
-            _context.FillArea(this.BackgroundColor, TXTBOX_LEFT_POS * BitsyGame.PIXEL_SCALE, this.GetYOrigin() * BitsyGame.PIXEL_SCALE,
-                                                    TXTBOX_WIDTH * BitsyGame.PIXEL_SCALE, TXTBOX_HEIGHT * BitsyGame.PIXEL_SCALE);
+            _context.FillArea(buffer.BackgroundColor, TXTBOX_LEFT_POS * BitsyGame.PIXEL_SCALE, this.GetYOrigin() * BitsyGame.PIXEL_SCALE,
+                                                      TXTBOX_WIDTH * BitsyGame.PIXEL_SCALE, TXTBOX_HEIGHT * BitsyGame.PIXEL_SCALE);
         }
 
         private void DrawChar(DialogBuffer.Line ln, int row, int col)
@@ -329,8 +327,8 @@ namespace SPBitsy
             c.offsetX = 0f;
             c.offsetY = 0f;
 
-            foreach (var ef in ln.effects) TextEffects.ApplyEffect(_env, ref c, _effectTimer, ef, row, col);
-
+            if (c.effect != null) c.effect(_env, ref c, _effectTimer, row, col);
+            
             var charData = _env.Font.GetCharGfx(c.character);
             if (charData != null)
             {
@@ -363,8 +361,12 @@ namespace SPBitsy
 
         #region Fields
 
+        public BitsyGame.Color BackgroundColor = BitsyGame.Color.Black;
+        public BitsyGame.Color DefaultTextColor = BitsyGame.Color.White;
+        
         private List<Line> _lines = new List<Line>();
-        private HashSet<string> _activeEffects = new HashSet<string>();
+        private Dictionary<string, TextEffects.ApplyEffectCallback> _activeEffects = new Dictionary<string, TextEffects.ApplyEffectCallback>();
+        private TextEffects.ApplyEffectCallback _activeEffectsFullDelegate;
 
         private int _nextCharTimer = 0;
         private int _charIndex = 0;
@@ -417,6 +419,7 @@ namespace SPBitsy
             }
             _lines.Clear();
             _activeEffects.Clear();
+            _activeEffectsFullDelegate = null;
             _nextCharTimer = 0;
             _charIndex = 0;
             _rowIndex = 0;
@@ -425,8 +428,9 @@ namespace SPBitsy
 
         public void AddText(string text, System.Action onFinish)
         {
-            if (text == null) text = string.Empty;
+            if (string.IsNullOrEmpty(text)) return;
 
+            /*
             Line ln = null;
             if(text.Length > 0)
             {
@@ -445,12 +449,8 @@ namespace SPBitsy
                         for (int j = 0; j < ln.length; j++)
                         {
                             ln.chars[j].character = text[i + j];
-                            ln.chars[j].color = BitsyGame.Color.White;
-                            //TODO - possibly set default color of text? get this value from where?
-                        }
-                        foreach (var ef in _activeEffects)
-                        {
-                            ln.effects.Add(ef);
+                            ln.chars[j].color = this.DefaultTextColor;
+                            ln.chars[j].effect = _activeEffectsFullDelegate;
                         }
                     }
                     i = end + 1;
@@ -464,6 +464,36 @@ namespace SPBitsy
             }
             
             ln.OnPrint = onFinish;
+            */
+            
+            Line ln = null;
+            int i = 0;
+            while(i < text.Length)
+            {
+                ln = _lines.Count > 0 ? _lines[_lines.Count - 1] : this.QueueLine();
+                int offset = ln.length;
+
+                int next = i + DialogRenderer.CHARS_PER_ROW - offset + 1;
+                int end = (next < text.Length) ? text.LastIndexOf(' ', next, next - i) : text.Length;
+                if (end < 0) end = next + 1;
+
+                int len = end - i;
+                ln.length += len;
+                if(len > 0)
+                {
+                    for(int j = 0; j < len; j++)
+                    {
+                        ln.chars[j + offset].character = text[i + j];
+                        ln.chars[j + offset].color = this.DefaultTextColor;
+                        ln.chars[j + offset].effect = _activeEffectsFullDelegate;
+                    }
+                }
+                i = end + 1;
+            }
+
+            if (ln != null && ln.length > 0)
+                ln.chars[ln.length - 1].onPrint = onFinish;
+
         }
 
         public void AddLinebreak()
@@ -509,7 +539,11 @@ namespace SPBitsy
                 {
                     _rowIndex = i;
                     _charIndex = _lines[_rowIndex].length - 1;
-                    if (_lines[i].OnPrint != null) _lines[i].OnPrint();
+                    for(int j = 0; j < _charIndex + 1; j++)
+                    {
+                        if (_lines[_rowIndex].chars[j].onPrint != null)
+                            _lines[_rowIndex].chars[j].onPrint();
+                    }
                 }
             }
             
@@ -524,7 +558,7 @@ namespace SPBitsy
             int low = _rowIndex - (_rowIndex % DialogRenderer.ROWS_PER_PAGE);
             for(int i = 0; i < rowCnt; i++)
             {
-                var ln = _lines[i];
+                var ln = _lines[low + i];
                 int cnt = ln.length;
                 if (i == _rowIndex && cnt > _charIndex) cnt = _charIndex + 1;
 
@@ -559,8 +593,8 @@ namespace SPBitsy
                 this.DidPageFinishThisFrame = true;
             }
 
-            if (_charIndex + 1 == _lines[_rowIndex].length && _lines[_rowIndex].OnPrint != null)
-                _lines[_rowIndex].OnPrint();
+            if (_charIndex + 1 == _lines[_rowIndex].length && _lines[_rowIndex].chars[_charIndex].onPrint != null)
+                _lines[_rowIndex].chars[_charIndex].onPrint();
         }
 
         #endregion
@@ -570,30 +604,34 @@ namespace SPBitsy
         public bool HasTextEffect(string name)
         {
             if (name == null) return false;
-            return _activeEffects.Contains(name);
+            return _activeEffects.ContainsKey(name);
         }
 
-        public void AddTextEffect(string name)
+        public void AddTextEffect(string name, TextEffects.ApplyEffectCallback fx)
         {
             if (name == null) return;
-            _activeEffects.Add(name);
+
+            TextEffects.ApplyEffectCallback d;
+            if(_activeEffects.TryGetValue(name, out d))
+            {
+                _activeEffectsFullDelegate -= d;
+            }
+            _activeEffects[name] = fx;
+            _activeEffectsFullDelegate += fx;
         }
 
         public void RemoveTextEffect(string name)
         {
             if (name == null) return;
-            _activeEffects.Remove(name);
-        }
 
-        public void ToggleTextEffect(string name)
-        {
-            if (name == null) return;
-            if (this.HasTextEffect(name))
-                this.RemoveTextEffect(name);
-            else
-                this.AddTextEffect(name);
+            TextEffects.ApplyEffectCallback d;
+            if (_activeEffects.TryGetValue(name, out d))
+            {
+                _activeEffectsFullDelegate -= d;
+                _activeEffects.Remove(name);
+            }
         }
-
+        
         #endregion
 
         #region Line Cache
@@ -617,14 +655,14 @@ namespace SPBitsy
             if (_lineCache.Count >= LINE_CACHE_SIZE || ln == null) return;
 
             ln.length = 0;
-            ln.effects.Clear();
-            ln.OnPrint = null;
-            for(int i = 0; i < ln.chars.Length; i++)
+            for(int i = 0; i < DialogRenderer.CHARS_PER_ROW; i++)
             {
-                ln.chars[i].color = BitsyGame.Color.White;
+                ln.chars[i].color = this.DefaultTextColor;
                 ln.chars[i].offsetX = 0;
                 ln.chars[i].offsetY = 0;
                 ln.chars[i].character = default(char);
+                ln.chars[i].effect = null;
+                ln.chars[i].onPrint = null;
             }
             _lineCache.Push(ln);
         }
@@ -639,8 +677,6 @@ namespace SPBitsy
         {
             public readonly DialogChar[] chars = new DialogChar[DialogRenderer.CHARS_PER_ROW];
             public int length;
-            public HashSet<string> effects = new HashSet<string>();
-            public System.Action OnPrint;
         }
         
         #endregion
@@ -654,13 +690,38 @@ namespace SPBitsy
         public float offsetX;
         public float offsetY;
         public char character;
+        public TextEffects.ApplyEffectCallback effect;
+        public System.Action onPrint;
 
     }
 
     public static class TextEffects
     {
 
-        public static void ApplyEffect(Environment env, ref DialogChar c, int time, string id, int row, int col)
+        public static ApplyEffectCallback CreateEffectCallback(string id)
+        {
+            switch (id)
+            {
+                case ScriptInterpreter.FUNC_RBW:
+                    return ApplyRbw;
+                case ScriptInterpreter.FUNC_CLR1:
+                    return ApplyClr1;
+                case ScriptInterpreter.FUNC_CLR2:
+                    return ApplyClr2;
+                case ScriptInterpreter.FUNC_CLR3:
+                    return ApplyClr3;
+                case ScriptInterpreter.FUNC_WVY:
+                    return ApplyWvy;
+                case ScriptInterpreter.FUNC_SHK:
+                    return ApplyShk;
+                default:
+                    return null;
+            }
+        }
+
+
+
+        public static void ApplyEffect(string id, Environment env, ref DialogChar c, int time, int row, int col)
         {
             switch(id)
             {
@@ -691,16 +752,6 @@ namespace SPBitsy
             c.color = ColorUtil.HslToRGB(h, 1.0f, 0.5f);
         }
 
-        public static void ApplyClr(Environment env, ref DialogChar c, int time, int row, int col, int paletteIndex)
-        {
-            if (paletteIndex < 0) return;
-            var pal = env.GetCurrentPalette();
-            if(pal != null && pal.Colors != null && paletteIndex < pal.Colors.Length)
-            {
-                c.color = pal.Colors[paletteIndex];
-            }
-        }
-
         public static void ApplyWvy(Environment env, ref DialogChar c, int time, int row, int col)
         {
             c.offsetY += (float)(Math.Sin((time / 250d) - (col / 2d)) * 4);
@@ -721,6 +772,34 @@ namespace SPBitsy
                          * Math.Cos((time * 0.2d) - (col * 0.3d))
                          );
         }
+
+        public static void ApplyClr(Environment env, ref DialogChar c, int time, int row, int col, int paletteIndex)
+        {
+            if (paletteIndex < 0) return;
+            var pal = env.GetCurrentPalette();
+            if (pal != null && pal.Colors != null && paletteIndex < pal.Colors.Length)
+            {
+                c.color = pal.Colors[paletteIndex];
+            }
+        }
+
+        public static void ApplyClr1(Environment env, ref DialogChar c, int time, int row, int col)
+        {
+            ApplyClr(env, ref c, time, row, col, 0);
+        }
+
+        public static void ApplyClr2(Environment env, ref DialogChar c, int time, int row, int col)
+        {
+            ApplyClr(env, ref c, time, row, col, 1);
+        }
+
+        public static void ApplyClr3(Environment env, ref DialogChar c, int time, int row, int col)
+        {
+            ApplyClr(env, ref c, time, row, col, 2);
+        }
+
+
+        public delegate void ApplyEffectCallback(Environment env, ref DialogChar c, int time, int row, int col);
 
     }
 
