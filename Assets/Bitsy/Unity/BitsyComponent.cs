@@ -11,6 +11,7 @@ namespace SPBitsy.Unity
         #region Fields
 
         public TextAsset GameData;
+        public Texture2D FontTexture;
         public Renderer Renderer;
         public int Margin;
 
@@ -35,7 +36,7 @@ namespace SPBitsy.Unity
             Environment environment;
             using (var reader = new System.IO.StringReader(this.GameData.text))
             {
-                environment = parser.Parse(reader, BitsyUnityUtils.GetInputWASD);
+                environment = parser.Parse(reader, BitsyUnityUtils.GetInputWASD, BitsyUnityUtils.LoadTextureFont(this.FontTexture));
             }
             
             _game = new BitsyGame();

@@ -19,6 +19,9 @@ namespace SPBitsy
         public const int TEXT_SCALE = 1;
         public const int RESOLUTION = RENDERSIZE * PIXEL_SCALE;
 
+        public const int FONT_WIDTH = 6;
+        public const int FONT_HEIGHT = 8;
+
         public const int ANIM_TIME_MS = 400;
         public const int MOVE_TIME_MS = 200;
 
