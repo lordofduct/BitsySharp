@@ -19,6 +19,9 @@ namespace SPBitsy
         public const int TEXT_SCALE = 1;
         public const int RESOLUTION = RENDERSIZE * PIXEL_SCALE;
 
+        public const int FONT_WIDTH = 6;
+        public const int FONT_HEIGHT = 8;
+
         public const int ANIM_TIME_MS = 400;
         public const int MOVE_TIME_MS = 200;
 
@@ -56,9 +59,7 @@ namespace SPBitsy
         {
             _environment = environment;
             _surface = renderSurface;
-
-            _environment.VariableChanged += this.OnVariableChanged;
-
+            
             _environment.CurrentRoomId = _environment.GetPlayer().RoomId ?? ID_DEFAULT;
 
             this.StartNarrating(_environment.Title);
@@ -130,7 +131,7 @@ namespace SPBitsy
                     this.HandleGeneralInput();
                 }
 
-                if (_environment.didPlayerMoveThisFrame && _environment.onPlayerMoved != null) _environment.onPlayerMoved();
+                if (_environment.didPlayerMoveThisFrame && _environment.OnPlayerMoved != null) _environment.OnPlayerMoved(_environment);
                 _environment.didPlayerMoveThisFrame = false;
             }
             catch(System.Exception ex)
@@ -256,8 +257,8 @@ namespace SPBitsy
                             else
                                 spr.Inventory[item.Id] = 1f;
 
-                            if (_environment.onInventoryChanged != null)
-                                _environment.onInventoryChanged(item.Id);
+                            if (_environment.OnInventoryChanged != null)
+                                _environment.OnInventoryChanged(_environment, item.Id);
 
                             if (spr.Id == ID_PLAYER)
                                 this.StartItemDialog(item.Id);
@@ -324,8 +325,8 @@ namespace SPBitsy
                 else
                     player.Inventory[itm.Id] = 1f;
 
-                if (_environment.onInventoryChanged != null)
-                    _environment.onInventoryChanged(itm.Id);
+                if (_environment.OnInventoryChanged != null)
+                    _environment.OnInventoryChanged(_environment, itm.Id);
 
                 this.StartItemDialog(itm.Id);
             }
@@ -399,7 +400,7 @@ namespace SPBitsy
 
             if(scriptId == null)
             {
-                ScriptInterpreter.Interpret(_environment, dialog, () =>
+                _environment.ScriptInterpreter.Interpret(_environment, dialog, () =>
                 {
                     if (!_environment.DialogBuffer.IsActive)
                         this.ExitDialog();
@@ -407,9 +408,9 @@ namespace SPBitsy
             }
             else
             {
-                if (!_environment.HasScript(scriptId))
-                    ScriptInterpreter.Compile(_environment, scriptId, dialog);
-                ScriptInterpreter.Run(_environment, scriptId, () =>
+                if (!_environment.ScriptInterpreter.HasScript(scriptId))
+                    _environment.ScriptInterpreter.Compile(_environment, scriptId, dialog);
+                _environment.ScriptInterpreter.Run(_environment, scriptId, () =>
                 {
                     if (!_environment.DialogBuffer.IsActive)
                         this.ExitDialog();
@@ -453,15 +454,6 @@ namespace SPBitsy
         }
         
         #endregion
-
-        #region Events
-
-        private void OnVariableChanged(Environment env, string name)
-        {
-
-        }
-
-        #endregion
         
         #region Special Types
 
@@ -476,10 +468,18 @@ namespace SPBitsy
 
         public class NameTable
         {
+
+            private Environment _env;
             public readonly Dictionary<string, string> rooms = new Dictionary<string, string>();
             public readonly Dictionary<string, string> tiles = new Dictionary<string, string>();
             public readonly Dictionary<string, string> sprites = new Dictionary<string, string>();
             public readonly Dictionary<string, string> items = new Dictionary<string, string>();
+
+            public NameTable(Environment environment)
+            {
+                if (environment == null) throw new ArgumentNullException("environment");
+                _env = environment;
+            }
 
             public void Clear()
             {
@@ -487,6 +487,54 @@ namespace SPBitsy
                 tiles.Clear();
                 sprites.Clear();
                 items.Clear();
+            }
+
+            public string GetRoomId(string nameOrId)
+            {
+                if (nameOrId == null)
+                    return null;
+                else if (_env.Rooms.ContainsKey(nameOrId))
+                    return nameOrId;
+                else if (this.rooms.ContainsKey(nameOrId))
+                    return this.sprites[nameOrId];
+                else
+                    return null;
+            }
+
+            public string GetSpriteId(string nameOrId)
+            {
+                if (nameOrId == null)
+                    return null;
+                else if (_env.Sprites.ContainsKey(nameOrId))
+                    return nameOrId;
+                else if (this.sprites.ContainsKey(nameOrId))
+                    return this.sprites[nameOrId];
+                else
+                    return null;
+            }
+
+            public string GetTileId(string nameOrId)
+            {
+                if (nameOrId == null)
+                    return null;
+                else if (_env.Tiles.ContainsKey(nameOrId))
+                    return nameOrId;
+                else if (this.tiles.ContainsKey(nameOrId))
+                    return this.sprites[nameOrId];
+                else
+                    return null;
+            }
+
+            public string GetItemId(string nameOrId)
+            {
+                if (nameOrId == null)
+                    return null;
+                else if (_env.Items.ContainsKey(nameOrId))
+                    return nameOrId;
+                else if (this.items.ContainsKey(nameOrId))
+                    return this.sprites[nameOrId];
+                else
+                    return null;
             }
         }
 
@@ -610,6 +658,9 @@ namespace SPBitsy
     {
 
         public event System.Action<Environment, string> VariableChanged;
+        public System.Action<Environment, string> OnInventoryChanged;
+        public System.Action<Environment> OnPlayerMoved;
+        public System.Action<Environment, string> OnMessage;
 
         #region Fields
 
@@ -618,11 +669,10 @@ namespace SPBitsy
 
         public bool UseHandler = true;
         private Dictionary<string, object> _variables = new Dictionary<string, object>();
-        private Dictionary<string, ScriptInterpreter.Node> _scripts = new Dictionary<string, ScriptInterpreter.Node>();
 
         public string Title;
 
-        public readonly BitsyGame.NameTable Names = new BitsyGame.NameTable();
+        public readonly BitsyGame.NameTable Names;
         public readonly Dictionary<string, BitsyGame.Palette> Palettes = new Dictionary<string, BitsyGame.Palette>();
         public readonly Dictionary<string, BitsyGame.Room> Rooms = new Dictionary<string, BitsyGame.Room>();
         public readonly Dictionary<string, BitsyGame.Tile> Tiles = new Dictionary<string, BitsyGame.Tile>();
@@ -632,6 +682,7 @@ namespace SPBitsy
         public readonly Dictionary<string, string> Endings = new Dictionary<string, string>();
         public readonly Dictionary<string, GfxTileSheet> ImageStore = new Dictionary<string, GfxTileSheet>();
 
+        public readonly ScriptInterpreter ScriptInterpreter;
         public readonly SceneRenderer SceneRenderer;
         public readonly DialogRenderer DialogRenderer;
         public readonly DialogBuffer DialogBuffer;
@@ -654,10 +705,7 @@ namespace SPBitsy
 
         public BitsyGame.Direction lastMoveDirection = BitsyGame.Direction.None;
         public int moveHoldCounter = 0;
-
-        public System.Action<string> onInventoryChanged;
-        public System.Action onPlayerMoved;
-
+        
         #endregion
 
         #region CONSTRUCTOR
@@ -665,6 +713,8 @@ namespace SPBitsy
         public Environment()
         {
             this.Rng = new Random();
+            this.Names = new BitsyGame.NameTable(this);
+            this.ScriptInterpreter = new ScriptInterpreter(this);
             this.SceneRenderer = new SceneRenderer(this);
             this.DialogRenderer = new DialogRenderer(this);
             this.DialogBuffer = new DialogBuffer();
@@ -684,9 +734,22 @@ namespace SPBitsy
         public Environment(Random rng)
         {
             this.Rng = rng;
+            this.Names = new BitsyGame.NameTable(this);
+            this.ScriptInterpreter = new ScriptInterpreter(this);
             this.SceneRenderer = new SceneRenderer(this);
             this.DialogRenderer = new DialogRenderer(this);
             this.DialogBuffer = new DialogBuffer();
+            this.Palettes[BitsyGame.ID_DEFAULT] = new BitsyGame.Palette()
+            {
+                Id = BitsyGame.ID_DEFAULT,
+                Name = BitsyGame.ID_DEFAULT,
+                Colors = new BitsyGame.Color[]
+                {
+                    new BitsyGame.Color(0,0,0),
+                    new BitsyGame.Color(255,0,0),
+                    new BitsyGame.Color(255,255,255),
+                }
+            };
         }
 
         #endregion
@@ -883,25 +946,6 @@ namespace SPBitsy
 
         #region Scripts
 
-        public bool HasScript(string key)
-        {
-            return _scripts.ContainsKey(key);
-        }
-
-        public ScriptInterpreter.Node GetScript(string key)
-        {
-            ScriptInterpreter.Node node;
-            if (_scripts.TryGetValue(key, out node))
-                return node;
-            else
-                return null;
-        }
-
-        public void SetScript(string key, ScriptInterpreter.Node node)
-        {
-            _scripts[key] = node;
-        }
-
         #endregion
 
         #region Special Types
@@ -915,7 +959,8 @@ namespace SPBitsy
 
         #region Fields
 
-        private Dictionary<InputId, InputState> _states = new Dictionary<InputId, InputState>();
+        /// store InputId as int because the 'DefaultComparer' boxes enums when looking up by enum key.
+        private Dictionary<int, InputState> _states = new Dictionary<int, InputState>();
         public PollInputActiveCallback GetInputActive;
 
         #endregion
@@ -935,12 +980,12 @@ namespace SPBitsy
         {
             if (this.GetInputActive != null)
             {
-                _states[InputId.Any] = GetNextState(_states[InputId.Any], this.GetInputActive(InputId.Any));
-                _states[InputId.Up] = GetNextState(_states[InputId.Up], this.GetInputActive(InputId.Up));
-                _states[InputId.Down] = GetNextState(_states[InputId.Down], this.GetInputActive(InputId.Down));
-                _states[InputId.Right] = GetNextState(_states[InputId.Right], this.GetInputActive(InputId.Right));
-                _states[InputId.Left] = GetNextState(_states[InputId.Left], this.GetInputActive(InputId.Left));
-                _states[InputId.Action] = GetNextState(_states[InputId.Action], this.GetInputActive(InputId.Action));
+                _states[(int)InputId.Any] = GetNextState(_states[(int)InputId.Any], this.GetInputActive(InputId.Any));
+                _states[(int)InputId.Up] = GetNextState(_states[(int)InputId.Up], this.GetInputActive(InputId.Up));
+                _states[(int)InputId.Down] = GetNextState(_states[(int)InputId.Down], this.GetInputActive(InputId.Down));
+                _states[(int)InputId.Right] = GetNextState(_states[(int)InputId.Right], this.GetInputActive(InputId.Right));
+                _states[(int)InputId.Left] = GetNextState(_states[(int)InputId.Left], this.GetInputActive(InputId.Left));
+                _states[(int)InputId.Action] = GetNextState(_states[(int)InputId.Action], this.GetInputActive(InputId.Action));
             }
             else
                 this.Reset();
@@ -948,18 +993,18 @@ namespace SPBitsy
 
         public void Reset()
         {
-            _states[InputId.Any] = InputState.None;
-            _states[InputId.Up] = InputState.None;
-            _states[InputId.Down] = InputState.None;
-            _states[InputId.Right] = InputState.None;
-            _states[InputId.Left] = InputState.None;
-            _states[InputId.Action] = InputState.None;
+            _states[(int)InputId.Any] = InputState.None;
+            _states[(int)InputId.Up] = InputState.None;
+            _states[(int)InputId.Down] = InputState.None;
+            _states[(int)InputId.Right] = InputState.None;
+            _states[(int)InputId.Left] = InputState.None;
+            _states[(int)InputId.Action] = InputState.None;
         }
 
         public InputState GetInputState(InputId id)
         {
             InputState st;
-            if (_states.TryGetValue(id, out st))
+            if (_states.TryGetValue((int)id, out st))
                 return st;
             else
                 return InputState.None;

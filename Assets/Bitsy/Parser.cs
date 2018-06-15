@@ -38,7 +38,7 @@ namespace SPBitsy
         {
             _environment = new Environment();
             _environment.Inputs.GetInputActive = getInputCallback;
-            _environment.Font = font ?? BasicBitsyFont.LoadFont();
+            _environment.Font = font ?? BitsyFont.CreateDefault();
             _variables = new Dictionary<string, string>();
             _spriteStartLocations = new Dictionary<string, BitsyGame.Loc>();
 

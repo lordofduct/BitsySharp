@@ -41,7 +41,8 @@ namespace SPBitsy.Unity
         public void SetPixel(BitsyGame.Color color, int x, int y)
         {
             x = x + _margin;
-            y = BitsyGame.RESOLUTION - y - 1 + _margin;
+            //y = BitsyGame.RESOLUTION - y - 1 + _margin;
+            y = (_texture.height - _margin - _margin) - y - 1 + _margin;
 
             _color[0].r = color.r;
             _color[0].g = color.g;
@@ -112,6 +113,13 @@ namespace SPBitsy.Unity
             {
                 _margin = margin
             };
+        }
+
+        public static TextureRenderSurface CreateCustomSize(int width, int height)
+        {
+            var text = new Texture2D(width, height, TextureFormat.RGB24, false);
+            text.filterMode = FilterMode.Point;
+            return new TextureRenderSurface(text);
         }
 
         #endregion
