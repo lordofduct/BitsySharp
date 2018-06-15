@@ -22,7 +22,8 @@ namespace SPBitsy.Unity
         [Tooltip("If the extension function 'message' is dispatched, it calls the 'OnMessage' UnityEvent passing along the included string parameter.")]
         public bool HandleBitsyMessagesAsUnityEvent;
 
-        public readonly BitsyMessageUnityEvent OnBitsyMessage = new BitsyMessageUnityEvent();
+        [SerializeField]
+        private BitsyMessageUnityEvent _onBitsyMessage = new BitsyMessageUnityEvent();
 
         [System.NonSerialized]
         private BitsyGame _game = new BitsyGame();
@@ -61,6 +62,16 @@ namespace SPBitsy.Unity
         public BitsyGame Game
         {
             get { return _game; }
+        }
+
+        public BitsyMessageUnityEvent OnMessage
+        {
+            get { return _onBitsyMessage; }
+        }
+
+        public Texture2D Texture
+        {
+            get { return _surface != null ? _surface.Texture : null; }
         }
 
         #endregion
@@ -118,7 +129,7 @@ namespace SPBitsy.Unity
             if (this.HandleBitsyMessagesAsSendMessage)
                 this.SendMessage(parameter);
             if (this.HandleBitsyMessagesAsUnityEvent)
-                this.OnBitsyMessage.Invoke(parameter);
+                _onBitsyMessage.Invoke(parameter);
 
         }
 
