@@ -34,6 +34,11 @@ namespace SPBitsy.Unity
             get { return _texture; }
         }
 
+        public int Margin
+        {
+            get { return _margin; }
+        }
+
         #endregion
 
         #region IRenderSurface Interface
