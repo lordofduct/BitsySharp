@@ -14,6 +14,7 @@ namespace SPBitsy.Unity
         public Texture2D FontTexture;
         public Renderer Renderer;
         public int Margin;
+        public bool UseExtensionFunctions;
 
         [System.NonSerialized]
         private BitsyGame _game;
@@ -38,7 +39,9 @@ namespace SPBitsy.Unity
             {
                 environment = parser.Parse(reader, BitsyUnityUtils.GetInputWASD, BitsyUnityUtils.LoadTextureFont(this.FontTexture));
             }
-            
+
+            if (this.UseExtensionFunctions) environment.ScriptInterpreter.ScriptExtension = BitsyExtensionFunctions.CreateTable();
+
             _game = new BitsyGame();
             _game.Begin(environment, _surface);
         }

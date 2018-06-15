@@ -897,7 +897,7 @@ namespace SPBitsy
 
         }
 
-        private enum BlockType
+        public enum BlockType
         {
             Block,
             Function,
@@ -911,13 +911,13 @@ namespace SPBitsy
             Else
         }
 
-        private enum BlockMode
+        public enum BlockMode
         {
             Code,
             Dialog
         }
 
-        private abstract class Node
+        public abstract class Node
         {
             public readonly BlockType type;
             public NodeParent Parent;
@@ -947,7 +947,7 @@ namespace SPBitsy
 
         }
 
-        private abstract class NodeParent : Node
+        public abstract class NodeParent : Node
         {
             public readonly List<Node> Children = new List<Node>();
 

@@ -59,9 +59,7 @@ namespace SPBitsy
         {
             _environment = environment;
             _surface = renderSurface;
-
-            _environment.VariableChanged += this.OnVariableChanged;
-
+            
             _environment.CurrentRoomId = _environment.GetPlayer().RoomId ?? ID_DEFAULT;
 
             this.StartNarrating(_environment.Title);
@@ -133,7 +131,7 @@ namespace SPBitsy
                     this.HandleGeneralInput();
                 }
 
-                if (_environment.didPlayerMoveThisFrame && _environment.onPlayerMoved != null) _environment.onPlayerMoved();
+                if (_environment.didPlayerMoveThisFrame && _environment.OnPlayerMoved != null) _environment.OnPlayerMoved(_environment);
                 _environment.didPlayerMoveThisFrame = false;
             }
             catch(System.Exception ex)
@@ -259,8 +257,8 @@ namespace SPBitsy
                             else
                                 spr.Inventory[item.Id] = 1f;
 
-                            if (_environment.onInventoryChanged != null)
-                                _environment.onInventoryChanged(item.Id);
+                            if (_environment.OnInventoryChanged != null)
+                                _environment.OnInventoryChanged(_environment, item.Id);
 
                             if (spr.Id == ID_PLAYER)
                                 this.StartItemDialog(item.Id);
@@ -327,8 +325,8 @@ namespace SPBitsy
                 else
                     player.Inventory[itm.Id] = 1f;
 
-                if (_environment.onInventoryChanged != null)
-                    _environment.onInventoryChanged(itm.Id);
+                if (_environment.OnInventoryChanged != null)
+                    _environment.OnInventoryChanged(_environment, itm.Id);
 
                 this.StartItemDialog(itm.Id);
             }
@@ -455,15 +453,6 @@ namespace SPBitsy
             return false;
         }
         
-        #endregion
-
-        #region Events
-
-        private void OnVariableChanged(Environment env, string name)
-        {
-
-        }
-
         #endregion
         
         #region Special Types
@@ -613,6 +602,8 @@ namespace SPBitsy
     {
 
         public event System.Action<Environment, string> VariableChanged;
+        public System.Action<Environment, string> OnInventoryChanged;
+        public System.Action<Environment> OnPlayerMoved;
 
         #region Fields
 
@@ -657,10 +648,7 @@ namespace SPBitsy
 
         public BitsyGame.Direction lastMoveDirection = BitsyGame.Direction.None;
         public int moveHoldCounter = 0;
-
-        public System.Action<string> onInventoryChanged;
-        public System.Action onPlayerMoved;
-
+        
         #endregion
 
         #region CONSTRUCTOR
