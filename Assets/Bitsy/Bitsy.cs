@@ -55,14 +55,15 @@ namespace SPBitsy
 
         #region Methods
 
-        public void Begin(Environment environment, IRenderSurface renderSurface)
+        public void Begin(Environment environment, IRenderSurface renderSurface, bool showTitleText)
         {
             _environment = environment;
             _surface = renderSurface;
             
             _environment.CurrentRoomId = _environment.GetPlayer().RoomId ?? ID_DEFAULT;
 
-            this.StartNarrating(_environment.Title);
+            if(showTitleText)
+                this.StartNarrating(_environment.Title);
         }
 
         /// <summary>

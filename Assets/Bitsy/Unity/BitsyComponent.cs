@@ -14,6 +14,7 @@ namespace SPBitsy.Unity
         public Texture2D FontTexture;
         public Renderer Renderer;
         public int Margin;
+        public bool ShowTitleText = true;
         [Tooltip("Include the default extension functions defined in the class 'BitsyExtensionFunctions'.")]
         public bool UseExtensionFunctions;
         [Tooltip("If the extension function 'message' is dispatched, it calls the string parameter of it as a 'SendMessage' in unity.")]
@@ -47,7 +48,7 @@ namespace SPBitsy.Unity
             if (this.HandleBitsyMessages) environment.OnMessage += (e, s) => this.SendMessage(s);
 
             _game = new BitsyGame();
-            _game.Begin(environment, _surface);
+            _game.Begin(environment, _surface, this.ShowTitleText);
         }
 
         #endregion
