@@ -468,10 +468,18 @@ namespace SPBitsy
 
         public class NameTable
         {
+
+            private Environment _env;
             public readonly Dictionary<string, string> rooms = new Dictionary<string, string>();
             public readonly Dictionary<string, string> tiles = new Dictionary<string, string>();
             public readonly Dictionary<string, string> sprites = new Dictionary<string, string>();
             public readonly Dictionary<string, string> items = new Dictionary<string, string>();
+
+            public NameTable(Environment environment)
+            {
+                if (environment == null) throw new ArgumentNullException("environment");
+                _env = environment;
+            }
 
             public void Clear()
             {
@@ -479,6 +487,54 @@ namespace SPBitsy
                 tiles.Clear();
                 sprites.Clear();
                 items.Clear();
+            }
+
+            public string GetRoomId(string nameOrId)
+            {
+                if (nameOrId == null)
+                    return null;
+                else if (_env.Rooms.ContainsKey(nameOrId))
+                    return nameOrId;
+                else if (this.rooms.ContainsKey(nameOrId))
+                    return this.sprites[nameOrId];
+                else
+                    return null;
+            }
+
+            public string GetSpriteId(string nameOrId)
+            {
+                if (nameOrId == null)
+                    return null;
+                else if (_env.Sprites.ContainsKey(nameOrId))
+                    return nameOrId;
+                else if (this.sprites.ContainsKey(nameOrId))
+                    return this.sprites[nameOrId];
+                else
+                    return null;
+            }
+
+            public string GetTileId(string nameOrId)
+            {
+                if (nameOrId == null)
+                    return null;
+                else if (_env.Tiles.ContainsKey(nameOrId))
+                    return nameOrId;
+                else if (this.tiles.ContainsKey(nameOrId))
+                    return this.sprites[nameOrId];
+                else
+                    return null;
+            }
+
+            public string GetItemId(string nameOrId)
+            {
+                if (nameOrId == null)
+                    return null;
+                else if (_env.Items.ContainsKey(nameOrId))
+                    return nameOrId;
+                else if (this.items.ContainsKey(nameOrId))
+                    return this.sprites[nameOrId];
+                else
+                    return null;
             }
         }
 
@@ -604,6 +660,7 @@ namespace SPBitsy
         public event System.Action<Environment, string> VariableChanged;
         public System.Action<Environment, string> OnInventoryChanged;
         public System.Action<Environment> OnPlayerMoved;
+        public System.Action<Environment, string> OnMessage;
 
         #region Fields
 
@@ -615,7 +672,7 @@ namespace SPBitsy
 
         public string Title;
 
-        public readonly BitsyGame.NameTable Names = new BitsyGame.NameTable();
+        public readonly BitsyGame.NameTable Names;
         public readonly Dictionary<string, BitsyGame.Palette> Palettes = new Dictionary<string, BitsyGame.Palette>();
         public readonly Dictionary<string, BitsyGame.Room> Rooms = new Dictionary<string, BitsyGame.Room>();
         public readonly Dictionary<string, BitsyGame.Tile> Tiles = new Dictionary<string, BitsyGame.Tile>();
@@ -656,6 +713,7 @@ namespace SPBitsy
         public Environment()
         {
             this.Rng = new Random();
+            this.Names = new BitsyGame.NameTable(this);
             this.ScriptInterpreter = new ScriptInterpreter(this);
             this.SceneRenderer = new SceneRenderer(this);
             this.DialogRenderer = new DialogRenderer(this);
@@ -676,6 +734,7 @@ namespace SPBitsy
         public Environment(Random rng)
         {
             this.Rng = rng;
+            this.Names = new BitsyGame.NameTable(this);
             this.ScriptInterpreter = new ScriptInterpreter(this);
             this.SceneRenderer = new SceneRenderer(this);
             this.DialogRenderer = new DialogRenderer(this);

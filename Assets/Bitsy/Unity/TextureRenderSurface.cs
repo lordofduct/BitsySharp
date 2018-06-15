@@ -42,7 +42,7 @@ namespace SPBitsy.Unity
         {
             x = x + _margin;
             //y = BitsyGame.RESOLUTION - y - 1 + _margin;
-            y = _texture.height - y - 1 + _margin;
+            y = (_texture.height - _margin - _margin) - y - 1 + _margin;
 
             _color[0].r = color.r;
             _color[0].g = color.g;
