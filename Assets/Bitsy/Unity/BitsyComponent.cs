@@ -25,6 +25,9 @@ namespace SPBitsy.Unity
         [SerializeField]
         private BitsyMessageUnityEvent _onBitsyMessage = new BitsyMessageUnityEvent();
 
+        [SerializeField]
+        private BitsyMessageInfo[] _messageHandlers;
+
         [System.NonSerialized]
         private BitsyGame _game = new BitsyGame();
         [System.NonSerialized]
@@ -131,6 +134,13 @@ namespace SPBitsy.Unity
             if (this.HandleBitsyMessagesAsUnityEvent)
                 _onBitsyMessage.Invoke(parameter);
 
+            foreach(var info in _messageHandlers)
+            {
+                if(info != null && info.Message == parameter)
+                {
+                    info.OnMessage.Invoke();
+                }
+            }
         }
 
         #endregion
@@ -141,6 +151,13 @@ namespace SPBitsy.Unity
         public class BitsyMessageUnityEvent : UnityEngine.Events.UnityEvent<string>
         {
 
+        }
+
+        [System.Serializable]
+        public class BitsyMessageInfo
+        {
+            public string Message;
+            public UnityEngine.Events.UnityEvent OnMessage;
         }
 
         #endregion

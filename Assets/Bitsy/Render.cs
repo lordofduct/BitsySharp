@@ -328,9 +328,23 @@ namespace SPBitsy
             c.offsetY = 0f;
 
             if (c.effect != null) c.effect(_env, ref c, _effectTimer, row, col);
-            
-            var charData = _env.Font.GetCharGfx(c.character);
-            if (charData != null)
+
+            GfxTileSheet gfx;
+            if(c.character > 0)
+            {
+                gfx = _env.Font.GetCharGfx(c.character);
+                if (gfx != null)
+                {
+                    int top = 4 + (row * 2) + (row * 8 / 2) + (int)c.offsetY;
+                    int left = 4 + (col * 6 / 2) + (int)c.offsetX;
+                    //adjust into textbox
+                    top = (this.GetYOrigin() + top) * BitsyGame.PIXEL_SCALE;
+                    left = (TXTBOX_LEFT_POS + left) * BitsyGame.PIXEL_SCALE;
+
+                    gfx.Draw(0, left, top, c.color, _context, BitsyGame.TEXT_SCALE);
+                }
+            }
+            else if(c.drawId != null && _env.ImageStore.TryGetValue(c.drawId, out gfx) && gfx != null)
             {
                 int top = 4 + (row * 2) + (row * 8 / 2) + (int)c.offsetY;
                 int left = 4 + (col * 6 / 2) + (int)c.offsetX;
@@ -338,7 +352,7 @@ namespace SPBitsy
                 top = (this.GetYOrigin() + top) * BitsyGame.PIXEL_SCALE;
                 left = (TXTBOX_LEFT_POS + left) * BitsyGame.PIXEL_SCALE;
 
-                charData.Draw(0, left, top, c.color, _context, BitsyGame.TEXT_SCALE);
+                gfx.Draw(0, left, top, c.color, _context, 1);
             }
         }
 
@@ -424,6 +438,27 @@ namespace SPBitsy
             _charIndex = 0;
             _rowIndex = 0;
             _isDialogReadyToContinue = false;
+        }
+
+        public void AddDrawing(string drawingId, System.Action onFinish)
+        {
+            if (_lines.Count == 0) this.QueueLine();
+
+            //get line
+            Line ln = _lines[_lines.Count - 1];
+            if (ln.length >= DialogRenderer.CHARS_PER_ROW)
+            {
+                ln = this.QueueLine();
+            }
+            
+            ln.chars[ln.length] = new DialogChar()
+            {
+                drawId = drawingId,
+                color = this.DefaultTextColor,
+                effect = _activeEffectsFullDelegate,
+                onPrint = onFinish
+            };
+            ln.length++;
         }
 
         public void AddText(string text, System.Action onFinish)
@@ -651,6 +686,7 @@ namespace SPBitsy
                 ln.chars[i].offsetX = 0;
                 ln.chars[i].offsetY = 0;
                 ln.chars[i].character = default(char);
+                ln.chars[i].drawId = null;
                 ln.chars[i].effect = null;
                 ln.chars[i].onPrint = null;
             }
@@ -679,10 +715,11 @@ namespace SPBitsy
         public BitsyGame.Color color;
         public float offsetX;
         public float offsetY;
-        public char character;
         public TextEffects.ApplyEffectCallback effect;
         public System.Action onPrint;
 
+        public char character;
+        public string drawId;
     }
 
     public static class TextEffects
