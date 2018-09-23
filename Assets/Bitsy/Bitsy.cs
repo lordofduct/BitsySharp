@@ -10,7 +10,7 @@ namespace SPBitsy
     public class BitsyGame
     {
 
-        public string VERSION = "4.8"; //this is the bitsy version we're currently ported from
+        public string VERSION = "5.3"; //this is the bitsy version we're currently ported from
 
         public const int MAPSIZE = 16;
         public const int TILESIZE = 8;

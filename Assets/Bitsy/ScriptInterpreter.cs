@@ -432,7 +432,7 @@ namespace SPBitsy
 
                 if (line[index + 1] != SYM_SET && line[index - 1] != '>' && line[index - 1] != '<')
                 {
-                    op = OP_EQUAL;
+                    op = OP_SET;
                     var varName = line.Substring(0, index).Trim();
                     var left = IsValidVariableName(varName) ? (Node)(new VariableNode(varName)) : (Node)(new LiteralNode(null));
                     var right = CreateExpression(line.Substring(index + 1));
@@ -578,6 +578,7 @@ namespace SPBitsy
 
         #region Eval Function
 
+        public const string FUNC_PRINT = "print";
         public const string FUNC_SAY = "say";
         public const string FUNC_BR = "br";
         public const string FUNC_ITEM = "item";
@@ -587,11 +588,15 @@ namespace SPBitsy
         public const string FUNC_CLR3 = "clr3";
         public const string FUNC_WVY = "wvy";
         public const string FUNC_SHK = "shk";
+        public const string FUNC_PRSPR = "printSprite";
+        public const string FUNC_PRTILE = "printTile";
+        public const string FUNC_PRITEM = "printItem";
 
         public bool HasFunction(string name)
         {
             switch (name)
             {
+                case FUNC_PRINT:
                 case FUNC_SAY:
                 case FUNC_BR:
                 case FUNC_ITEM:
@@ -601,6 +606,9 @@ namespace SPBitsy
                 case FUNC_CLR3:
                 case FUNC_WVY:
                 case FUNC_SHK:
+                case FUNC_PRSPR:
+                case FUNC_PRTILE:
+                case FUNC_PRITEM:
                     return true;
                 default:
                     return this.ScriptExtension != null ? this.ScriptExtension.HasFunction(name) : false;
@@ -611,6 +619,7 @@ namespace SPBitsy
         {
             switch (name)
             {
+                case FUNC_PRINT:
                 case FUNC_SAY:
                     env.DialogBuffer.AddText(args != null && args.Length > 0 ? Convert.ToString(args[0]) : string.Empty, Utils.Coerce(onReturn));
                     break;
@@ -642,6 +651,39 @@ namespace SPBitsy
                         else
                             env.DialogBuffer.AddTextEffect(name, TextEffects.CreateEffectCallback(name));
                         if (onReturn != null) onReturn(null);
+                    }
+                    break;
+                case FUNC_PRSPR:
+                    if(args != null && args.Length > 0)
+                    {
+                        string id = Convert.ToString(args[0]);
+                        BitsyGame.Sprite spr;
+                        if(env.Sprites.TryGetValue(id, out spr))
+                        {
+                            env.DialogBuffer.AddDrawing(spr.DrawId, Utils.Coerce(onReturn));
+                        }
+                    }
+                    break;
+                case FUNC_PRTILE:
+                    if (args != null && args.Length > 0)
+                    {
+                        string id = Convert.ToString(args[0]);
+                        BitsyGame.Tile tl;
+                        if (env.Tiles.TryGetValue(id, out tl))
+                        {
+                            env.DialogBuffer.AddDrawing(tl.DrawId, Utils.Coerce(onReturn));
+                        }
+                    }
+                    break;
+                case FUNC_PRITEM:
+                    if (args != null && args.Length > 0)
+                    {
+                        string id = Convert.ToString(args[0]);
+                        BitsyGame.Item itm;
+                        if (env.Items.TryGetValue(id, out itm))
+                        {
+                            env.DialogBuffer.AddDrawing(itm.DrawId, Utils.Coerce(onReturn));
+                        }
                     }
                     break;
                 default:
