@@ -432,7 +432,7 @@ namespace SPBitsy
 
                 if (line[index + 1] != SYM_SET && line[index - 1] != '>' && line[index - 1] != '<')
                 {
-                    op = OP_EQUAL;
+                    op = OP_SET;
                     var varName = line.Substring(0, index).Trim();
                     var left = IsValidVariableName(varName) ? (Node)(new VariableNode(varName)) : (Node)(new LiteralNode(null));
                     var right = CreateExpression(line.Substring(index + 1));
