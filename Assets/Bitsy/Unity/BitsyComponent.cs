@@ -32,6 +32,8 @@ namespace SPBitsy.Unity
         private BitsyGame _game = new BitsyGame();
         [System.NonSerialized]
         private TextureRenderSurface _surface;
+        [System.NonSerialized]
+        private IBitsyInput _input;
 
         #endregion
 
@@ -94,7 +96,7 @@ namespace SPBitsy.Unity
             Environment environment;
             using (var reader = new System.IO.StringReader(this.GameData.text))
             {
-                environment = parser.Parse(reader, BitsyUnityUtils.GetInputWASD, BitsyUnityUtils.LoadTextureFont(this.FontTexture));
+                environment = parser.Parse(reader, this.HanldeBitsyInput, BitsyUnityUtils.LoadTextureFont(this.FontTexture));
             }
 
             if (this.UseExtensionFunctions) environment.ScriptInterpreter.ScriptExtension = BitsyExtensionFunctions.CreateTable();
@@ -108,7 +110,10 @@ namespace SPBitsy.Unity
                 _surface = TextureRenderSurface.Create(this.Margin);
             }
             this.Renderer.material.mainTexture = _surface.Texture;
-            
+
+            //get input
+            _input = this.GetComponent<IBitsyInput>();
+
             //begin game
             _game.Begin(environment, _surface, this.ShowTitleText);
         }
@@ -125,6 +130,18 @@ namespace SPBitsy.Unity
             }
             
             _surface.Texture.Apply();
+        }
+
+        private bool HanldeBitsyInput(BitsyInput.InputId id)
+        {
+            if(_input != null)
+            {
+                return _input.PollInput(id);
+            }
+            else
+            {
+                return BitsyUnityUtils.GetInputWASD(id);
+            }
         }
 
         private void OnBitsyMessageCallback(Environment env, string parameter)
