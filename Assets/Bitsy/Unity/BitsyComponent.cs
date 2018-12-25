@@ -7,6 +7,12 @@ namespace SPBitsy.Unity
 
     public sealed class BitsyComponent : MonoBehaviour
     {
+
+        public enum RestartModes
+        {
+            Start,
+            Enable
+        }
         
         #region Fields
 
@@ -21,6 +27,7 @@ namespace SPBitsy.Unity
         public bool HandleBitsyMessagesAsSendMessage;
         [Tooltip("If the extension function 'message' is dispatched, it calls the 'OnMessage' UnityEvent passing along the included string parameter.")]
         public bool HandleBitsyMessagesAsUnityEvent;
+        public RestartModes RestartOn;
 
         [SerializeField]
         private BitsyMessageUnityEvent _onBitsyMessage = new BitsyMessageUnityEvent();
@@ -34,6 +41,9 @@ namespace SPBitsy.Unity
         private TextureRenderSurface _surface;
         [System.NonSerialized]
         private IBitsyInput _input;
+
+        [System.NonSerialized]
+        private bool _started;
 
         #endregion
 
@@ -54,7 +64,18 @@ namespace SPBitsy.Unity
         
         void Start()
         {
+            _started = true;
             this.RestartGame();
+        }
+
+        private void OnEnable()
+        {
+            if (!_started) return;
+
+            if(this.RestartOn == RestartModes.Enable)
+            {
+                this.RestartGame();
+            }
         }
 
         #endregion
