@@ -287,32 +287,33 @@ namespace SPBitsy
                 case Direction.Up:
                     if(!this.IsLocWall(room, player.x, player.y - 1) && !_environment.GetSpriteAtLoc(room.Id, player.x, player.y - 1, out spr))
                     {
-                        player.y -= 1;
+                        player.y = Math.Max(player.y - 1, 0);
                         _environment.didPlayerMoveThisFrame = true;
                     }
                     break;
                 case Direction.Down:
                     if (!this.IsLocWall(room, player.x, player.y + 1) && !_environment.GetSpriteAtLoc(room.Id, player.x, player.y + 1, out spr))
                     {
-                        player.y += 1;
+                        player.y = Math.Min(player.y + 1, 15);
                         _environment.didPlayerMoveThisFrame = true;
                     }
                     break;
                 case Direction.Left:
                     if (!this.IsLocWall(room, player.x - 1, player.y) && !_environment.GetSpriteAtLoc(room.Id, player.x - 1, player.y, out spr))
                     {
-                        player.x -= 1;
+                        player.x = Math.Max(player.x - 1, 0);
                         _environment.didPlayerMoveThisFrame = true;
                     }
                     break;
                 case Direction.Right:
                     if (!this.IsLocWall(room, player.x + 1, player.y) && !_environment.GetSpriteAtLoc(room.Id, player.x + 1, player.y, out spr))
                     {
-                        player.x += 1;
+                        player.x = Math.Min(player.x + 1, 15);
                         _environment.didPlayerMoveThisFrame = true;
                     }
                     break;
             }
+            
 
             // do items first, because you can pick up an item AND go through a door
             int itemIndex = _environment.GetItemIndexAtLoc(room.Id, player.x, player.y);
